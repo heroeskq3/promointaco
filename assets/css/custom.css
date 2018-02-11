@@ -1,0 +1,17 @@
+.f1-step.active .f1-step-icon {
+    background: #ea3f33;
+}
+button.btn.btn-next, button.btn.btn-next:focus, button.btn.btn-next:active:focus, button.btn.btn-next.active:focus {
+    background: #ea3f33;
+}
+.img_colorfill{
+filter: drop-shadow(1px 0px 0px white);
+}
+input[type="text"], input[type="password"], select, textarea, textarea.form-control {
+    width: 100%;
+}
+
+.select-country {
+    width: 200px;
+}
+
