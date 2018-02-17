@@ -7,6 +7,7 @@ $section_navbar      = 0;
 $section_sidebar     = 0;
 $section_searchbar   = 0;
 $section_style       = 0;
+$section_homedir     = '../';
 ?>
 <?php require_once 'header.php';?>
 <?php

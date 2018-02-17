@@ -251,6 +251,44 @@ $Position = null;
 if (isset($_POST['Position'])) {
     $Position = $_POST['Position'];
 }
+//survey front
+$step_1 = 1;
+if (isset($_POST['step_1'])) {
+    $step_1 = $_POST['step_1'];
+}
+$step_2 = 1;
+if (isset($_POST['step_2'])) {
+    $step_2 = $_POST['step_2'];
+}
+$step_3 = 1;
+if (isset($_POST['step_3'])) {
+    $step_3 = $_POST['step_3'];
+}
+$step_4 = 1;
+if (isset($_POST['step_4'])) {
+    $step_4 = $_POST['step_4'];
+}
+$step_5 = 1;
+if (isset($_POST['step_5'])) {
+    $step_5 = $_POST['step_5'];
+}
+$step_6 = 1;
+if (isset($_POST['step_6'])) {
+    $step_6 = $_POST['step_6'];
+}
 
+$button = null;
+if (isset($_POST['button'])) {
+    $button = $_POST['button'];
+}
 
+//sessions
+$Country = $Country;
+if (isset($_SESSION['Country'])) {
+    $Country = $_SESSION['Country'];
+}
+$SurveyId = $SurveyId;
+if (isset($_SESSION['SurveyId'])) {
+    $SurveyId = $_SESSION['SurveyId'];
+}
 ?>

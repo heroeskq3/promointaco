@@ -4,6 +4,7 @@
 //SYSTEM
 require_once PATH_MODELS . 'class_conn.php';
 require_once PATH_MODELS . 'class_login.php';
+require_once PATH_MODELS . 'class_token.php';
 
 require_once PATH_MODELS . 'class_sumavalor.php';
 
@@ -12,6 +13,7 @@ require_once PATH_MODELS . 'class_scripts.php';
 
 //TEMPLATE
 require_once PATH_MODELS . 'class_contentarea.php';
+require_once PATH_MODELS . 'class_modals.php';
 
 require_once PATH_MODELS . 'class_api.php';
 require_once PATH_MODELS . 'class_mysql.php';
@@ -98,12 +100,16 @@ require_once PATH_MODELS . 'class_menudelete.php';
 require_once PATH_MODELS . 'class_menuupdate.php';
 require_once PATH_MODELS . 'class_submenulist.php';
 
+//survey sys
+require_once PATH_MODELS . 'class_surveybuttons.php';
+
 //Survey - Services
 require_once PATH_MODELS . 'class_surveylist.php';
 require_once PATH_MODELS . 'class_surveyinfo.php';
 require_once PATH_MODELS . 'class_surveyadd.php';
 require_once PATH_MODELS . 'class_surveydelete.php';
 require_once PATH_MODELS . 'class_surveyupdate.php';
+require_once PATH_MODELS . 'class_surveyserviceslist.php';
 
 //Survey - Questions
 require_once PATH_MODELS . 'class_surveyquestionslist.php';

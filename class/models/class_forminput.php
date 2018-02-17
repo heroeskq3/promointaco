@@ -23,7 +23,7 @@ function class_formInput($inputType, $name, $label, $value, $required)
     //SELECT INPUT
     if ($inputType == 'select') {
         $results .= '<select class="select-with-search form-control pmd-select2" name="' . $name . '" '.$required.'>';
-        $results .= '<option></option>';
+        $results .= '<option value="">Select</option>';
         if($value){
             foreach ($value as $row_option) {
                 $results .= '<option value="' . $row_option['value'] . '" ';

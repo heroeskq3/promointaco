@@ -1,7 +1,7 @@
 <?php
-function class_answers()
+function class_tableSurveys($Id)
 {
-    $questionslist = class_questions(14);
+    $questionslist = class_questions($Id);
 
     $results = '<div class="table-responsive">';
     $results .= '<table class="table table-hover table-sm " width="100%">';

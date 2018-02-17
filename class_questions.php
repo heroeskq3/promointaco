@@ -36,10 +36,6 @@ function class_questions($Id)
 
     $results = array('questions' => $array_questions, 'answers' => $array_answers);
 
-    // //debugger
-    // echo "<pre>";
-    // print_r($results);
-
     return $results;
 
 }

@@ -1,12 +1,6 @@
 <?php
-function class_customers($form_add, $Identification, $FirstName, $LastName, $MiddleName, $Company, $Position, $Phone, $Mobile, $Email, $Country, $State, $City, $Address, $Details, $Responsible, $CustomInfo1, $CustomInfo2, $CustomInfo3, $CustomInfo4, $CustomInfo5, $Image, $Status)
+function class_formsCustomers()
 {
-
-    //Status list
-    $Status         = 1;
-    $array_status   = array();
-    $array_status[] = array('label' => 'Active', 'value' => '1', 'selected' => $Status);
-    $array_status[] = array('label' => 'Inactive', 'value' => '0', 'selected' => $Status);
 
     //Status list
     $Status         = 1;
@@ -46,36 +40,36 @@ function class_customers($form_add, $Identification, $FirstName, $LastName, $Mid
         'form_add'                                => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'form_add', 'value' => 1),
 
         //active
-        'Identification No.'                      => array('inputType' => 'text', 'required' => true, 'position' => 1, 'name' => 'Identification', 'value' => $Identification),
-        'First Name'                              => array('inputType' => 'text', 'required' => true, 'position' => 1, 'name' => 'FirstName', 'value' => $FirstName),
-        'Last Name'                               => array('inputType' => 'text', 'required' => true, 'position' => 1, 'name' => 'LastName', 'value' => $LastName),
-        'Company'                                 => array('inputType' => 'text', 'required' => true, 'position' => 1, 'name' => 'Company', 'value' => $Company),
-        'Position'                                => array('inputType' => 'text', 'required' => true, 'position' => 1, 'name' => 'Position', 'value' => $Position),
-        'Phone'                                   => array('inputType' => 'tel', 'required' => true, 'position' => 1, 'name' => 'Phone', 'value' => $Phone),
-        'Mobile'                                  => array('inputType' => 'tel', 'required' => false, 'position' => 1, 'name' => 'Mobile', 'value' => $Mobile),
-        'Email'                                   => array('inputType' => 'email', 'required' => true, 'position' => 1, 'name' => 'Email', 'value' => $Email),
+        'Identification No.'                      => array('inputType' => 'text', 'required' => true, 'position' => 1, 'name' => 'Identification', 'value' => isset($Identification)),
+        'First Name'                              => array('inputType' => 'text', 'required' => true, 'position' => 1, 'name' => 'FirstName', 'value' => isset($FirstName)),
+        'Last Name'                               => array('inputType' => 'text', 'required' => true, 'position' => 1, 'name' => 'LastName', 'value' => isset($LastName)),
+        'Company'                                 => array('inputType' => 'text', 'required' => true, 'position' => 1, 'name' => 'Company', 'value' => isset($Company)),
+        'Position'                                => array('inputType' => 'text', 'required' => true, 'position' => 1, 'name' => 'Position', 'value' => isset($Position)),
+        'Phone'                                   => array('inputType' => 'tel', 'required' => true, 'position' => 1, 'name' => 'Phone', 'value' => isset($Phone)),
+        'Mobile'                                  => array('inputType' => 'tel', 'required' => true, 'position' => 1, 'name' => 'Mobile', 'value' => isset($Mobile)),
+        'Email'                                   => array('inputType' => 'email', 'required' => true, 'position' => 1, 'name' => 'Email', 'value' => isset($Email)),
         'Country'                                 => array('inputType' => 'select', 'required' => true, 'position' => 1, 'name' => 'Country', 'value' => $array_countrylist),
-        'Zone'                                    => array('inputType' => 'text', 'required' => true, 'position' => 1, 'name' => 'CustomInfo1', 'value' => $CustomInfo1),
+        'Zone'                                    => array('inputType' => 'text', 'required' => true, 'position' => 1, 'name' => 'CustomInfo1', 'value' => isset($CustomInfo1)),
         '¿Cuánto tiempo tiene de comprar INTACO?' => array('inputType' => 'select', 'required' => true, 'position' => 1, 'name' => 'CustomInfo2', 'value' => $array_CustomInfo2),
         'Tipo'                                    => array('inputType' => 'select', 'required' => true, 'position' => 1, 'name' => 'CustomInfo3', 'value' => $array_CustomInfo3),
 
         //Inactive
-        'Responsible'                             => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'Responsible', 'value' => $Responsible),
-        'Middle Name'                             => array('inputType' => 'text', 'required' => false, 'position' => 0, 'name' => 'MiddleName', 'value' => $MiddleName),
-        'State'                                   => array('inputType' => 'select', 'required' => false, 'position' => 0, 'name' => 'State', 'value' => $State),
-        'City'                                    => array('inputType' => 'text', 'required' => false, 'position' => 0, 'name' => 'City', 'value' => $City),
-        'Address'                                 => array('inputType' => 'text', 'required' => false, 'position' => 0, 'name' => 'Address', 'value' => $Address),
-        'Details'                                 => array('inputType' => 'textarea', 'required' => false, 'position' => 0, 'name' => 'Details', 'value' => $Details),
-        'CustomInfo4'                             => array('inputType' => 'text', 'required' => false, 'position' => 0, 'name' => 'CustomInfo4', 'value' => $CustomInfo4),
-        'CustomInfo5'                             => array('inputType' => 'text', 'required' => false, 'position' => 0, 'name' => 'CustomInfo5', 'value' => $CustomInfo5),
-        'Image'                                   => array('inputType' => 'image', 'required' => false, 'position' => 0, 'name' => 'Image', 'value' => $Image),
-        'Status'                                  => array('inputType' => 'select', 'required' => true, 'position' => 0, 'name' => 'Status', 'value' => $Status),
+        'Responsible'                             => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'Responsible', 'value' => isset($Responsible)),
+        'Middle Name'                             => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'MiddleName', 'value' => isset($MiddleName)),
+        'State'                                   => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'State', 'value' => isset($State)),
+        'City'                                    => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'City', 'value' => isset($City)),
+        'Address'                                 => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'Address', 'value' => isset($Address)),
+        'Details'                                 => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'Details', 'value' => isset($Details)),
+        'CustomInfo4'                             => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'CustomInfo4', 'value' => isset($CustomInfo4)),
+        'CustomInfo5'                             => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'CustomInfo5', 'value' => isset($CustomInfo5)),
+        'Image'                                   => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'Image', 'value' => isset($Image)),
+        'Status'                                  => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'Status', 'value' => isset($Status)),
     );
 
     // define buttons for form
     // $formButtons = array(
-    //     'Submit' => array('buttonType' => 'submit', 'action' => null),
-    //     'Cancel' => array('buttonType' => 'link', 'action' => 'customers_list.php'),
+    //     'Submit'     => array('buttonType' => 'submit', 'class' => null, 'name' => null, 'value' => null, 'action' => null),
+    //     'Cancel' => array('buttonType' => 'link', 'action' => null),
     // );
     $formButtons = null;
 
