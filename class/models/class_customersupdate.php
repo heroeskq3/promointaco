@@ -11,7 +11,3 @@ function class_customersUpdate($Id, $Identification, $FirstName, $LastName, $Mid
 
     return $results;
 }
-
-
-//se debe hacer el pase de profile2 a profile, tambien se debe crear el metodo de gallery y mas adelante otro de resources
-//tambien se debe probar el upload images y crear metodos de upload o mejorar el existente

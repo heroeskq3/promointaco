@@ -69,8 +69,8 @@ $formFields = array(
 
 // define buttons for form
 $formButtons = array(
-    'Submit'     => array('buttonType' => 'submit', 'class' => null, 'name' => null, 'value' => null, 'action' => null),
-    'Cancel' => array('buttonType' => 'back'),
+    'Submit' => array('buttonType' => 'submit', 'class' => null, 'name' => null, 'value' => null, 'action' => null),
+    'Back'   => array('buttonType' => 'cancel', 'class' => null, 'name' => null, 'value' => null, 'action' => null),
 );
 
 //set params for form

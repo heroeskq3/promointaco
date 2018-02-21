@@ -1,17 +1,88 @@
 .f1-step.active .f1-step-icon {
-    background: #ea3f33;
+    background: #DD3B30;
+}
+.f1-step.active p {
+    color: #DD3B30;
+}
+.f1-progress-line {
+    background: #DD3B30;
 }
 button.btn.btn-next, button.btn.btn-next:focus, button.btn.btn-next:active:focus, button.btn.btn-next.active:focus {
     background: #ea3f33;
 }
-.img_colorfill{
-filter: drop-shadow(1px 0px 0px white);
+.img_colorfill {
+    filter: drop-shadow(1px 0px 0px white);
 }
-input[type="text"], input[type="password"], select, textarea, textarea.form-control {
+input, select, textarea, textarea.form-control {
     width: 100%;
 }
-
-.select-country {
-    width: 200px;
+button.btn.btn-submit, button.btn.btn-submit:focus, button.btn.btn-submit:active:focus, button.btn.btn-submit.active:focus {
+    background: #DD3B30;
+}
+input, textarea, select, textarea.form-control {
+    height: 44px;
+}
+.form-control {
+    height: 44px;
+}
+button.btn {
+    margin: 3px;
+    margin-right: 3px;
 }
 
+/* radio button img*/
+.incluir {
+    position: relative;
+
+}
+.incluir input {
+  -webkit-appearance: none;   
+  -moz-appearance: window;   
+  -ms-appearance: window;  
+  appearance: window; 
+  position: absolute;
+  top: 0;
+  width: 50px;
+  height: 50px;
+
+
+}
+
+
+.incluir input + label::before {
+  position absolute;
+  top: 0;
+  display: inline-block;
+  background: transparent url('../img/surveys/star.png') no-repeat 0 0;
+  display: block;
+  width: 50px;
+  height: 50px; 
+  content: '';
+  vertical-align: middle;
+    -webkit-transition:all .9s ease; /* Safari y Chrome */
+    -moz-transition:all .9s ease; /* Firefox */
+    -o-transition:all .9s ease; /* IE 9 */
+    -ms-transition:all .9s ease; /* Opera */
+
+
+}
+.incluir input:checked + label::before {
+    -webkit-transform:scale(1.30);
+    -moz-transform:scale(1.30);
+    -ms-transform:scale(1.30);
+    -o-transform:scale(1.30);
+    transform:scale(1.30);
+
+/*        filter: alpha(opacity=50);
+        opacity: 0.5;
+        -webkit-transition: opacity .15s ease-out-in;
+        -moz-transition: opacity .15s ease-out-in;
+        -ms-transition: opacity .15s ease-out-in;
+        -o-transition: opacity .15s ease-out-in;
+        transition: opacity .15s ease-out-in;*/
+
+
+
+  background: transparent url('../img/surveys/star.png') no-repeat 0 0;
+
+}

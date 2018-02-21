@@ -1,6 +1,6 @@
 <?php
 //Section Parameters
-$section_tittle      = "Survey";
+$section_tittle      = "Questions";
 $section_description = null;
 $section_restrict    = 1;
 $section_navbar      = 1;
@@ -8,32 +8,61 @@ $section_sidebar     = 1;
 $section_searchbar   = 0;
 $section_style       = 1;
 $section_homedir     = null;
-$step                = 5;
+$section_step        = 5;
+
+require_once 'header.php';
+
+$surveylist = class_surveyList();
 ?>
-<?php require_once 'header.php';?>
-<?php
-if ($button == 'next') {
+<fieldset>
+<?php $i = 0; ?>
+<?php foreach ($surveylist['response'] as $row_surveylist) {?>
+<?php $num = $i++; ?>
+<?php 
+$step = 0;
+if (isset($_POST['step'])) {
+	$step = $_POST['step'];
+}
+$step_next = $step+1;
+
+if ($step == $surveylist['rows']) {
     header('Location: survey_thanks.php');
     die();
 }
-if ($button == 'previous') {
-    header('Location: survey_register.php');
-    die();
-}
 ?>
-    <form role="form" action="" method="post">
-        <fieldset>
-            <?php class_tableSurveys($_SESSION['SurveyId']);?>
-            <div class="f1-buttons">
-        <?php
-//buttons
+<?php if($step == $num){ ?>
+<?php
+$SurveyId = $row_surveylist['Id'];
+
+$surveyinfo     = class_surveyInfo($SurveyId);
+$row_surveyinfo = $surveyinfo['response'][0];
+
+// define buttons for form
 $formButtons = array(
-    'Previous' => array('buttonType' => 'submit', 'class' => 'btn btn-submit', 'name' => 'button', 'value' => 'previous', 'action' => 'survey_services.php'),
-    'Next'     => array('buttonType' => 'submit', 'class' => 'btn btn-submit', 'name' => 'button', 'value' => 'next', 'action' => null),
+    'Previous' => array('buttonType' => 'link', 'class' => null, 'name' => 'null', 'value' => null, 'action' => 'survey_register.php'),
+    'Next'     => array('buttonType' => 'submit', 'class' => null, 'name' => 'button', 'value' => 'next', 'action' => null),
 );
-class_surveyButtons($formButtons);
+
+//set params for form
+$formParams = array(
+    'name'    => $row_surveyinfo['Name'],
+    'description'    => $row_surveyinfo['Details'],
+    'action'  => '',
+    'method'  => 'post',
+    'enctype' => '',
+);
+//set params for form
+$FormSteps = array(
+    'step'    => $step_next
+);
+
+$formArray = class_survey($SurveyId);
+echo "<pre>";
+print_r($formArray);
+class_formSurvey($FormSteps,$formParams, $formButtons, $formArray);
 ?>
-            </div>
-        </fieldset>
-</form>
-<?php require_once 'footer.php';?>
+<?php } ?>
+<?php } ?>
+</fieldset>
+<?php
+require_once 'footer.php';

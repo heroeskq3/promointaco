@@ -40,7 +40,13 @@ if ($iconslist['rows']) {
     }
 }
 
+//set params for form
+$formParams = null;
+
+// define buttons for form
+$formButtons = null;
+
 //generate table list
-echo class_tableGenerator($table_array, $table_params);
+class_tableGenerator($table_array, $table_params, $formParams, $formButtons);
 ?>
 <?php require_once 'footer.php';

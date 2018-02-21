@@ -39,8 +39,8 @@ $formFields = array(
 
 // define buttons for form
 $formButtons = array(
-    'Submit'         => array('buttonType' => 'submit', 'action' => null),
-    'Back' => array('buttonType' => 'link', 'action' => 'survey_list.php'),
+    'Submit' => array('buttonType' => 'submit', 'class' => null, 'name' => null, 'value' => null, 'action' => null),
+    'Back'   => array('buttonType' => 'link', 'class' => null, 'name' => null, 'value' => null, 'action' => 'survey_list.php'),
 );
 
 //set params for form

@@ -74,8 +74,14 @@ function class_tableMainList($array)
 $privilegeslist = class_privilegesList();
 $table_array    = class_tableMainList($privilegeslist);
 
+//set params for form
+$formParams = null;
+
+// define buttons for form
+$formButtons = null;
+
 //generate table list
-class_tableGenerator($table_array, $table_params);
+class_tableGenerator($table_array, $table_params, $formParams, $formButtons);
 ?>
 <?php require_once 'footer.php';?>
 <?php class_formScripts();

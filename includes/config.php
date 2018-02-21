@@ -4,14 +4,17 @@ define('CONFIG_FAVICON', 'http://www.intaco.com/sites/all/themes/intaco/favicon.
 define('CONFIG_IMAGEPROFILEDEFAULT', 'signup_male.png');
 
 define('CONFIG_LANG', 'en'); //define default language
-define('CONFIG_LOGOICON', 'logo-icon-bayisland.png');
+define('CONFIG_LOGOICON', 'cropped-logo-intaco.png');
 define('CONFIG_LOGOHEADER', 'cropped-logo-intaco.png');
+define('CONFIG_LOGOHEADER2', 'cropped-logo-intaco.png');
+define('CONFIG_LOGOHEADER3', 'cropped-logo-intaco.png');
+define('CONFIG_LOGOFOOTER', null);
 define('CONFIG_SUPPORTPHONE', '2222-0000');
 define('CONFIG_SUPPORTEMAIL', 'info@experienciaintaco.com');
 define('CONFIG_LICENSEDUNDER', 'http://www.experienciaintaco.com');
 
 //DEFINE META
-define('CONFIG_METATITTLE', 'INTACO');
+define('CONFIG_METATITTLE', 'Intaco');
 define('CONFIG_METADESCRIPTION', 'Sin definir');
 define('CONFIG_METAKEYWORDS', 'Si,Definir');
 
@@ -35,6 +38,7 @@ define('PATH_MODELS', PATH_HOME.'class/models/');
 define('PATH_VIEWS', PATH_HOME.'class/views/');
 define('PATH_INCLUDES', PATH_HOME.'includes/');
 define('PATH_RESOURCES', PATH_HOME.'resources/');
+define('PATH_ASSETS', PATH_HOME.'assets/');
 define('PATH_PROFILEPICTURE', PATH_HOME.'resources/profile/');
 define('PATH_LANG', PATH_HOME.'lang/');
 

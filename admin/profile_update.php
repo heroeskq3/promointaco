@@ -8,9 +8,9 @@ $section_sidebar     = 1;
 $section_searchbar   = 0;
 $section_style       = 1;
 $section_homedir     = '../';
-?>
-<?php require_once 'header.php';?>
-<?php
+
+require_once 'header.php';
+
 //upload resource
 if ($File["name"]) {
     $debug      = 0;
@@ -55,21 +55,30 @@ $CustomInfo4 = $row_usersdetailsinfo['CustomInfo4'];
 $CustomInfo5 = $row_usersdetailsinfo['CustomInfo5'];
 $Image       = $row_usersdetailsinfo['Image'];
 $Status      = $row_usersdetailsinfo['Status'];
-$Password      = $row_usersinfo['Password'];
+$Password    = $row_usersinfo['Password'];
 
 $formFields = array(
     'form_update'          => array('position' => 0, 'inputType' => 'hidden', 'required' => false, 'name' => 'form_update', 'value' => 1),
+
+    //personal information
     'Personal Information' => array('position' => 1, 'inputType' => 'label', 'required' => false, 'name' => null, 'value' => null),
     'Username'             => array('position' => 1, 'inputType' => 'hidden', 'required' => false, 'name' => 'UserName', 'value' => $UserName),
-    'Responsible'          => array('position' => 0, 'inputType' => 'text', 'required' => false, 'name' => 'Responsible', 'value' => $Responsible),
     'First Name'           => array('position' => 1, 'inputType' => 'text', 'required' => true, 'name' => 'FirstName', 'value' => $FirstName),
     'Last Name'            => array('position' => 1, 'inputType' => 'text', 'required' => true, 'name' => 'LastName', 'value' => $LastName),
-    'Middle Name'          => array('position' => 0, 'inputType' => 'text', 'required' => false, 'name' => 'MiddleName', 'value' => $MiddleName),
-    'Company'              => array('position' => 0, 'inputType' => 'text', 'required' => false, 'name' => 'Company', 'value' => $Company),
     'Phone'                => array('position' => 1, 'inputType' => 'text', 'required' => false, 'name' => 'Phone', 'value' => $Phone),
     'Mobile'               => array('position' => 1, 'inputType' => 'text', 'required' => false, 'name' => 'Mobile', 'value' => $Mobile),
     'Email'                => array('position' => 1, 'inputType' => 'text', 'required' => false, 'name' => 'Email', 'value' => $Email),
     'Image'                => array('position' => 1, 'inputType' => 'file', 'required' => false, 'name' => 'Image', 'value' => $Image),
+
+    //Change Pasword
+    'Change Password'      => array('position' => 1, 'inputType' => 'label', 'required' => false, 'name' => null, 'value' => null),
+    'Password'             => array('position' => 1, 'inputType' => 'password', 'required' => true, 'name' => 'Password', 'value' => $Password),
+    'Retry Password'       => array('position' => 1, 'inputType' => 'password', 'required' => true, 'name' => 'Password', 'value' => $Password),
+
+    //Inactive
+    'Responsible'          => array('position' => 0, 'inputType' => 'text', 'required' => false, 'name' => 'Responsible', 'value' => $Responsible),
+    'Middle Name'          => array('position' => 0, 'inputType' => 'text', 'required' => false, 'name' => 'MiddleName', 'value' => $MiddleName),
+    'Company'              => array('position' => 0, 'inputType' => 'text', 'required' => false, 'name' => 'Company', 'value' => $Company),
     'Country'              => array('position' => 0, 'inputType' => 'text', 'required' => false, 'name' => 'Country', 'value' => $State),
     'State'                => array('position' => 0, 'inputType' => 'text', 'required' => false, 'name' => 'State', 'value' => $State),
     'City'                 => array('position' => 0, 'inputType' => 'text', 'required' => false, 'name' => 'City', 'value' => $City),
@@ -81,15 +90,18 @@ $formFields = array(
     'CustomInfo4'          => array('position' => 0, 'inputType' => 'text', 'required' => false, 'name' => 'CustomInfo4', 'value' => $CustomInfo4),
     'CustomInfo5'          => array('position' => 0, 'inputType' => 'text', 'required' => false, 'name' => 'CustomInfo5', 'value' => $CustomInfo5),
     'Status'               => array('position' => 0, 'inputType' => 'select', 'required' => true, 'name' => 'Status', 'value' => $Status),
-    'Change Password'      => array('position' => 1, 'inputType' => 'label', 'required' => false, 'name' => null, 'value' => null),
-    'Password'             => array('position' => 1, 'inputType' => 'password', 'required' => true, 'name' => 'Password', 'value' => $Password),
-    'Retry Password'             => array('position' => 1, 'inputType' => 'password', 'required' => true, 'name' => 'Password', 'value' => $Password),
 );
 
 // define buttons for form
 $formButtons = array(
-    'Update' => array('buttonType' => 'submit', 'action' => null),
-    'Cancel' => array('buttonType' => 'cancel', 'action' => null),
+    'Submit' => array('buttonType' => 'submit', 'class' => null, 'name' => null, 'value' => null, 'action' => null),
+    'Back'   => array('buttonType' => 'cancel', 'class' => null, 'name' => null, 'value' => null, 'action' => null),
+);
+
+// define buttons for form
+$formButtons = array(
+    'Submit' => array('buttonType' => 'submit', 'class' => null, 'name' => null, 'value' => null, 'action' => null),
+    'Back'   => array('buttonType' => 'cancel', 'class' => null, 'name' => null, 'value' => null, 'action' => null),
 );
 
 //set params for form
@@ -100,6 +112,6 @@ $formParams = array(
     'enctype' => 'multipart/form-data',
 );
 
-echo class_formGenerator2($formParams, $formFields, $formButtons);
-?>
-<?php require_once 'footer.php';
+class_formGenerator($formParams, $formFields, $formButtons);
+
+require_once 'footer.php';

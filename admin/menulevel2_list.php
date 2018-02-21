@@ -1,16 +1,4 @@
 <?php
-//Section Parameters
-$section_tittle      = "Menu Manager";
-$section_description = null;
-$section_restrict    = 1;
-$section_navbar      = 1;
-$section_sidebar     = 1;
-$section_searchbar   = 0;
-$section_style       = 1;
-$section_homedir     = '../';
-?>
-<?php require_once 'header.php';?>
-<?php
 //Update menu item
 if ($action == "update") {
     header('Location: menu_update.php?Id=' . $Id);
@@ -19,14 +7,19 @@ if ($action == "update") {
 
 //Delete menu item
 if ($action == "delete") {
+
+    //menu info
+    $menuinfo     = class_menuInfo($Id);
+    $row_menuinfo = $menuinfo['response'][0];
+
     class_menuDelete($Id);
-    header('Location: menu_list.php');
+    header('Location: menulevel2.php?Id=' . $row_menuinfo['MenuId']);
     die();
 }
 
 //Show more
 if ($action == "add") {
-    header('Location: submenu.php?Id=' . $Id);
+    header('Location: menulevel3.php?Id=' . $Id);
     die();
 }
 
@@ -85,8 +78,8 @@ function class_tableChildList($array)
 }
 
 //menu list
-$menulist    = class_menuList();
-$table_array = class_tableMainList($menulist);
+$submenulist = class_submenuList($Id);
+$table_array = class_tableMainList($submenulist);
 
 //Table params
 $table_params = array(
@@ -96,9 +89,14 @@ $table_params = array(
     'showactions' => true,
     'showmore'    => true,
     'checkbox'    => 0,
+    'addnew'      => false,
 );
 
+//set params for form
+$formParams = null;
+
+// define buttons for form
+$formButtons = null;
+
 //generate table list
-echo class_tableGenerator($table_array, $table_params);
-?>
-<?php require_once 'footer.php';
+class_tableGenerator($table_array, $table_params, $formParams, $formButtons);

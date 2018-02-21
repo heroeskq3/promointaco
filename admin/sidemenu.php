@@ -27,8 +27,13 @@ $submenulist = class_assidesubmenulist($row_menulist['Id'],null);
 //validate submenu
 if(!$submenulist['rows']){
 ?>
+
     <li>
+<?php if(isset($row_menulist['Url'])){ ?>
         <a href="<?php echo $row_menulist['Url']; ?>"><i class="fa <?php echo $row_menulist['Icon']; ?> fa-fw"></i> <?php echo $row_menulist['Name']; ?></a>
+<?php }else{ ?>
+        <a href="#"><i class="fa <?php echo $row_menulist['Icon']; ?> fa-fw"></i> <?php echo $row_menulist['Name']; ?></a>
+<?php } ?>
     </li>
 <?php }else{?>
     <li>
@@ -36,19 +41,33 @@ if(!$submenulist['rows']){
         <ul class="nav nav-second-level">
             <?php foreach ($submenulist['response'] as $key_submenulist => $row_submenulist) { ?>
             <li>
+                <?php
+                //Menu - Level 3
+                $menulevel3 = class_assidesubmenulist($row_submenulist['Id'],null);
+                ?>
+                <?php if($menulevel3['rows']){ ?>
+<?php if(isset($row_menulevel3['Url'])){?>
+<a href="<?php echo $row_submenulist['Url']; ?>"><?php echo $row_submenulist['Name']; ?> <span class="fa arrow"></span></a>
+<?php }else{ ?>
+<a href="#"><?php echo $row_submenulist['Name']; ?> <span class="fa arrow"></span></a>
+<?php } ?>
+                        <ul class="nav nav-third-level">
+                            <?php foreach ($menulevel3['response'] as $row_menulevel3) {?>
+                            <li>
+                                <?php if($row_menulevel3['Url']){?>
+                                <a href="<?php echo $row_menulevel3['Url']; ?>"><?php echo $row_menulevel3['Name']; ?></a>
+                                <?php }else{?>
+                                <a href="#"><?php echo $row_menulevel3['Name']; ?></a>
+                                <?php } ?>
+                            </li>
+                            <?php } ?>
+                        </ul>
+                        <!-- /.nav-third-level -->
+
+                <?php }else{ ?>
                 <a href="<?php echo $row_submenulist['Url']; ?>"><?php echo $row_submenulist['Name']; ?></a>
+                <?php } ?>
             </li>
-            <?php if(0){?>
-            <li>
-                <a href="#">Third Level <span class="fa arrow"></span></a>
-                <ul class="nav nav-third-level">
-                    <li>
-                        <a href="#">Third Level Item</a>
-                    </li>
-                </ul>
-                <!-- /.nav-third-level -->
-            </li>
-            <?php } ?>
         <?php } ?>
         </ul>
         <!-- /.nav-second-level -->

@@ -22,7 +22,8 @@ function class_formInput($inputType, $name, $label, $value, $required)
 
     //SELECT INPUT
     if ($inputType == 'select') {
-        $results .= '<select class="select-with-search form-control pmd-select2" name="' . $name . '" '.$required.'>';
+        //$results .= '<select class="select-with-search form-control pmd-select2" data-live-search="true" name="' . $name . '" '.$required.'>';
+        $results .= '<select class="select-with-search form-control pmd-select2 selectpicker" data-show-subtext="true" data-live-search="true" name="' . $name . '" '.$required.'>';
         $results .= '<option value="">Select</option>';
         if($value){
             foreach ($value as $row_option) {
@@ -42,19 +43,27 @@ function class_formInput($inputType, $name, $label, $value, $required)
         }else{
             $checked = null;
         }
+
         $results .= '<label class="pmd-checkbox checkbox-pmd-ripple-effect">';
         $results .= '<input name="' . $name . '" type="checkbox" value="1" '.$checked.'>';
-        $results .= '<span>' . $label . '</span>';
+        $results .= '<span> ' . $label . '</span>';
         $results .= '</label>';
     }
-    //CHECKBX INPUT
+    //RADIO INPUT
     if ($inputType == 'radio') {
         if($value){
            $checked = 'checked'; 
         }else{
             $checked = null;
         }
+        $results .= '<div class="incluir">';
         $results .= '<input type="radio" name="'.$name.'" value="'.$value.'">';
+        $results .= '<label></label>';
+        $results .= '</div>';
+
+$results .= '<div class="img-contenedor">';
+$results .= '</div>';
+
 
     }
     //PHONE NUMBER INPUT
@@ -73,6 +82,16 @@ function class_formInput($inputType, $name, $label, $value, $required)
     //PASSWORD INPUT
     if ($inputType=='password') {
         $results .= '<input type="password" class="form-control" name="' . $name . '" value="' . $value . '" '.$required.'>';
+    }
+
+    //DATE PICKER INPUT
+    if ($inputType=='date') {
+        $results .= '<input type="date" class="form-control" min="'.date("Y-m-d").'" name="' . $name . '" value="' . $value . '" '.$required.'>';
+    }
+
+    //TIME PICKER INPUT
+    if ($inputType=='time') {
+        $results .= '<input type="time" class="form-control" name="' . $name . '" value="' . $value . '" '.$required.'>';
     }
 
     return $results;

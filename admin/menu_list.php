@@ -26,7 +26,7 @@ if ($action == "delete") {
 
 //Show more
 if ($action == "add") {
-    header('Location: submenu.php?Id=' . $Id);
+    header('Location: menulevel2.php?Id=' . $Id);
     die();
 }
 
@@ -85,7 +85,7 @@ function class_tableChildList($array)
 }
 
 //menu list
-$menulist    = class_menuList();
+$menulist    = class_menuList(null);
 $table_array = class_tableMainList($menulist);
 
 //Table params
@@ -96,9 +96,16 @@ $table_params = array(
     'showactions' => true,
     'showmore'    => true,
     'checkbox'    => 0,
+    'addnew'      => false,
 );
 
+//set params for form
+$formParams = null;
+
+// define buttons for form
+$formButtons = null;
+
 //generate table list
-echo class_tableGenerator($table_array, $table_params);
+class_tableGenerator($table_array, $table_params, $formParams, $formButtons);
 ?>
 <?php require_once 'footer.php';

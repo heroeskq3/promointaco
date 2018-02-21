@@ -12,7 +12,12 @@ $section_homedir     = '../';
 <?php require_once 'header.php';?>
 <?php
 if ($form_update) {
+$SurveyId = null;
+if(isset($_POST['SurveyId'])){
+    $SurveyId = $_POST['SurveyId'];
+}
     $surveyquestionsupdate = class_surveyQuestionsUpdate($Id, $SurveyId, $Question, $Description, $Status);
+    
     header('Location: surveyquestions.php?Id='.$SurveyId);
     die();
 }
@@ -47,8 +52,8 @@ $formFields = array(
 
 // define buttons for form
 $formButtons = array(
-    'Submit'     => array('buttonType' => 'submit', 'class' => null, 'name' => null, 'value' => null, 'action' => null),
-    'Back'   => array('buttonType' => 'link', 'action' => 'surveyquestions.php?Id='.$row_surveyquestionsinfo['SurveyId']),
+    'Submit' => array('buttonType' => 'submit', 'class' => null, 'name' => null, 'value' => null, 'action' => null),
+    'Back'   => array('buttonType' => 'link', 'class' => null, 'name' => null, 'value' => null, 'action' => 'surveyquestions.php?Id='.$row_surveyquestionsinfo['SurveyId']),
 );
 
 //set params for form

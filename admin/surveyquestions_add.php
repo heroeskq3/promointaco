@@ -1,5 +1,9 @@
 <?php
 if ($form_add) {
+$SurveyId = null;
+if(isset($_POST['SurveyId'])){
+    $SurveyId = $_POST['SurveyId'];
+}
     class_surveyQuestionsAdd($SurveyId, $Question, $Description, $Status);
     header('Location: surveyquestions.php?Id=' . $SurveyId);
     die();
@@ -30,8 +34,8 @@ $formFields = array(
 
 // define buttons for form
 $formButtons = array(
-    'Submit'     => array('buttonType' => 'submit', 'class' => null, 'name' => null, 'value' => null, 'action' => null),
-    'Back'   => array('buttonType' => 'link', 'action' => 'survey_list.php'),
+    'Submit' => array('buttonType' => 'submit', 'class' => null, 'name' => null, 'value' => null, 'action' => null),
+    'Back'   => array('buttonType' => 'link', 'class' => null, 'name' => null, 'value' => null, 'action' => 'survey_list.php'),
 );
 
 //set params for form
@@ -40,6 +44,7 @@ $formParams = array(
     'action'  => '',
     'method'  => 'post',
     'enctype' => '',
+    'addnew'  => null,
 );
 
 class_formGenerator($formParams, $formFields, $formButtons);

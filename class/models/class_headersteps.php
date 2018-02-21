@@ -1,3 +1,4 @@
+<?php function class_headerSteps($step){ ?>
 <?php 
 switch ($step) {
     case 1:
@@ -70,3 +71,4 @@ switch ($step) {
         <p>thanks</p>
     </div>
 </div>
+<?php } ?>

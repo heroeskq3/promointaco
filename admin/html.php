@@ -9,6 +9,7 @@
     <title><?php echo CONFIG_METATITTLE.' - '.$section_tittle ; ?></title>
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
     <!-- MetisMenu CSS -->
     <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -24,5 +25,8 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <!-- Custom CSS -->
+    <link href="../dist/css/custom.css" rel="stylesheet">
+
 </head>
 <body>

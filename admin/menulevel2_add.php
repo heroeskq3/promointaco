@@ -1,27 +1,15 @@
 <?php
-//Section Parameters
-$section_tittle      = "Menu Manager";
-$section_description = null;
-$section_restrict    = 1;
-$section_navbar      = 1;
-$section_sidebar     = 1;
-$section_searchbar   = 0;
-$section_style       = 1;
-$section_homedir     = '../';
-?>
-<?php require_once 'header.php';?>
-<?php
 if ($form_add) {
     $menuadd = class_menuAdd($Name, $Description, $Url, $Icon, $MenuId, $Order, $Status);
-    header('Location: menu_list.php');
+    header('Location: menulevel2.php?Id=' . $MenuId);
     die();
 }
 
 //Menu List
-$menulist       = class_menuList();
+$menulist       = class_menuList(null);
 $array_menulist = array();
 foreach ($menulist['response'] as $row_menulist) {
-    $array_menulist[] = array('label' => $row_menulist['Name'], 'value' => $row_menulist['Id'], 'selected' => $MenuId);
+    $array_menulist[] = array('label' => $row_menulist['Name'], 'value' => $row_menulist['Id'], 'selected' => $Id);
 }
 
 //Icon List
@@ -41,8 +29,8 @@ $menu_order = class_assideMenuList($TypeId);
 
 $array_order = array();
 foreach ($menu_order['response'] as $row_order) {
-    $array_order[] = array('label' => '[Up] - '.$row_order['Name'], 'value' => $row_order['Order']-1, 'selected' => null);
-    $array_order[] = array('label' => '[Down] - '.$row_order['Name'], 'value' => $row_order['Order']+1, 'selected' => null);
+    $array_order[] = array('label' => '[Up] - ' . $row_order['Name'], 'value' => $row_order['Order'] - 1, 'selected' => null);
+    $array_order[] = array('label' => '[Down] - ' . $row_order['Name'], 'value' => $row_order['Order'] + 1, 'selected' => null);
 }
 $array_order[] = array('label' => '', 'value' => 0, 'selected' => null);
 
@@ -61,8 +49,8 @@ $formFields = array(
 
 // define buttons for form
 $formButtons = array(
-    'Submit'     => array('buttonType' => 'submit', 'class' => null, 'name' => null, 'value' => null, 'action' => null),
-    'Cancel' => array('buttonType' => 'cancel', 'action' => null),
+    'Submit' => array('buttonType' => 'submit', 'class' => null, 'name' => null, 'value' => null, 'action' => null),
+    'Back'   => array('buttonType' => 'cancel', 'class' => null, 'name' => null, 'value' => null, 'action' => null),
 );
 
 //set params for form
@@ -71,8 +59,7 @@ $formParams = array(
     'action'  => '',
     'method'  => 'post',
     'enctype' => '',
+    'addnew'  => null,
 );
 
 class_formGenerator($formParams, $formFields, $formButtons);
-?>
-<?php require_once 'footer.php';

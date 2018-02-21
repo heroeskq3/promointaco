@@ -1,6 +1,4 @@
 <?php
-ob_start();
-
 //DEBUGGER SESSION
 $debug = null;
 if (isset($_SESSION['debug'])) {
@@ -290,5 +288,93 @@ if (isset($_SESSION['Country'])) {
 $SurveyId = $SurveyId;
 if (isset($_SESSION['SurveyId'])) {
     $SurveyId = $_SESSION['SurveyId'];
+}
+$ServicesId = null;
+if (isset($_POST['ServicesId'])) {
+    $ServicesId = $_POST['ServicesId'];
+}
+$ServicesId = $ServicesId;
+if (isset($_SESSION['ServicesId'])) {
+    $ServicesId = $_SESSION['ServicesId'];
+}
+
+//Booking
+$PackCode = null;
+if (isset($_POST['PackCode'])) {
+    $PackCode = $_POST['PackCode'];
+}
+$VigenciaAl = null;
+if (isset($_POST['VigenciaAl'])) {
+    $VigenciaAl = $_POST['VigenciaAl'];
+}
+$VigenciaDel = null;
+if (isset($_POST['VigenciaDel'])) {
+    $VigenciaDel = $_POST['VigenciaDel'];
+}
+$SectorId = null;
+if (isset($_POST['SectorId'])) {
+    $SectorId = $_POST['SectorId'];
+}
+$IS = null;
+if (isset($_POST['IS'])) {
+    $IS = $_POST['IS'];
+}
+$IV = null;
+if (isset($_POST['IV'])) {
+    $IV = $_POST['IV'];
+}
+$Price = null;
+if (isset($_POST['Price'])) {
+    $Price = $_POST['Price'];
+}
+
+//SITES
+$Favicon = null;
+if (isset($_POST['Favicon'])) {
+    $Favicon = $_POST['Favicon'];
+}
+$LogoFooter = null;
+if (isset($_POST['LogoFooter'])) {
+    $LogoFooter = $_POST['LogoFooter'];
+}
+$LogoHeader = null;
+if (isset($_POST['LogoHeader'])) {
+    $LogoHeader = $_POST['LogoHeader'];
+}
+$BgImage = null;
+if (isset($_POST['BgImage'])) {
+    $BgImage = $_POST['BgImage'];
+}
+$BgColor = null;
+if (isset($_POST['BgColor'])) {
+    $BgColor = $_POST['BgColor'];
+}
+$MetaKeywords = null;
+if (isset($_POST['MetaKeywords'])) {
+    $MetaKeywords = $_POST['MetaKeywords'];
+}
+$MetaDescription = null;
+if (isset($_POST['MetaDescription'])) {
+    $MetaDescription = $_POST['MetaDescription'];
+}
+$MetaTittle = null;
+if (isset($_POST['MetaTittle'])) {
+    $MetaTittle = $_POST['MetaTittle'];
+}
+$BgColor = null;
+if (isset($_POST['BgColor'])) {
+    $BgColor = $_POST['BgColor'];
+}
+$BgImage = null;
+if (isset($_POST['BgImage'])) {
+    $BgImage = $_POST['BgImage'];
+}
+$ThemeId = null;
+if (isset($_POST['ThemeId'])) {
+    $ThemeId = $_POST['ThemeId'];
+}
+$Language = null;
+if (isset($_POST['Language'])) {
+    $Language = $_POST['Language'];
 }
 ?>

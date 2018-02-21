@@ -29,7 +29,7 @@ foreach ($userstypelist['response'] as $row_userstypelist) {
 }
 
 //Menu List
-$menulist       = class_menuList();
+$menulist       = class_menuList(null);
 $array_menulist = array();
 $array_menulist[] = array('label' => "All", 'value' => 0, 'selected' => $row_privilegesinfo['MenuId']);
 foreach ($menulist['response'] as $row_menulist) {
@@ -48,8 +48,8 @@ $formFields = array(
 
 // define buttons for form
 $formButtons = array(
-    'Submit'     => array('buttonType' => 'submit', 'class' => null, 'name' => null, 'value' => null, 'action' => null),
-    'Cancel' => array('buttonType' => 'cancel', 'action' => null),
+    'Submit' => array('buttonType' => 'submit', 'class' => null, 'name' => null, 'value' => null, 'action' => null),
+    'Back'   => array('buttonType' => 'cancel', 'class' => null, 'name' => null, 'value' => null, 'action' => null),
 );
 
 //set params for form

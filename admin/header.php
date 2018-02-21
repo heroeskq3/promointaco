@@ -1,4 +1,5 @@
 <?php
+ob_start();
 //System includes
 if($section_restrict){
     require_once('../includes/restrict.php');
@@ -6,7 +7,7 @@ if($section_restrict){
 require_once('../includes/config.php');
 require_once('../includes/globals.php');
 
-    //error_reporting(0); //php error & warning on/off
+    error_reporting(1); //php error & warning on/off
     set_error_handler("class_phpError"); //php debugger
 
 //html header

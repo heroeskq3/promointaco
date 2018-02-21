@@ -1,3 +1,4 @@
+
                         </div>  
                         </div>
                     </div>
@@ -13,7 +14,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="index.html"><img src="resources/site/cropped-logo-intaco.png" alt="" width="230" class="img_colorfill "></a>
+            <?php if(CONFIG_LOGOFOOTER){ ?>
+            <a href="index.html"><img src="<?php echo PATH_ASSETS.'img/logos/'.CONFIG_LOGOFOOTER;?>" alt="" width="230" class="img_colorfill "></a>
+            <?php } ?>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="top-navbar-1">

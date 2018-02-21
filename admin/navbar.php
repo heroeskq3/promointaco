@@ -6,17 +6,16 @@
         <span class="icon-bar"></span>
     </button>
     <a class="navbar-brand" href="index.php">
-        <div>
-            <img src="<?php echo PATH_RESOURCES."/site/".CONFIG_LOGOHEADER; ?>" alt="" height="30">
-        </div>
-        
+            <img src="<?php echo PATH_ASSETS.'img/logos/'.CONFIG_LOGOHEADER3;?>" alt="" height="30">        
     </a>
 </div>
 <!-- /.navbar-header -->
+<?php if(0){ ?>
 <ul class="nav navbar-top-links navbar-right">
     <?php require_once('navbar_messages.php') ?>
     <?php require_once('navbar_tasks.php') ?>
     <?php require_once('navbar_notify.php') ?>
     <?php require_once('navbar_user.php') ?>
 </ul>
+<?php } ?>
 <!-- /.navbar-top-links -->

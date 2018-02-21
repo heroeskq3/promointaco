@@ -67,7 +67,14 @@ $table_params = array(
     'showactions' => true,
     'showmore'    => false,
     'checkbox'    => false,
+    'addnew'      => false,
 );
 
+//set params for form
+$formParams = null;
+
+// define buttons for form
+$formButtons = null;
+
 //generate table list
-class_tableGenerator($table_array, $table_params);
+class_tableGenerator($table_array, $table_params, $formParams, $formButtons);

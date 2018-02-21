@@ -7,6 +7,7 @@ $section_navbar      = 1;
 $section_sidebar     = 1;
 $section_searchbar   = 0;
 $section_style       = 1;
+$section_homedir     = '../';
 
 require_once 'header.php';
 
@@ -75,7 +76,13 @@ $table_params = array(
     'checkbox'    => false,
 );
 
+//set params for form
+$formParams = null;
+
+// define buttons for form
+$formButtons = null;
+
 //generate table list
-class_tableGenerator($table_array, $table_params);
+class_tableGenerator($table_array, $table_params, $formParams, $formButtons);
 
 require_once 'footer.php';

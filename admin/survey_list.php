@@ -42,12 +42,12 @@ function class_tableMainList($array)
 
             //suma valores
             $suma_answers = 0;
-            if($array_childs){
+            if ($array_childs) {
                 foreach ($array_childs as $row_surveyquestions) {
                     $surveyanswers = class_surveyAnswersList($row_surveyquestions['Id']);
-                    if($surveyanswers['rows']){
+                    if ($surveyanswers['rows']) {
                         foreach ($surveyanswers['response'] as $row_surveyanswers) {
-                        $suma_answers = $suma_answers+$row_surveyanswers['Points'];
+                            $suma_answers = $suma_answers + $row_surveyanswers['Points'];
                         }
                     }
                 }
@@ -57,7 +57,7 @@ function class_tableMainList($array)
                 //Define custom Patern Table Alias Keys => Values
                 'Name'      => $row_array['Name'],
                 'Questions' => $surveyquestionslist['rows'],
-                'Valor'     => $suma_answers.' Points',
+                'Valor'     => $suma_answers . ' Points',
                 'Per Page'  => $row_array['Rows'],
                 'Status'    => class_statusInfo($row_array['Status']),
 
@@ -84,9 +84,16 @@ $table_params = array(
     'showactions' => true,
     'showmore'    => true,
     'checkbox'    => 0,
+    'addnew'      => false,
 );
 
+//set params for form
+$formParams = null;
+
+// define buttons for form
+$formButtons = null;
+
 //generate table list
-class_tableGenerator($table_array, $table_params);
+class_tableGenerator($table_array, $table_params, $formParams, $formButtons);
 ?>
 <?php require_once 'footer.php';

@@ -15,9 +15,10 @@ $section_homedir     = '../';
 if (isset($_POST['password']) && isset($_POST['username'])) {
 
     $login           = class_login($_POST['username'], $_POST['password']);
+
     $row_login       = $login['response'][0];
     $login_totalRows = $login['rows'];
-    
+
     if ($login_totalRows) {
 
         if (!session_id()) {
@@ -41,14 +42,16 @@ if (isset($_POST['password']) && isset($_POST['username'])) {
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
-                        <p><img src="<?php echo PATH_RESOURCES."/site/".CONFIG_LOGOHEADER; ?>" alt="" height="30"></p>
+                        <center>
+                        <img src="<?php echo PATH_ASSETS . 'img/logos/' . CONFIG_LOGOHEADER; ?>" alt="" width="230">
+                        </center>
                         <form role="form" action="" method="post">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="username" type="text" autofocus value="<?php echo $UserName;?>">
+                                    <input class="form-control" placeholder="E-mail" name="username" type="text" autofocus value="<?php echo $UserName; ?>">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="<?php echo $Password;?>">
+                                    <input class="form-control" placeholder="Password" name="password" type="password" value="<?php echo $Password; ?>">
                                 </div>
                                 <div class="checkbox">
                                     <label>
