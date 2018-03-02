@@ -23,11 +23,10 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <span class="li-text">
-                                Put some text or
                             </span>
-                    <a href="#"><strong>links</strong></a>
+                    <a href="<?php echo CONFIG_LICENSEDUNDER; ?>"><strong><?php echo CONFIG_METATITTLE; ?></strong></a>
                     <span class="li-text">
-                                here, or some icons:
+                                <?php echo CONFIG_FOOTER; ?>
                             </span>
                     <span class="li-social">
                                 <a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a>
@@ -51,9 +50,12 @@ function goBack() {
     window.history.back();
 }
 </script>
-        <!--[if lt IE 10]>
+<script src="assets/js/jquery.flagstrap.js"></script>
+<script>
+    $('#basic').flagStrap();
+</script>
+
             <script src="assets/js/placeholder.js"></script>
-        <![endif]-->
 
     </body>
 

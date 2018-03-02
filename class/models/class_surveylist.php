@@ -1,7 +1,7 @@
 <?php
-function class_surveyList()
+function class_surveyList($ServicesId)
 {
-    $mysql_query    = "SELECT s.* FROM survey s ORDER BY s.Id ASC";
+    $mysql_query = "SELECT s.* FROM survey s WHERE s.ServicesId = $ServicesId ORDER BY s.`Order` ASC";
     $mysql_database = CONFIG_MYSQLDB;
     $mysql_conn     = conn_mysql();
     $mysql_debug    = 0;

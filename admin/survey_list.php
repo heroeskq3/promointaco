@@ -1,16 +1,4 @@
 <?php
-//Section Parameters
-$section_tittle      = "Survey";
-$section_description = null;
-$section_restrict    = 1;
-$section_navbar      = 1;
-$section_sidebar     = 1;
-$section_searchbar   = 0;
-$section_style       = 1;
-$section_homedir     = '../';
-?>
-<?php require_once 'header.php';?>
-<?php
 //Update survey item
 if ($action == "update") {
     header('Location: survey_update.php?Id=' . $Id);
@@ -24,8 +12,14 @@ if ($action == "add") {
 
 //Delete survey item
 if ($action == "delete") {
+
+    //Survey info
+    $surveyinfo     = class_surveyInfo($Id);
+    $row_surveyinfo = $surveyinfo['response'][0];
+
     class_surveyDelete($Id);
-    header('Location: survey_list.php');
+
+    header('Location: survey.php?Id=' . $row_surveyinfo['ServicesId']);
     die();
 }
 
@@ -39,6 +33,10 @@ function class_tableMainList($array)
             //childs
             $surveyquestionslist = class_surveyQuestionsList($row_array['Id']);
             $array_childs        = $surveyquestionslist['response'];
+
+            //services info
+            $surveyservicesinfo     = class_surveyServicesInfo($row_array['ServicesId']);
+            $row_surveyservicesinfo = $surveyservicesinfo['response'][0];
 
             //suma valores
             $suma_answers = 0;
@@ -55,7 +53,9 @@ function class_tableMainList($array)
 
             $results[] = array(
                 //Define custom Patern Table Alias Keys => Values
+                'Order'     => $row_array['Order'],
                 'Name'      => $row_array['Name'],
+                'Service'   => $row_surveyservicesinfo['Name'],
                 'Questions' => $surveyquestionslist['rows'],
                 'Valor'     => $suma_answers . ' Points',
                 'Per Page'  => $row_array['Rows'],
@@ -73,7 +73,7 @@ function class_tableMainList($array)
 }
 
 //survey list
-$surveylist  = class_surveyList();
+$surveylist  = class_surveyList($Id);
 $table_array = class_tableMainList($surveylist);
 
 //Table params
@@ -95,5 +95,3 @@ $formButtons = null;
 
 //generate table list
 class_tableGenerator($table_array, $table_params, $formParams, $formButtons);
-?>
-<?php require_once 'footer.php';

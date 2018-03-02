@@ -12,7 +12,13 @@ $section_step        = 5;
 
 require_once 'header.php';
 
-$surveylist = class_surveyList();
+//restrict
+if (!$_SESSION['CustomersId']) {
+    header('Location: survey_register.php');
+    die();
+}
+
+$surveylist = class_surveyList($_SESSION['ServicesId']);
 ?>
 <fieldset>
 <?php $i = 0; ?>
@@ -25,7 +31,7 @@ if (isset($_POST['step'])) {
 }
 $step_next = $step+1;
 
-if ($step == $surveylist['rows']) {
+if (0) {
     header('Location: survey_thanks.php');
     die();
 }
@@ -57,8 +63,8 @@ $FormSteps = array(
 );
 
 $formArray = class_survey($SurveyId);
-echo "<pre>";
-print_r($formArray);
+// echo "<pre>";
+// print_r($formArray);
 class_formSurvey($FormSteps,$formParams, $formButtons, $formArray);
 ?>
 <?php } ?>

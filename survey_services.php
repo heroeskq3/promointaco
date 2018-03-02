@@ -12,8 +12,13 @@ $section_step        = 2;
 
 require_once 'header.php';
 
-if ($button == 'next') {
-    $_SESSION['SurveyId'] = $_POST['SurveyId'];
+//restrict
+if (!$_SESSION['ZonesId']) {
+    header('Location: survey_home.php');
+    die();
+}
+
+if (isset($_POST['ServicesId'])) {
     $_SESSION['ServicesId'] = $_POST['ServicesId'];
     header('Location: survey_terms.php');
     die();
@@ -22,57 +27,54 @@ if ($button == 'previous') {
     header('Location: index.php');
     die();
 }
+
 //Country list
 function class_surveyservices($Country, $SurveyId)
 {
     //$surveyserviceslist       = class_surveyServicesList($Country);
     $array_surveyserviceslist = array();
     //foreach ($surveyserviceslist['response'] as $row_surveyserviceslist) {
-        $array_surveyserviceslist[] = array('label' => $row_surveyserviceslist['Name'], 'value' => $row_surveyserviceslist['Id'], 'selected' => $SurveyId);
+    $array_surveyserviceslist[] = array('label' => $row_surveyserviceslist['Name'], 'value' => $row_surveyserviceslist['Id'], 'selected' => $SurveyId);
     //}
     return class_formInput('select', 'SurveyId', 'Select Survey', $array_surveyserviceslist, 'required');
 }
 ?>
-<fieldset>
-    <h3>Comparte tu experiencia con nosotros.</h3>
-    <ul>
-        <li><h5>Aceptamos tus críticas constructivas.</h5></li>
-        <li><h5>Agradecemos tu honestidad.</h5></li>
-        <li><h5>Cualquier sugerencia que tengas nos ayuda a mejorar nuestro servicio. </h5></li>
-    </ul>
-    <hr>
-    <h3>Encuestas disponibles:</h3>
-<?php
-//Survey list
-//$surveyserviceslist       = class_surveyServicesList($Country);
-$array_surveyserviceslist = array();
-//foreach ($surveyserviceslist['response'] as $row_surveyserviceslist) {
-    $array_surveyserviceslist[] = array('label' => 'INTACO es cercano', 'value' => 1, 'selected' => $ServicesId);
-    $array_surveyserviceslist[] = array('label' => 'INTACO se preocupa', 'value' => 2, 'selected' => $ServicesId);
-    $array_surveyserviceslist[] = array('label' => 'INTACO trabaja para hacer crecer a sus clientes', 'value' => 3, 'selected' => $ServicesId);
-//}
+    <fieldset>
+        <h3>Comparte tu experiencia con nosotros.</h3>
+        <ul class="list-unstyled">
+            <li>Aceptamos tus críticas constructivas.</li>
+            <li>Agradecemos tu honestidad.</li>
+            <li>Cualquier sugerencia que tengas nos ayuda a mejorar nuestro servicio. </li>
+        </ul>
+        <hr>
+        <?php
+//Services List - // define buttons for form
+$surveyserviceslist = class_surveyServicesList();
+$formButtons        = array();
+if ($surveyserviceslist['rows']) {
+    foreach ($surveyserviceslist['response'] as $row_surveyserviceslist) {
+        if ($row_surveyserviceslist['Status']) {
+            $formButtons[] = array('type' => 'submit', 'class' => null, 'label' => $row_surveyserviceslist['Name'], 'name' => 'ServicesId', 'details' => $row_surveyserviceslist['Details'], 'value' => $row_surveyserviceslist['Id'], 'position' => 3, 'action' => null);
+        }
+    }
+}
 
-$formFields = array(
-    'SercicesId' => array('inputType' => 'select', 'required' => true, 'position' => 4, 'name' => 'SurveyId', 'value' => $array_surveyserviceslist),
-);
+// echo "<pre>";
+// print_r($formButtons);
 
-// define buttons for form
-$formButtons = array(
-    'Previous' => array('buttonType' => 'link', 'class' => null, 'name' => 'null', 'value' => null, 'action' => 'survey_home.php'),
-    'Next'     => array('buttonType' => 'submit', 'class' => null, 'name' => 'button', 'value' => 'next', 'action' => null),
-);
+$formFields = null;
 
 //set params for form
 $formParams = array(
-    'name'    => null,
-    'action'  => 'survey_services.php',
+    'name'    => 'Encuestas disponibles:',
+    'action'  => '',
     'method'  => 'post',
-    'enctype' => 'multipart/form-data',
+    'enctype' => '',
 );
 
-class_formGenerator2($formParams, $formFields, $formButtons);
+class_wellGenerator($formParams, $formFields, $formButtons);
 ?>
-</fieldset>
-<?php
+    </fieldset>
+    <?php
 require_once 'footer.php';
 ?>

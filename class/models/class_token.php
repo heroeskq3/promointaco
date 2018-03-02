@@ -1,4 +1,9 @@
 <?php
+//hash
+//$pass = "sk101080";
+//echo $passHash = password_hash($pass, PASSWORD_BCRYPT);
+//$token = new Token();
+//$_SESSION['token'] = $token->make();
  /*/
   * Crea tokens seguros de 10 caracteres.
  /*/

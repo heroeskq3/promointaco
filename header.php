@@ -1,7 +1,23 @@
 <?php
 ob_start();
+if (!session_id()) {
+    session_start();
+    $SessionId = session_id();
+}else{
+    $SessionId = session_id();
+}
+
 require_once 'includes/config.php';
 require_once 'includes/globals.php';
+?>
+<?php
+$ZonesId = $ZonesId;
+if(isset($_SESSION['ZonesId'])){
+    $ZonesId = $_SESSION['ZonesId'];
+}
+$surveyzonesinfo = class_surveyZonesInfo($ZonesId);
+$row_surveyzonesinfo = $surveyzonesinfo['response'][0];
+define('ZONES_NAME', $row_surveyzonesinfo['Name']);
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -11,7 +27,7 @@ require_once 'includes/globals.php';
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>
-            <?php echo CONFIG_METATITTLE . ' - ' . $section_tittle; ?>
+            <?php echo CONFIG_METATITTLE.' '.ZONES_NAME. ' | ' . $section_tittle; ?>
         </title>
         <!-- CSS -->
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
@@ -19,6 +35,7 @@ require_once 'includes/globals.php';
         <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="assets/css/form-elements.css">
         <link rel="stylesheet" href="assets/css/style.css">
+        <link href="assets/css/flags.css" rel="stylesheet">
         <link rel="stylesheet" href="assets/css/custom.css">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,16 +57,16 @@ require_once 'includes/globals.php';
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12 text">
-                        <a href="index.php"><img src="<?php echo PATH_ASSETS . 'img/logos/' . CONFIG_LOGOHEADER; ?>" alt="" width="230"></a>
+                        <a href="index.php"><img src="<?php echo PATH_RESOURCES . 'logos/' . CONFIG_LOGOHEADER; ?>" alt=""></a>
                     </div>
                     <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-10 col-lg-offset-1 form-box">
                         <div class="f1">
                             <?php
-                            if($section_step){
-                                class_headerSteps($section_step);
-                            }
-                            ?>
-<?php  if(0){?>
+if ($section_step) {
+    class_headerSteps($section_step);
+}
+?>
+<?php if (0) {?>
 <h3><?php echo $section_tittle; ?></h3>
 <hr>
-<?php } ?>
+<?php }?>

@@ -49,6 +49,7 @@ function class_tableMainList($array)
 
             $results[] = array(
                 //Define custom Patern Table Alias Keys => Values
+                'Order'    => $row_array['Order'],
                 'Question'    => $row_array['Question'],
                 'Answers'      => $surveyanswerslist['rows'],
                 'Valor'      => $suma_answers.' Points',

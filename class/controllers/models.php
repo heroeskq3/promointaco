@@ -115,7 +115,21 @@ require_once PATH_MODELS . 'class_menudelete.php';
 require_once PATH_MODELS . 'class_menuupdate.php';
 require_once PATH_MODELS . 'class_submenulist.php';
 
+//Survey - zones
+require_once PATH_MODELS . 'class_surveyzoneslist.php';
+require_once PATH_MODELS . 'class_surveyzonesinfo.php';
+require_once PATH_MODELS . 'class_surveyzonesadd.php';
+require_once PATH_MODELS . 'class_surveyzonesdelete.php';
+require_once PATH_MODELS . 'class_surveyzonesupdate.php';
+
 //Survey - Services
+require_once PATH_MODELS . 'class_surveyserviceslist.php';
+require_once PATH_MODELS . 'class_surveyservicesinfo.php';
+require_once PATH_MODELS . 'class_surveyservicesadd.php';
+require_once PATH_MODELS . 'class_surveyservicesdelete.php';
+require_once PATH_MODELS . 'class_surveyservicesupdate.php';
+
+//Survey
 require_once PATH_MODELS . 'class_surveylist.php';
 require_once PATH_MODELS . 'class_surveyinfo.php';
 require_once PATH_MODELS . 'class_surveyadd.php';
@@ -136,6 +150,14 @@ require_once PATH_MODELS . 'class_surveyanswersinfo.php';
 require_once PATH_MODELS . 'class_surveyanswersadd.php';
 require_once PATH_MODELS . 'class_surveyanswersdelete.php';
 require_once PATH_MODELS . 'class_surveyanswersupdate.php';
+
+//Survey - customers
+require_once PATH_MODELS . 'class_surveycustomerslist.php';
+require_once PATH_MODELS . 'class_surveycustomersinfo.php';
+require_once PATH_MODELS . 'class_surveycustomersadd.php';
+require_once PATH_MODELS . 'class_surveycustomersdelete.php';
+require_once PATH_MODELS . 'class_surveycustomersupdate.php';
+require_once PATH_MODELS . 'class_surveycustomerssessionid.php';
 
 //Survey - front
 require_once PATH_MODELS . 'class_survey.php';
@@ -166,3 +188,6 @@ require_once PATH_MODELS . 'class_iconslist.php';
 
 //SECTIONS
 require_once PATH_MODELS . 'class_sectioninfo.php';
+
+//WELL
+require_once PATH_MODELS . 'class_wellgenerator.php';

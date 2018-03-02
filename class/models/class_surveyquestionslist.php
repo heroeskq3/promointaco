@@ -2,7 +2,7 @@
 function class_surveyQuestionsList($SurveyId)
 {
     if(isset($SurveyId)){
-    	$mysql_query    = "SELECT sq.* FROM survey_questions sq WHERE sq.SurveyId = $SurveyId";
+    	$mysql_query    = "SELECT sq.* FROM survey_questions sq WHERE sq.SurveyId = $SurveyId ORDER BY `ORDER` ASC";
     }else{
     	$mysql_query    = "SELECT sq.* FROM survey_questions sq";
     }

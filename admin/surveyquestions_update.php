@@ -12,13 +12,13 @@ $section_homedir     = '../';
 <?php require_once 'header.php';?>
 <?php
 if ($form_update) {
-$SurveyId = null;
-if(isset($_POST['SurveyId'])){
-    $SurveyId = $_POST['SurveyId'];
-}
-    $surveyquestionsupdate = class_surveyQuestionsUpdate($Id, $SurveyId, $Question, $Description, $Status);
-    
-    header('Location: surveyquestions.php?Id='.$SurveyId);
+    $SurveyId = null;
+    if (isset($_POST['SurveyId'])) {
+        $SurveyId = $_POST['SurveyId'];
+    }
+    $surveyquestionsupdate = class_surveyQuestionsUpdate($Id, $SurveyId, $Question, $Description, $Order, $Status);
+
+    header('Location: surveyquestions.php?Id=' . $SurveyId);
     die();
 }
 
@@ -27,12 +27,26 @@ if ($Id) {
     $row_surveyquestionsinfo = $surveyQuestionsinfo['response'][0];
 }
 
-//Services List
-$surveylist       = class_surveyList();
-if($surveylist['rows']){
-    $array_surveylist = array();
+//Survey Info
+$surveyinfo     = class_surveyInfo($row_surveyquestionsinfo['SurveyId']);
+$row_surveyinfo = $surveyinfo['response'][0];
+
+//Survey List
+$surveylist       = class_surveyList($row_surveyinfo['ServicesId']);
+$array_surveylist = array();
+if ($surveylist['rows']) {
     foreach ($surveylist['response'] as $row_surveylist) {
         $array_surveylist[] = array('label' => $row_surveylist['Name'], 'value' => $row_surveylist['Id'], 'selected' => $row_surveyquestionsinfo['SurveyId']);
+    }
+}
+
+//Order List
+$menu_order  = class_surveyQuestionsList($row_surveyinfo['Id']);
+$array_order = array();
+if ($menu_order['rows']) {
+    foreach ($menu_order['response'] as $row_order) {
+        $array_order[] = array('label' => '[Up] - ' . $row_order['Question'], 'value' => $row_order['Order'] - 1, 'selected' => $row_menuinfo['Order']);
+        $array_order[] = array('label' => '[Down] - ' . $row_order['Question'], 'value' => $row_order['Order'] + 1, 'selected' => $row_menuinfo['Order']);
     }
 }
 
@@ -43,17 +57,18 @@ $array_status[] = array('label' => 'Inactive', 'value' => '0', 'selected' => $ro
 
 //Form Generator
 $formFields = array(
-    'form_update'       => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'form_update', 'value' => 1),
+    'form_update'    => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'form_update', 'value' => 1),
     'Survey'         => array('inputType' => 'select', 'required' => true, 'position' => 3, 'name' => 'SurveyId', 'value' => $array_surveylist),
     'Question'       => array('inputType' => 'text', 'required' => true, 'position' => 1, 'name' => 'Question', 'value' => $row_surveyquestionsinfo['Question']),
     'Others Details' => array('inputType' => 'textarea', 'required' => false, 'position' => 1, 'name' => 'Description', 'value' => $row_surveyquestionsinfo['Description']),
+    'Order'          => array('inputType' => 'select', 'required' => false, 'position' => 1, 'name' => 'Order', 'value' => $array_order),
     'Status'         => array('inputType' => 'select', 'required' => true, 'position' => 1, 'name' => 'Status', 'value' => $array_status),
 );
 
 // define buttons for form
 $formButtons = array(
     'Submit' => array('buttonType' => 'submit', 'class' => null, 'name' => null, 'value' => null, 'action' => null),
-    'Back'   => array('buttonType' => 'link', 'class' => null, 'name' => null, 'value' => null, 'action' => 'surveyquestions.php?Id='.$row_surveyquestionsinfo['SurveyId']),
+    'Back'   => array('buttonType' => 'link', 'class' => null, 'name' => null, 'value' => null, 'action' => 'surveyquestions.php?Id=' . $row_surveyquestionsinfo['SurveyId']),
 );
 
 //set params for form

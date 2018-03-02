@@ -1,11 +1,11 @@
 .f1-step.active .f1-step-icon {
-    background: #DD3B30;
+    background: #EE2D24;
 }
 .f1-step.active p {
-    color: #DD3B30;
+    color: #EE2D24;
 }
 .f1-progress-line {
-    background: #DD3B30;
+    background: #EE2D24;
 }
 button.btn.btn-next, button.btn.btn-next:focus, button.btn.btn-next:active:focus, button.btn.btn-next.active:focus {
     background: #ea3f33;
@@ -17,7 +17,7 @@ input, select, textarea, textarea.form-control {
     width: 100%;
 }
 button.btn.btn-submit, button.btn.btn-submit:focus, button.btn.btn-submit:active:focus, button.btn.btn-submit.active:focus {
-    background: #DD3B30;
+    background: #EE2D24;
 }
 input, textarea, select, textarea.form-control {
     height: 44px;
@@ -85,4 +85,62 @@ button.btn {
 
   background: transparent url('../img/surveys/star.png') no-repeat 0 0;
 
+}
+
+/*ol, ul {
+    list-style: none;
+    margin-top: 0;
+    margin-bottom: 10px;
+}*/
+
+button:hover.well-custom {
+    display: block;
+    opacity: 1;
+    -moz-transition:    all 500ms ease;
+    -webkit-transition: all 500ms ease;
+    -o-transition:      all 500ms ease;
+    -ms-transition:     all 500ms ease;
+    transition:         all 500ms ease;
+    background: #00A99D;
+    color: #fff;
+}
+
+.well-custom{
+  border-color: #00A99D;
+  background: #fff;
+  color: #00A99D;
+  width: 100%;
+  min-height: 110px;
+  text-align: center;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #00A99D;
+    border-color: #00A99D;
+}
+.top-content {
+    padding: 0;
+}
+.banner-terms{
+  width: 640px;
+  height: 160px;
+  background: #ccc;
+}
+.caret {
+    display: inline-block;
+    margin-left: 100px;
+    vertical-align: middle;
+    border-top: 4px dashed;
+    border-top: 4px solid\9;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+}
+.navbar-nav>li>a {
+    color: #000;
+}
+.well {
+    color: #000;
+    padding: 10px;
+    margin-bottom: 10px;
 }

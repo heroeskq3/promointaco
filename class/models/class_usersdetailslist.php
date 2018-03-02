@@ -1,5 +1,5 @@
 <?php
-function class_usersDetailsList()
+function class_surveyCustomersListList()
 {
     $mysql_query    = "SELECT ud.* FROM users_details ud"; 
     $mysql_database = CONFIG_MYSQLDB;

@@ -11,7 +11,7 @@
     <!-- /.panel-heading -->
     <div class="panel-body">
         <!-- Button trigger modal -->
-        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+        <button class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal">
             <?php echo $modalsParams['label'] ?>
         </button>
         <!-- Modal -->

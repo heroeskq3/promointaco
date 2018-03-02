@@ -5,16 +5,17 @@ define('CONFIG_IMAGEPROFILEDEFAULT', 'signup_male.png');
 
 define('CONFIG_LANG', 'en'); //define default language
 define('CONFIG_LOGOICON', 'cropped-logo-intaco.png');
-define('CONFIG_LOGOHEADER', 'cropped-logo-intaco.png');
+define('CONFIG_LOGOHEADER', 'logoIntaco.jpg');
 define('CONFIG_LOGOHEADER2', 'cropped-logo-intaco.png');
 define('CONFIG_LOGOHEADER3', 'cropped-logo-intaco.png');
 define('CONFIG_LOGOFOOTER', null);
+define('CONFIG_FOOTER', '© 2018 Todos los Derechos Reservados');
 define('CONFIG_SUPPORTPHONE', '2222-0000');
 define('CONFIG_SUPPORTEMAIL', 'info@experienciaintaco.com');
 define('CONFIG_LICENSEDUNDER', 'http://www.experienciaintaco.com');
 
 //DEFINE META
-define('CONFIG_METATITTLE', 'Intaco');
+define('CONFIG_METATITTLE', 'INTACO');
 define('CONFIG_METADESCRIPTION', 'Sin definir');
 define('CONFIG_METAKEYWORDS', 'Si,Definir');
 

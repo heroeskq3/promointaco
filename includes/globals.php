@@ -211,6 +211,10 @@ if (isset($_POST['Status'])) {
 }
 
 //survey
+$ServicesId = null;
+if (isset($_POST['ServicesId'])) {
+    $ServicesId = $_POST['ServicesId'];
+}
 $Rows = 1;
 if (isset($_POST['Rows'])) {
     $Rows = $_POST['Rows'];
@@ -376,5 +380,15 @@ if (isset($_POST['ThemeId'])) {
 $Language = null;
 if (isset($_POST['Language'])) {
     $Language = $_POST['Language'];
+}
+
+$CustomersId = null;
+if (isset($_POST['CustomersId'])) {
+    $CustomersId = $_POST['CustomersId'];
+}
+
+$ZonesId = null;
+if (isset($_POST['ZonesId'])) {
+    $ZonesId = $_POST['ZonesId'];
 }
 ?>

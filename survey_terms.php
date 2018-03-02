@@ -12,13 +12,19 @@ $section_step        = 3;
 
 require_once 'header.php';
 
-if ($button == 'next') {
+//restrict
+if (!$_SESSION['ServicesId']) {
+    header('Location: survey_services.php');
+    die();
+}
+if (isset($_POST['TermsId'])) {
+    $_SESSION['TermsId'] = $_POST['TermsId'];
     header('Location: survey_register.php');
     die();
 }
 
-$surveyinfo     = class_surveyInfo($SurveyId);
-$row_surveyinfo = $surveyinfo['response'][0];
+$surveyservicesinfo     = class_surveyServicesInfo($ServicesId);
+$row_surveyservicesinfo = $surveyservicesinfo['response'][0];
 ?>
 <fieldset>
             <br>
@@ -40,6 +46,10 @@ $row_surveyinfo = $surveyinfo['response'][0];
             <ul>
                 <li>28 de mayo, 2018</li>
             </ul>
+
+            <a href="#" class="banner-terms">
+                <img src="resources/logos/logoIntaco.jpg" alt="" width="640" height="160">
+            </a>
             <hr>
             <h3>Términos y Condiciones</h3>
 <?php
@@ -56,7 +66,8 @@ $modalsButtons = array(
 class_modals($modalsParams, $modalsButtons);
 
 $formFields = array(
-    'SurveyId' => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'SurveyId', 'value' => $SurveyId),
+    'ServicesId' => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'ServicesId', 'value' => $ServicesId),
+    'TermsId' => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'TermsId', 'value' => 1),
 );
 
 // define buttons for form
@@ -68,7 +79,7 @@ $formButtons = array(
 //set params for form
 $formParams = array(
     'name'    => null,
-    'action'  => null,
+    'action'  => '',
     'method'  => 'post',
     'enctype' => null,
 );

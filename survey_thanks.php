@@ -11,9 +11,8 @@ $section_homedir     = null;
 $section_step        = 6;
 ?>
 <?php require_once 'header.php';?>
-<?php 
-unset($_SESSION['Country']);
-unset($_SESSION['SurveyId']);
+<?php
+unset($_SESSION);
  ?>
 <center>
 <h3>¡Muchas gracias por su opinión!</h3>

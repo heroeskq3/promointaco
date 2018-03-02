@@ -1,7 +1,7 @@
 <?php
-function class_surveyUpdate($Id, $Name, $Details, $Rows, $Status)
+function class_surveyUpdate($Id, $ServicesId, $Name, $Details, $Rows, $Order, $Status)
 {
-    $mysql_query    = "UPDATE survey SET Name = '$Name', Details = '$Details', Rows = '$Rows', Status = '$Status' WHERE Id = $Id";
+    $mysql_query    = "UPDATE survey SET ServicesId = '$ServicesId', Name = '$Name', Details = '$Details', Rows = '$Rows', `Order` = '$Order', Status = '$Status' WHERE Id = $Id";
     $mysql_database = CONFIG_MYSQLDB;
     $mysql_conn     = conn_mysql();
     $mysql_debug    = 0;
