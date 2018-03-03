@@ -56,7 +56,7 @@ function class_formGenerator($formParams, $formFields, $formButtons)
                                 </div>
                                 <?php }?>
                                 <?php if ($formButtons) {?>
-                            <p>
+                            <p class="btn pull-left">
                                 <?php echo class_formButtons($formButtons); ?>
                             </p>
                                 <?php }?>

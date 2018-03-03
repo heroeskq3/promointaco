@@ -13,15 +13,22 @@ $section_step        = 1;
 require_once 'header.php';
 
 if ($Id) {
+
+    session_unset(); //destroy all sessions
+    session_regenerate_id(); //regenerate new session id
+
    $_SESSION['ZonesId'] = $Id;
+    header('Location: survey_home.php');
+    die();
+}
+if ($button=="next") {
     header('Location: survey_services.php');
     die();
 }
 ?>
-<fieldset>
     <h3>¡Bienvenidos al portal de Experiencia INTACO!</h3>
     <p>Un portal en donde todas sus recomendaciones son bienvenidas.</p>
-    <h5><strong>Su retroalimentación nos ayuda a cumplir nuestra promesa de valor:</strong></h5>
+    <h5><strong>Su retroalPimentación nos ayuda a cumplir nuestra promesa de valor:</strong></h5>
     <ul class="list-unstyled">
         <li>INTACO es cercano</li>
         <li>INTACO se preocupa</li>
@@ -44,9 +51,15 @@ $formFields = array(
     null => array('inputType' => 'country', 'required' => true, 'position' => 4, 'name' => 'ZonesId', 'value' => $array_surveyzones, 'action' => 'survey_home.php'),
 );
 
+if($ZonesId){
+    $buttondisabled = false;
+}else{
+    $buttondisabled = true;
+}
+
 // define buttons for form
 $formButtons = array(
-    'Next' => array('buttonType' => 'submit', 'class' => null, 'name' => 'button', 'value' => 'next', 'action' => null),
+    'Next' => array('buttonType' => 'submit', 'disabled' => $buttondisabled, 'class' => null, 'name' => 'button', 'value' => 'next', 'action' => null),
 );
 
 //set params for form
@@ -58,7 +71,6 @@ $formParams = array(
 );
 
 class_formGenerator2($formParams, $formFields, $formButtons);
+
+require_once 'footer.php';
 ?>
-</fieldset>
-<?php
-require_once 'footer.php';?>

@@ -8,38 +8,47 @@ function class_survey($Id)
     if ($Id) {
         $i = 1;
 
+        //survey info
+        $surveyinfo     = class_surveyInfo($Id);
+        $row_surveyinfo = $surveyinfo['response'][0];
+        //steps
+        $step_num  = $i++;
+        $step_next = $step_num + 1;
+        if ($row_surveyinfo['Rows'] == $step_next) {
+            $step_next = $step_num;
+        }
         //questions list - start
         $surveyquestionslist = class_surveyQuestionsList($Id);
-        foreach ($surveyquestionslist['response'] as $row_surveyquestionslist) {
+        if ($surveyquestionslist['rows']) {
+            foreach ($surveyquestionslist['response'] as $row_surveyquestionslist) {
 
-            //survey info
-            $surveyinfo = class_surveyInfo($row_surveyquestionslist['SurveyId']);
-            $row_surveyinfo = $surveyinfo['response'][0];
+                //answers list - start
+                $surveyanswerslist = class_surveyAnswersList($row_surveyquestionslist['Id']);
 
-            //answers list - start
-            $surveyanswerslist = class_surveyAnswersList($row_surveyquestionslist['Id']);
-
-            //steps
-            $step_num = $i++;
-            $step_next = $step_num+1;
-            if($row_surveyinfo['Rows']==$step_next){
-                $step_next = $step_num;
-            }
-            //form questions and answers array
-            $array_questions[] = array('nextstep' => $step_next, 'question' => $row_surveyquestionslist, 'answer' => $surveyanswerslist['response']);
-
-            if ($surveyanswerslist['rows']) {
-
-                foreach ($surveyanswerslist['response'] as $row_surveyanswerslist) {
-
-                    $array_answers[] .= $row_surveyanswerslist['Answer'];
-
+                //steps
+                $step_num  = $i++;
+                $step_next = $step_num + 1;
+                if ($row_surveyinfo['Rows'] == $step_next) {
+                    $step_next = $step_num;
                 }
-            }
-            //answers list - end
+                //form questions and answers array
+                $array_questions[] = array('inputtype' => $row_surveyinfo['InputType'], 'nextstep' => $step_next, 'question' => $row_surveyquestionslist, 'answer' => $surveyanswerslist['response']);
 
+                if ($surveyanswerslist['rows']) {
+
+                    foreach ($surveyanswerslist['response'] as $row_surveyanswerslist) {
+
+                        $array_answers[] .= $row_surveyanswerslist['Answer'];
+
+                    }
+                }
+                //answers list - end
+
+            }
+            //questions list - end
+        } else {
+            $array_questions[] = array('inputtype' => $row_surveyinfo['InputType'], 'nextstep' => $step_next, 'question' => null, 'answer' => null);
         }
-        //questions list - end
 
     }
 

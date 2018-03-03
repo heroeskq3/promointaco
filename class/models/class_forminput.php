@@ -19,9 +19,35 @@ function class_formInput($inputType, $name, $label, $value, $required)
     if ($inputType == 'textarea') {
         $results .= '<textarea class="form-control" name="' . $name . '" ' . $required . '>' . $value . '</textarea>';
     }
+    //TEXT AREA INPUT - bigsize
+    if ($inputType == 'textarea_big') {
+        $results .= '<textarea class="form-control" style="min-height: 150px" name="' . $name . '" ' . $required . '>' . $value . '</textarea>';
+    }
 
     //SELECT INPUT
     if ($inputType == 'country') {
+
+        $results .= '<div class="dropup">';
+        $results .= '<button class="btn-custom dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
+        if (ZONES_NAME) {
+            $results .= ' ' . ZONES_NAME.' ';
+        } else {
+            $results .= 'Select';
+        }
+        $results .= '<span class="caret"></span>';
+        $results .= '</button>';
+        $results .= '<ul class="dropdown-menu btn-custom" aria-labelledby="dropdownMenu2">';
+
+        if ($value) {
+            foreach ($value as $row_option) {
+                $results .= '<li><a href="?Id=' . $row_option['value'] . '"><img src="' . PATH_RESOURCES . 'flags/' . $row_option['image'] . '" width="32px"> ' . $row_option['label'] . '</a></li>';
+                $results .= '<li role="separator" class="divider"></li>';
+            }
+        }
+        $results .= '</div>';
+    }
+
+    if ($inputType == 'country2') {
         $results .= '</div>';
         $results .= '<a href="#" class="well dropdown-toggle" data-toggle="dropdown">';
 
@@ -82,15 +108,29 @@ function class_formInput($inputType, $name, $label, $value, $required)
         } else {
             $checked = null;
         }
-        $results .= '<div class="incluir">';
+
+        $results .= '<div>';
         $results .= '<input type="radio" name="' . $name . '" value="' . $value . '">';
         $results .= '<label></label>';
         $results .= '</div>';
-
         $results .= '<div class="img-contenedor">';
         $results .= '</div>';
 
     }
+
+    //RADIO INPUT WITH IMAGE
+    if ($inputType == 'radio_img') {
+        if ($value) {
+            $checked = 'checked';
+        } else {
+            $checked = null;
+        }
+        $results .= '<label class="radio_img">';
+        $results .= '<input type="radio" name="' . $name . '" value="' . $value . '">';
+        $results .= '<img src="resources/surveys/Gold-Star.J10.2k-300x300.png">';
+        $results .= '</label>';
+    }
+
     //PHONE NUMBER INPUT
     if ($inputType == 'tel') {
         $results .= '<input type="tel" class="form-control" name="' . $name . '" value="' . $value . '" ' . $required . '>';

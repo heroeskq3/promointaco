@@ -13,8 +13,9 @@ function class_formSurvey($FormSteps, $formParams, $formButtons, $formArray)
     if ($formParams) {
         $results .= '<form action="' . $formParams['action'] . '" method="' . $formParams['method'] . '">';
         //$results .= '<form role="form" class="f1" action="' . $formParams['action'] . '" method="' . $formParams['method'] . '">';
-        $results .= '<input type="hidden" value="'.$FormSteps['step'].'" name="step">';
+        $results .= '<input type="hidden" value="' . $FormSteps['step'] . '" name="step">';
     }
+
     //$results .= '<fieldset>';
     $results .= '<div class="table-responsive">';
     $results .= '<table class="table table-hover table-sm " width="100%">';
@@ -30,29 +31,47 @@ function class_formSurvey($FormSteps, $formParams, $formButtons, $formArray)
     $row_questions = null;
 
     foreach ($formArray['questions'] as $row_array) {
+
         //step cut
         $row_questions = $row_array['question'];
+        if ($formArray['answers']) {
+            $results .= '<tr>';
+            $results .= '<td scope="row" width="35%">';
+            $results .= $row_questions['Question'];
+            $results .= '<h5>' . $row_questions['Description'] . '</h5>';
+            $results .= '</td>';
 
-        $results .= '<tr>';
-        $results .= '<td scope="row" width="35%">';
-        $results .= $row_questions['Question'];
-        $results .= '<h5>'.$row_questions['Description'].'</h5>';
-        $results .= '</td>';
-        foreach ($formArray['answers'] as $row_answers) {
-            $results .= '<td align="center">';
+            //echo "<pre>";
+            //print_r($row_array);
 
-            if ($row_array['answer']) {
-                foreach ($row_array['answer'] as $row_answerslist) {
-                    if ($row_answers == $row_answerslist['Answer']) {
-                        
-                        $results .= class_formInput('radio', 'Answer_' . $row_answerslist['QuestionId'], null, $row_answerslist['Points'], 'required');
+            foreach ($formArray['answers'] as $row_answers) {
+                $results .= '<td align="center">';
+                if ($row_array['answer']) {
+                    foreach ($row_array['answer'] as $row_answerslist) {
+                        if ($row_answers == $row_answerslist['Answer']) {
+                            if ($row_array['inputtype'] == 'radio') {
+                                $row_array['inputtype'] = 'radio_img';
+                            }
+                            $results .= class_formInput($row_array['inputtype'], 'Answer_' . $row_answerslist['QuestionId'], null, $row_answerslist['Points'], 'required');
+                        }
                     }
                 }
+                $results .= '</td>';
             }
 
+            $results .= '</tr>';
+        } else {
+            $results .= '<tr>';
+            $results .= '<td align="center">';
+            $results .= $row_questions['Question'];
+            $results .= '<h5>' . $row_questions['Description'] . '</h5>';
+            if ($row_array['inputtype'] == 'textarea') {
+                $row_array['inputtype'] = 'textarea_big';
+            }
+            $results .= class_formInput($row_array['inputtype'], 'Answer_' . $row_questions['Id'], null, null, null);
             $results .= '</td>';
+            $results .= '</tr>';
         }
-        $results .= '</tr>';
     }
     $results .= '</tbody>';
     $results .= '</table>';
@@ -60,14 +79,16 @@ function class_formSurvey($FormSteps, $formParams, $formButtons, $formArray)
 
     if ($formButtons) {
         $results .= '<hr>';
+        $results .= '<p class="btn pull-right">';
         $results .= class_formButtons($formButtons);
+        $results .= '</p>';
     }
     //$results .= '</fieldset>';
     if ($formParams) {
         $results .= '</form>';
     }
 
-?>
+    ?>
 
 <?php
 

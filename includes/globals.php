@@ -391,4 +391,12 @@ $ZonesId = null;
 if (isset($_POST['ZonesId'])) {
     $ZonesId = $_POST['ZonesId'];
 }
+$TermsId = null;
+if (isset($_POST['TermsId'])) {
+    $TermsId = $_POST['TermsId'];
+}
+$InputType = null;
+if (isset($_POST['InputType'])) {
+    $InputType = $_POST['InputType'];
+}
 ?>

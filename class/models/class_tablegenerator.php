@@ -16,7 +16,7 @@
 // define buttons for form
     if ($params['addnew']) {
         $formButtons_add = array(
-            'Add New' => array('buttonType' => 'link', 'class' => null, 'name' => 'action', 'value' => 'add', 'action' => $params['addnew']),
+            'Add New' => array('buttonType' => 'link', 'disabled' => null, 'class' => null, 'name' => 'action', 'value' => 'add', 'action' => $params['addnew']),
         );
         echo class_formButtons($formButtons_add);
     }

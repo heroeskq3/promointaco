@@ -63,7 +63,7 @@ function class_formGenerator2($formParams, $formFields, $formButtons)
                 $results .= '<div class="form-group pmd-textfield pmd-textfield-floating-label">';
                 
                 if($row['inputType'] == 'label'){
-                $results .= '<label for="regular1" class="control-label"><strong>' . $label . '</strong></label>';
+                $results .= '<label for="regular1" class="control-label"><h3>' . $label . '</h3></label>';
                 }else{
                 $results .= '<label for="regular1" class="control-label">' . $label . '</label>';
                 }
@@ -184,7 +184,9 @@ function class_formGenerator2($formParams, $formFields, $formButtons)
 
     if ($formButtons) {
         $results .= '<hr>';
+        $results .= '<p class="btn pull-right">';
         $results .= class_formButtons($formButtons);
+        $results .= '</p>';
     }
 
     $results .= '</div>';

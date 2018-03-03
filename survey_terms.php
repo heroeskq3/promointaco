@@ -23,10 +23,14 @@ if (isset($_POST['TermsId'])) {
     die();
 }
 
+if ($button == "next") {
+    header('Location: survey_terms.php');
+    die();
+}
+
 $surveyservicesinfo     = class_surveyServicesInfo($ServicesId);
 $row_surveyservicesinfo = $surveyservicesinfo['response'][0];
 ?>
-<fieldset>
             <br>
             <h3>Comparte tu experiencia con nuestro servicio</h3>
             <h3>y queda participando en la rifa de:</h3>
@@ -46,10 +50,11 @@ $row_surveyservicesinfo = $surveyservicesinfo['response'][0];
             <ul>
                 <li>28 de mayo, 2018</li>
             </ul>
-
-            <a href="#" class="banner-terms">
-                <img src="resources/logos/logoIntaco.jpg" alt="" width="640" height="160">
-            </a>
+            <div class="col-xs-12">
+                <a href="#" class="thumbnail">
+                <img alt="Banner" data-src="holder.js/640%x160" src="resources/banners/default.png" data-holder-rendered="true" style="width: 100%; display: block;">
+                </a>
+            </div>
             <hr>
             <h3>Términos y Condiciones</h3>
 <?php
@@ -66,26 +71,23 @@ $modalsButtons = array(
 class_modals($modalsParams, $modalsButtons);
 
 $formFields = array(
-    'ServicesId' => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'ServicesId', 'value' => $ServicesId),
     'TermsId' => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'TermsId', 'value' => 1),
 );
 
 // define buttons for form
 $formButtons = array(
-    'Previous' => array('buttonType' => 'link', 'class' => null, 'name' => null, 'value' => null, 'action' => 'survey_services.php'),
-    'Next'     => array('buttonType' => 'submit', 'class' => null, 'name' => 'button', 'value' => 'next', 'action' => null),
+    'Previous' => array('buttonType' => 'link', 'disabled' => null, 'class' => null, 'name' => null, 'value' => null, 'action' => 'survey_services.php'),
+    'Next'     => array('buttonType' => 'submit', 'disabled' => null, 'class' => null, 'name' => 'button', 'value' => 'next', 'action' => null),
 );
 
 //set params for form
 $formParams = array(
-    'name'    => null,
+    'name'    => '',
     'action'  => '',
     'method'  => 'post',
     'enctype' => null,
 );
 
 class_formGenerator2($formParams, $formFields, $formButtons);
-?>
-</fieldset>
-<?php
+
 require_once 'footer.php';?>

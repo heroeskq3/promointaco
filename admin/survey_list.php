@@ -58,6 +58,7 @@ function class_tableMainList($array)
                 'Service'   => $row_surveyservicesinfo['Name'],
                 'Questions' => $surveyquestionslist['rows'],
                 'Valor'     => $suma_answers . ' Points',
+                'Input'     => $row_array['InputType'],
                 'Per Page'  => $row_array['Rows'],
                 'Status'    => class_statusInfo($row_array['Status']),
 

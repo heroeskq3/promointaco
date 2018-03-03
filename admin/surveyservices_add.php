@@ -25,8 +25,8 @@ $formFields = array(
 
 // define buttons for form
 $formButtons = array(
-    'Submit' => array('buttonType' => 'submit', 'class' => null, 'name' => null, 'value' => null, 'action' => null),
-    'Home'   => array('buttonType' => 'link', 'class' => null, 'name' => null, 'value' => null, 'action' => 'index.php'),
+    'Submit' => array('buttonType' => 'submit', 'disabled' => null, 'class' => null, 'name' => null, 'value' => null, 'action' => null),
+    'Home'   => array('buttonType' => 'link', 'disabled' => null, 'class' => null, 'name' => null, 'value' => null, 'action' => 'index.php'),
 );
 
 //set params for form

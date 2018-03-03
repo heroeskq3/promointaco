@@ -11,9 +11,12 @@
     <!-- /.panel-heading -->
     <div class="panel-body">
         <!-- Button trigger modal -->
-        <button class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal">
+        <div class="col-lg-3 col-md-12 col-sm-12">
+        <button class="btn-custom btn-lg" data-toggle="modal" data-target="#myModal">
             <?php echo $modalsParams['label'] ?>
         </button>
+        </div>
+
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">

@@ -1,99 +1,60 @@
+/*body*/
+.f1 {
+
+    -moz-border-radius: 0px 0px 10px 10px;
+    -webkit-border-radius: 0px 0px 10px 10px;
+    border-radius: 0px 0px 10px 10px;
+}
+.f2 {
+    background: #ea3f33;
+    -moz-border-radius: 10px 10px 0px 0px;
+    -webkit-border-radius: 10px 10px 0px 0px;
+    border-radius: 10px 10px 0px 0px;
+}
+/*top header*/
+.top-content {
+    padding: 0;
+}
+/*progress*/
 .f1-step.active .f1-step-icon {
-    background: #EE2D24;
+    background: #00A99D;
 }
 .f1-step.active p {
-    color: #EE2D24;
+    color: #00A99D;
 }
 .f1-progress-line {
-    background: #EE2D24;
-}
-button.btn.btn-next, button.btn.btn-next:focus, button.btn.btn-next:active:focus, button.btn.btn-next.active:focus {
-    background: #ea3f33;
-}
-.img_colorfill {
-    filter: drop-shadow(1px 0px 0px white);
-}
-input, select, textarea, textarea.form-control {
-    width: 100%;
-}
-button.btn.btn-submit, button.btn.btn-submit:focus, button.btn.btn-submit:active:focus, button.btn.btn-submit.active:focus {
-    background: #EE2D24;
-}
-input, textarea, select, textarea.form-control {
-    height: 44px;
-}
-.form-control {
-    height: 44px;
-}
-button.btn {
-    margin: 3px;
-    margin-right: 3px;
+    background: #00A99D;
 }
 
-/* radio button img*/
-.incluir {
-    position: relative;
-
+/*buttons*/
+button.btn.btn-primary {
+    color: #fff;
+    background-color: #00A99D;
+    border-color: #00A99D;
 }
-.incluir input {
-  -webkit-appearance: none;   
-  -moz-appearance: window;   
-  -ms-appearance: window;  
-  appearance: window; 
-  position: absolute;
-  top: 0;
-  width: 50px;
-  height: 50px;
-
-
+button.btn.btn-danger {
+    color: #fff;
+    background-color: #fff
+    border-color: #ea3f33;
+}
+button.btn{
+    margin-right: 5px;
 }
 
-
-.incluir input + label::before {
-  position absolute;
-  top: 0;
-  display: inline-block;
-  background: transparent url('../img/surveys/star.png') no-repeat 0 0;
-  display: block;
-  width: 50px;
-  height: 50px; 
-  content: '';
-  vertical-align: middle;
-    -webkit-transition:all .9s ease; /* Safari y Chrome */
-    -moz-transition:all .9s ease; /* Firefox */
-    -o-transition:all .9s ease; /* IE 9 */
-    -ms-transition:all .9s ease; /* Opera */
-
-
-}
-.incluir input:checked + label::before {
-    -webkit-transform:scale(1.30);
-    -moz-transform:scale(1.30);
-    -ms-transform:scale(1.30);
-    -o-transform:scale(1.30);
-    transform:scale(1.30);
-
-/*        filter: alpha(opacity=50);
-        opacity: 0.5;
-        -webkit-transition: opacity .15s ease-out-in;
-        -moz-transition: opacity .15s ease-out-in;
-        -ms-transition: opacity .15s ease-out-in;
-        -o-transition: opacity .15s ease-out-in;
-        transition: opacity .15s ease-out-in;*/
-
-
-
-  background: transparent url('../img/surveys/star.png') no-repeat 0 0;
-
+/*well*/
+.well-custom{
+  min-height: 110px;
 }
 
-/*ol, ul {
-    list-style: none;
-    margin-top: 0;
-    margin-bottom: 10px;
-}*/
-
-button:hover.well-custom {
+/*dropdown*/
+.btn-custom{
+  width: 100%;
+  border-color: #00A99D;
+  background: #fff;
+  color: #00A99D;
+  padding: 5px;
+}
+button:hover.btn-custom {
     display: block;
     opacity: 1;
     -moz-transition:    all 500ms ease;
@@ -105,42 +66,67 @@ button:hover.well-custom {
     color: #fff;
 }
 
-.well-custom{
-  border-color: #00A99D;
-  background: #fff;
-  color: #00A99D;
-  width: 100%;
-  min-height: 110px;
-  text-align: center;
+/*forms input*/
+.form-control, input[type="text"], input[type="password"], input[type="tel"], input[type="email"], textarea, select, textarea.form-control {
+    height: 44px;
+    margin: 0;
+    padding: 0 20px;
+    vertical-align: middle;
+    background: #fff;
+    border: 1px solid #00A99D;
+    color:#00A99D;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 44px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -o-transition: all .3s;
+    -moz-transition: all .3s;
+    -webkit-transition: all .3s;
+    -ms-transition: all .3s;
+    transition: all .3s;
 }
 
-.btn-primary {
-    color: #fff;
-    background-color: #00A99D;
-    border-color: #00A99D;
+/* radio button img*/
+.radio_img > input{ /* HIDE RADIO */
+  visibility: hidden; /* Makes input not-clickable */
+  position: absolute; /* Remove input from document flow */
 }
-.top-content {
-    padding: 0;
+.radio_img > input + img{ /* IMAGE STYLES */
+  cursor:pointer;
+  border:2px solid transparent;
+    opacity: 0.5;
+    -moz-transition:    all 500ms ease;
+    -webkit-transition: all 500ms ease;
+    -o-transition:      all 500ms ease;
+    -ms-transition:     all 500ms ease;
+    transition:         all 500ms ease;
+
+    width: 50px;
+    min-width: 80px;
 }
-.banner-terms{
-  width: 640px;
-  height: 160px;
-  background: #ccc;
+.radio_img > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
+    opacity: 1;
+    -moz-transition:    all 500ms ease;
+    -webkit-transition: all 500ms ease;
+    -o-transition:      all 500ms ease;
+    -ms-transition:     all 500ms ease;
+    transition:         all 500ms ease;
 }
-.caret {
-    display: inline-block;
-    margin-left: 100px;
-    vertical-align: middle;
-    border-top: 4px dashed;
-    border-top: 4px solid\9;
-    border-right: 4px solid transparent;
-    border-left: 4px solid transparent;
+.radio_img > input:checked + img{
+    background: transparent url('../../resources/surveys/check.png') no-repeat 20% 20%;
+    background-size: 20px;
 }
-.navbar-nav>li>a {
-    color: #000;
-}
-.well {
-    color: #000;
-    padding: 10px;
-    margin-bottom: 10px;
+.radio_img > input:hover + img{ /* (RADIO CHECKED) IMAGE STYLES */
+    opacity: 1;
+    -webkit-transform:scale(1.30);
+    -moz-transform:scale(1.30);
+    -ms-transform:scale(1.30);
+    -o-transform:scale(1.30);
+    transform:scale(1.30);
 }
