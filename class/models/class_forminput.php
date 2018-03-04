@@ -30,7 +30,7 @@ function class_formInput($inputType, $name, $label, $value, $required)
         $results .= '<div class="dropup">';
         $results .= '<button class="btn-custom dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
         if (ZONES_NAME) {
-            $results .= ' ' . ZONES_NAME.' ';
+            $results .= ' ' . ZONES_NAME . ' ';
         } else {
             $results .= 'Select';
         }
@@ -88,6 +88,59 @@ function class_formInput($inputType, $name, $label, $value, $required)
         }
         $results .= '</select>';
     }
+
+    //SELECT INPUT ONCHANGE PATERN
+    if ($inputType == 'select_onchange') {
+        $results .= '<select onchange="fetch_select(this.value);"class="select-with-search form-control pmd-select2 selectpicker" data-show-subtext="true" data-live-search="true" name="' . $name . '" ' . $required . '>';
+
+        $results .= '<option value="">Select</option>';
+
+        if ($value) {
+
+            foreach ($value as $row_option) {
+                $results .= '<option value="' . $row_option['value'] . '" ';
+                if ($row_option['value'] == $row_option['selected']) {
+                    $results .= 'selected';
+                }
+                $results .= '>' . $row_option['label'] . '</option>';
+            }
+        }
+        $results .= '</select>';
+    }
+
+    //SELECT INPUT ONCHANGE CHILDS
+    if ($inputType == 'select_onchange2') {
+        $results .= '<select id="new_select" class="select-with-search form-control pmd-select2 selectpicker" data-show-subtext="true" data-live-search="true" name="' . $name . '" ' . $required . '>';
+        $results .= '<option value="">Select last option</option>';
+        if ($value) {
+            foreach ($value as $row_option) {
+                $results .= '<option value="' . $row_option['value'] . '" ';
+                if ($row_option['value'] == $row_option['selected']) {
+                    $results .= 'selected';
+                }
+                $results .= '>' . $row_option['label'] . '</option>';
+            }
+        }
+        $results .= '</select>';
+?>
+<script type="text/javascript">
+function fetch_select(val)
+{
+ $.ajax({
+ type: 'get',
+ url: 'survey_getcities.php',
+ data: {
+  get_option:val
+ },
+ success: function (response) {
+  document.getElementById("new_select").innerHTML=response;
+ }
+ });
+}
+</script>
+<?php     
+    }
+ 
     //CHECKBX INPUT
     if ($inputType == 'checkbox') {
         if ($value) {

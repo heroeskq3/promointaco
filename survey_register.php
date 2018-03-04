@@ -17,8 +17,16 @@ if (!$_SESSION['TermsId']) {
     header('Location: survey_terms.php');
     die();
 }
+//patch - for oNChange Select State / city
+if ($StateId) {
+    $surveystatesinfo     = class_surveyZonesInfo($StateId);
+    $row_surveystatesinfo = $surveystatesinfo['response'][0];
+    $State                = $row_surveystatesinfo['Name'];
+}
+
 if ($form_add) {
-    $surveycustomersadd = class_surveyCustomersAdd($FirstName, $LastName, $Identification, $Phone, $Email, $Company, $Position, $CustomInfo4, $CustomInfo2, $Country, $SessionId, $Status);
+
+    $surveycustomersadd = class_surveyCustomersAdd($FirstName, $LastName, $Identification, $Phone, $Email, $Company, $Position, $Care, $Local, $CustomInfo1, $Country, $State, $City, $SessionId, $Status);
 
     if ($surveycustomersadd['rows']) {
 
@@ -32,7 +40,7 @@ if ($form_add) {
     }
 }
 if ($form_update) {
-    $surveycustomersupdate = class_surveyCustomersUpdate($CustomersId, $Company, $FirstName, $LastName, $Identification, $Phone, $Email, $Company, $Position, $CustomInfo4, $CustomInfo2, $Country, $Status);
+    $surveycustomersupdate = class_surveyCustomersUpdate($CustomersId, $FirstName, $LastName, $Identification, $Phone, $Email, $Company, $Position, $Care, $Local, $CustomInfo1, $Country, $State, $City, $SessionId, $Status);
 
     header('Location: survey_questions.php');
     die();
@@ -40,6 +48,7 @@ if ($form_update) {
 
 //Customers Info for Update
 if (isset($_SESSION['CustomersId'])) {
+
     $surveycustomersinfo     = class_surveyCustomersInfo($_SESSION['CustomersId']);
     $row_surveycustomersinfo = $surveycustomersinfo['response'][0];
 
@@ -53,43 +62,82 @@ if (isset($_SESSION['CustomersId'])) {
     $Email          = $row_surveycustomersinfo['Email'];
     $Company        = $row_surveycustomersinfo['Company'];
     $Position       = $row_surveycustomersinfo['Position'];
+    $Care           = $row_surveycustomersinfo['Care'];
+    $Local          = $row_surveycustomersinfo['Local'];
+    $State          = $row_surveycustomersinfo['State'];
+    $City           = $row_surveycustomersinfo['City'];
     $CustomInfo1    = $row_surveycustomersinfo['CustomInfo1'];
-    $CustomInfo2    = $row_surveycustomersinfo['CustomInfo2'];
-    $CustomInfo3    = $row_surveycustomersinfo['CustomInfo3'];
-    $CustomInfo4    = $row_surveycustomersinfo['CustomInfo4'];
-    $CustomInfo5    = $row_surveycustomersinfo['CustomInfo5'];
     $Country        = $row_surveycustomersinfo['Country'];
     $Status         = $row_surveycustomersinfo['Status'];
 } else {
     $form_action = 'form_add';
 }
 
-//Position
-$array_Position   = array();
-$array_Position[] = array('label' => 'Dueño', 'value' => 'Dueño', 'selected' => $Position);
-$array_Position[] = array('label' => 'Gerente General / Administrador', 'value' => 'Gerente General / Administrador', 'selected' => $Position);
-$array_Position[] = array('label' => 'Comprador', 'value' => 'Comprador', 'selected' => $Position);
-$array_Position[] = array('label' => 'Vendedor', 'value' => 'Vendedor', 'selected' => $Position);
+//positions List
+$surveypositionslist = class_surveyPositionList($ZonesId);
+$array_positions     = array();
+if ($surveypositionslist['rows']) {
+    foreach ($surveypositionslist['response'] as $row_surveypositionslist) {
+        $array_positions[] = array('label' => $row_surveypositionslist['Name'], 'value' => $row_surveypositionslist['Name'], 'selected' => $Position);
+    }
+}
 
-$array_CustomInfo1 = null;
-$array_CustomInfo2 = null;
-$array_CustomInfo3 = null;
-$array_CustomInfo4 = null;
+//cares List
+$surveycareslist = class_surveyCaresList($ZonesId);
+$array_cares     = array();
+if ($surveycareslist['rows']) {
+    foreach ($surveycareslist['response'] as $row_surveycareslist) {
+        $array_cares[] = array('label' => $row_surveycareslist['Name'], 'value' => $row_surveycareslist['Name'], 'selected' => $Care);
+    }
+}
+
+//locals List
+$surveylocalslist = class_surveyLocalsList($ZonesId);
+$array_locals     = array();
+if ($surveylocalslist['rows']) {
+    foreach ($surveylocalslist['response'] as $row_surveylocalslist) {
+        $array_locals[] = array('label' => $row_surveylocalslist['Name'], 'value' => $row_surveylocalslist['Name'], 'selected' => $Local);
+    }
+}
+//Country Info
+$surveyzonesinfo     = class_surveyZonesInfo($ZonesId);
+$row_surveyzonesinfo = $surveyzonesinfo['response'][0];
+if ($surveyzonesinfo['rows']) {
+    $Country = $row_surveyzonesinfo['Name'];
+}
+
+//patch - getid
+if ($State && $Country) {
+    $surveystatesname     = class_surveyZonesGetId($Country, $State);
+    $row_surveystatesname = $surveystatesname['response'][0];
+    $CountryId            = $row_surveystatesname['CountryId'];
+    $StateId              = $row_surveystatesname['StateId'];
+}
+
+//states List
+$surveystateslist = class_surveyZonesList($ZonesId);
+$array_states     = array();
+if ($surveystateslist['rows']) {
+    foreach ($surveystateslist['response'] as $row_surveystateslist) {
+        $array_states[] = array('label' => $row_surveystateslist['Name'], 'value' => $row_surveystateslist['Id'], 'selected' => $StateId);
+    }
+}
+//cities List
+$surveycitieslist = class_surveyZonesList($StateId);
+$array_cities     = array();
+if ($surveycitieslist['rows']) {
+    foreach ($surveycitieslist['response'] as $row_surveycitieslist) {
+        $array_cities[] = array('label' => $row_surveycitieslist['Name'], 'value' => $row_surveycitieslist['Name'], 'selected' => $City);
+    }
+}
 
 //¿Cuánto tiempo tiene de comprar INTACO?
-$array_CustomInfo5   = array();
-$array_CustomInfo5[] = array('label' => 'Menos de 1 año', 'value' => 'Menos de 1 año', 'selected' => $CustomInfo5);
-$array_CustomInfo5[] = array('label' => 'Entre 1 y 3', 'value' => 'Entre 1 y 3', 'selected' => $CustomInfo5);
-$array_CustomInfo5[] = array('label' => 'Entre 3 y 5', 'value' => 'Entre 3 y 5', 'selected' => $CustomInfo5);
-$array_CustomInfo5[] = array('label' => 'Entre 5 y 10 años', 'value' => 'Entre 5 y 10 años', 'selected' => $CustomInfo5);
-$array_CustomInfo5[] = array('label' => 'Más de 10 años', 'value' => 'Más de 10 años', 'selected' => $CustomInfo5);
-
-//Country list
-$countrylist       = class_countryList();
-$array_countrylist = array();
-foreach ($countrylist['response'] as $row_countrylist) {
-    $array_countrylist[] = array('label' => $row_countrylist['Name'], 'value' => $row_countrylist['Prefix'], 'selected' => $Country);
-}
+$array_CustomInfo1   = array();
+$array_CustomInfo1[] = array('label' => 'Menos de 1 año', 'value' => 'Menos de 1 año', 'selected' => $CustomInfo1);
+$array_CustomInfo1[] = array('label' => 'Entre 1 y 3', 'value' => 'Entre 1 y 3', 'selected' => $CustomInfo1);
+$array_CustomInfo1[] = array('label' => 'Entre 3 y 5', 'value' => 'Entre 3 y 5', 'selected' => $CustomInfo1);
+$array_CustomInfo1[] = array('label' => 'Entre 5 y 10 años', 'value' => 'Entre 5 y 10 años', 'selected' => $CustomInfo1);
+$array_CustomInfo1[] = array('label' => 'Más de 10 años', 'value' => 'Más de 10 años', 'selected' => $CustomInfo1);
 
 $formFields = array(
     //hidden
@@ -108,15 +156,15 @@ $formFields = array(
     //Empresa
     'Datos de la Empresa'             => array('inputType' => 'label', 'required' => false, 'position' => 1, 'name' => 'Company', 'value' => $Company),
     'Nombre de la empresa'            => array('inputType' => 'text', 'required' => false, 'position' => 2, 'name' => 'Company', 'value' => $Company),
-    'Puesto en la empresa'            => array('inputType' => 'select', 'required' => false, 'position' => 2, 'name' => 'Position', 'value' => $array_Position),
+    'Puesto en la empresa'            => array('inputType' => 'select', 'required' => false, 'position' => 2, 'name' => 'Position', 'value' => $array_positions),
 
-    'Asesor de Ventas que lo atiende' => array('inputType' => 'select', 'required' => false, 'position' => 2, 'name' => 'CustomInfo1', 'value' => $array_CustomInfo1),
-    'Fabrica adonde compra'           => array('inputType' => 'select', 'required' => false, 'position' => 2, 'name' => 'CustomInfo2', 'value' => $array_CustomInfo2),
-    'Provincia'                       => array('inputType' => 'select', 'required' => false, 'position' => 2, 'name' => 'CustomInfo3', 'value' => $array_CustomInfo3),
-    'Cantón'                          => array('inputType' => 'select', 'required' => false, 'position' => 2, 'name' => 'CustomInfo4', 'value' => $array_CustomInfo4),
-    'Tiempo de comprar en INTACO'     => array('inputType' => 'select', 'required' => false, 'position' => 1, 'name' => 'CustomInfo5', 'value' => $array_CustomInfo5),
+    'Asesor de Ventas que lo atiende' => array('inputType' => 'select', 'required' => false, 'position' => 2, 'name' => 'Care', 'value' => $array_cares),
+    'Fabrica adonde compra'           => array('inputType' => 'select', 'required' => false, 'position' => 2, 'name' => 'Local', 'value' => $array_locals),
+    'Provincia'                       => array('inputType' => 'select_onchange', 'required' => false, 'position' => 2, 'name' => 'StateId', 'value' => $array_states),
+    'Cantón'                          => array('inputType' => 'select_onchange2', 'required' => false, 'position' => 2, 'name' => 'City', 'value' => $array_cities),
+    'Tiempo de comprar en INTACO'     => array('inputType' => 'select', 'required' => false, 'position' => 1, 'name' => 'CustomInfo1', 'value' => $array_CustomInfo1),
 
-    'Country'                         => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'Country', 'value' => $ZonesId),
+    'Country'                         => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'Country', 'value' => $Country),
 
     //Inactive
     'Status'                          => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'Status', 'value' => 1),
@@ -137,5 +185,6 @@ $formParams = array(
 );
 
 class_formGenerator2($formParams, $formFields, $formButtons);
-
+?>
+<?php
 require_once 'footer.php';

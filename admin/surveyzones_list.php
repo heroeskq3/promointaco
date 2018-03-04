@@ -34,7 +34,7 @@ function class_tableMainList($array)
                 //Define custom Patern Table Alias Keys => Values
                 'Name'    => $row_array['Name'],
                 'Zone'    => $row_surveyzonesinfo['Name'],
-                'Qnty'    => $surveyzonesinfo['rows'],
+                'Qnty'    => $surveyzoneslist['rows'],
                 'Status'  => class_statusInfo($row_array['Status']),
 
                 //Define Index, Status, Childs
@@ -47,7 +47,9 @@ function class_tableMainList($array)
 
     return $results;
 }
-
+if($Id){
+    $ZonesId = $Id;
+}
 //survey list
 $surveylist  = class_surveyZonesList($ZonesId);
 $table_array = class_tableMainList($surveylist);

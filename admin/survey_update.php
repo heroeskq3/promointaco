@@ -12,7 +12,7 @@ $section_homedir     = '../';
 <?php require_once 'header.php';?>
 <?php
 if ($form_update) {
-    $surveyupdate = class_surveyUpdate($Id, $ServicesId, $Name, $Details, $InputType, $Rows, $Order, $Status);
+    $surveyupdate = class_surveyUpdate($Id, $ServicesId, $Name, $Details, $InputType, $InputImage, $Rows, $Order, $Status);
     header('Location: survey.php?Id=' . $ServicesId);
     die();
 }
@@ -51,6 +51,11 @@ $array_inputtype   = array();
 $array_inputtype[] = array('label' => 'Radio', 'value' => 'radio', 'selected' => $row_surveyinfo['InputType']);
 $array_inputtype[] = array('label' => 'Text Area', 'value' => 'textarea', 'selected' => $row_surveyinfo['InputType']);
 
+//Input Image
+$array_inputimage   = array();
+$array_inputimage[] = array('label' => 'None', 'value' => null, 'selected' => $row_surveyinfo['InputImage']);
+$array_inputimage[] = array('label' => 'Gold-Star.J10.2k-300x300.png', 'value' => 'Gold-Star.J10.2k-300x300.png', 'selected' => $row_surveyinfo['InputImage']);
+
 //Rows per Page list
 $array_rowsperpage = array();
 for ($i = 1; $i < 51; ++$i) {
@@ -64,6 +69,7 @@ $formFields = array(
     'Name'               => array('inputType' => 'text', 'required' => true, 'position' => 1, 'name' => 'Name', 'value' => $row_surveyinfo['Name']),
     'Details'            => array('inputType' => 'textarea', 'required' => false, 'position' => 1, 'name' => 'Details', 'value' => $row_surveyinfo['Details']),
     'Input Type'         => array('inputType' => 'select', 'required' => true, 'position' => 3, 'name' => 'InputType', 'value' => $array_inputtype),
+    'Input Image'        => array('inputType' => 'select', 'required' => true, 'position' => 3, 'name' => 'InputImage', 'value' => $array_inputimage),
     'Questions per Page' => array('inputType' => 'select', 'required' => true, 'position' => 3, 'name' => 'Rows', 'value' => $array_rowsperpage),
     'Order'              => array('inputType' => 'select', 'required' => false, 'position' => 1, 'name' => 'Order', 'value' => $array_order),
     'Status'             => array('inputType' => 'select', 'required' => true, 'position' => 3, 'name' => 'Status', 'value' => $array_status),

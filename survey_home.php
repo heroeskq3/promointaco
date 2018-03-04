@@ -17,11 +17,11 @@ if ($Id) {
     session_unset(); //destroy all sessions
     session_regenerate_id(); //regenerate new session id
 
-   $_SESSION['ZonesId'] = $Id;
+    $_SESSION['ZonesId'] = $Id;
     header('Location: survey_home.php');
     die();
 }
-if ($button=="next") {
+if ($button == "next") {
     header('Location: survey_services.php');
     die();
 }
@@ -39,7 +39,7 @@ if ($button=="next") {
 
 <?php
 //zones List
-$surveyzoneslist = class_surveyzonesList(null);
+$surveyzoneslist   = class_surveyzonesList(null);
 $array_surveyzones = array();
 if ($surveyzoneslist['rows']) {
     foreach ($surveyzoneslist['response'] as $row_surveyzoneslist) {
@@ -51,9 +51,9 @@ $formFields = array(
     null => array('inputType' => 'country', 'required' => true, 'position' => 4, 'name' => 'ZonesId', 'value' => $array_surveyzones, 'action' => 'survey_home.php'),
 );
 
-if($ZonesId){
+if ($ZonesId) {
     $buttondisabled = false;
-}else{
+} else {
     $buttondisabled = true;
 }
 

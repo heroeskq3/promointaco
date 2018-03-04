@@ -1,15 +1,21 @@
 <?php
 if ($form_add) {
     class_surveyZonesAdd($ZonesId, $Name, $Image, $Status);
-    header('Location: surveyzones.php');
+    header('Location: surveyzones.php?Id='.$ZonesId);
     die();
 }
+//Zones Info
+$surveyzonesinfo     = class_surveyZonesInfo($Id);
+$row_surveyzonesinfo = $surveyzonesinfo['response'][0];
+if($surveyzonesinfo['rows']){
+    $ZonesId = $row_surveyzonesinfo['ZonesId'];
+}
 //zones List
-$surveyzoneslist = class_surveyzonesList($ZonesId);
+$surveyzoneslist = class_surveyZonesList($ZonesId);
 $array_surveyzones = array();
 if ($surveyzoneslist['rows']) {
     foreach ($surveyzoneslist['response'] as $row_surveyzoneslist) {
-        $array_surveyzones[] = array('label' => $row_surveyzoneslist['Name'], 'value' => $row_surveyzoneslist['Id'], 'selected' => $ZonesId);
+        $array_surveyzones[] = array('label' => $row_surveyzoneslist['Name'], 'value' => $row_surveyzoneslist['Id'], 'selected' => $Id);
     }
 }
 //Status list
@@ -29,7 +35,7 @@ $formFields = array(
 // define buttons for form
 $formButtons = array(
     'Submit' => array('buttonType' => 'submit', 'disabled' => null, 'class' => null, 'name' => null, 'value' => null, 'action' => null),
-    'Home'   => array('buttonType' => 'link', 'disabled' => null, 'class' => null, 'name' => null, 'value' => null, 'action' => 'index.php'),
+    'Back'   => array('buttonType' => 'link', 'disabled' => null, 'class' => null, 'name' => null, 'value' => null, 'action' => 'surveyzones.php?Id='.$ZonesId),
 );
 
 //set params for form

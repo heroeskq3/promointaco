@@ -1,7 +1,7 @@
 <?php
 function class_surveyCustomersInfo($Id)
 {
-    $mysql_query    = "SELECT ud.* FROM users_details ud WHERE ud.Id = '$Id'";
+    $mysql_query    = "SELECT a.* FROM survey_customers a WHERE a.Id = '$Id'";
     $mysql_database = CONFIG_MYSQLDB;
     $mysql_conn     = conn_mysql();
     $mysql_debug    = 0;

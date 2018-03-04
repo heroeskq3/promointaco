@@ -1,7 +1,7 @@
 <?php
 function class_surveyCustomersDelete($Id)
 {
-    $mysql_query    = "DELETE FROM users_details WHERE Id = $Id";
+    $mysql_query    = "DELETE FROM survey_customers WHERE Id = $Id";
     $mysql_database = CONFIG_MYSQLDB;
     $mysql_conn     = conn_mysql();
     $mysql_debug    = 0;

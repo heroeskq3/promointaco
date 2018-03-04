@@ -399,4 +399,21 @@ $InputType = null;
 if (isset($_POST['InputType'])) {
     $InputType = $_POST['InputType'];
 }
+$InputImage = null;
+if (isset($_POST['InputImage'])) {
+    $InputImage = $_POST['InputImage'];
+}
+
+$Care = null;
+if (isset($_POST['Care'])) {
+    $Care = $_POST['Care'];
+}
+$Local = null;
+if (isset($_POST['Local'])) {
+    $Local = $_POST['Local'];
+}
+$StateId = null;
+if (isset($_POST['StateId'])) {
+    $StateId = $_POST['StateId'];
+}
 ?>

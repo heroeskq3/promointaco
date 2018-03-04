@@ -121,6 +121,29 @@ require_once PATH_MODELS . 'class_surveyzonesinfo.php';
 require_once PATH_MODELS . 'class_surveyzonesadd.php';
 require_once PATH_MODELS . 'class_surveyzonesdelete.php';
 require_once PATH_MODELS . 'class_surveyzonesupdate.php';
+require_once PATH_MODELS . 'class_surveyzonesname.php';
+
+//Survey - locals
+require_once PATH_MODELS . 'class_surveylocalslist.php';
+require_once PATH_MODELS . 'class_surveylocalsinfo.php';
+require_once PATH_MODELS . 'class_surveylocalsadd.php';
+require_once PATH_MODELS . 'class_surveylocalsdelete.php';
+require_once PATH_MODELS . 'class_surveylocalsupdate.php';
+
+//Survey - position
+require_once PATH_MODELS . 'class_surveypositionlist.php';
+require_once PATH_MODELS . 'class_surveypositioninfo.php';
+require_once PATH_MODELS . 'class_surveypositionadd.php';
+require_once PATH_MODELS . 'class_surveypositiondelete.php';
+require_once PATH_MODELS . 'class_surveypositionupdate.php';
+
+//Survey - cares
+require_once PATH_MODELS . 'class_surveycareslist.php';
+require_once PATH_MODELS . 'class_surveycaresinfo.php';
+require_once PATH_MODELS . 'class_surveycaresadd.php';
+require_once PATH_MODELS . 'class_surveycaresdelete.php';
+require_once PATH_MODELS . 'class_surveycaresupdate.php';
+
 
 //Survey - Services
 require_once PATH_MODELS . 'class_surveyserviceslist.php';

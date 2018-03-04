@@ -1,7 +1,7 @@
 <?php
-function class_surveyCustomersUpdate($Id, $Company, $FirstName, $LastName, $Identification, $Phone, $Email, $Company, $Position, $CustomInfo4, $CustomInfo2, $Country, $Status)
+function class_surveyCustomersUpdate($Id, $FirstName, $LastName, $Identification, $Phone, $Email, $Company, $Position, $Care, $Local, $CustomInfo1, $Country, $State, $City, $SessionId, $Status)
 {
-    $mysql_query    = "UPDATE users_details SET Company = '$Company', FirstName = '$FirstName', LastName = '$LastName', Identification = '$Identification', Phone = '$Phone', Email = '$Email', Company = '$Company', Position = '$Position', CustomInfo4 = '$CustomInfo4', CustomInfo2 = '$CustomInfo2', Country = '$Country', Status = '$Status' WHERE Id = $Id";
+    $mysql_query    = "UPDATE survey_customers SET FirstName = '$FirstName', LastName = '$LastName', Identification = '$Identification', Phone = '$Phone', Email = '$Email', Company = '$Company', Position = '$Position', Care = '$Care', Local = '$Local', CustomInfo1 = '$CustomInfo1', Country = '$Country', State = '$State', City = '$City', SessionId = '$SessionId', Status = '$Status' WHERE Id = $Id";
     $mysql_database = CONFIG_MYSQLDB;
     $mysql_conn     = conn_mysql();
     $mysql_debug    = 0;

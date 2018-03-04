@@ -118,11 +118,11 @@ if (isset($formButtons)) {
                 target: 'tr'
             }
         },
-            columnDefs: [ {
-                className: 'control',
-                orderable: false,
-                targets: 2
-            } ],
+            // columnDefs: [ {
+            //     className: 'control',
+            //     orderable: false,
+            //     targets: 0
+            // } ],
             order: [ 0, 'asc' ]
         });
     });
