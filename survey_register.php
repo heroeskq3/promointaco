@@ -75,6 +75,15 @@ if (isset($_SESSION['CustomersId'])) {
 
 //positions List
 $surveypositionslist = class_surveyPositionList($ZonesId);
+
+//filter by status
+$surveypositionslist = $surveypositionslist['response'];
+$surveypositionslist = class_arrayFilter($surveypositionslist, 'Status', '1', '=');
+
+//filter by zones
+$surveypositionslist = $surveypositionslist['response'];
+$surveypositionslist = class_arrayFilter($surveypositionslist, 'ZonesId', $ZonesId, 'all');
+
 $array_positions     = array();
 if ($surveypositionslist['rows']) {
     foreach ($surveypositionslist['response'] as $row_surveypositionslist) {
@@ -116,16 +125,22 @@ if ($State && $Country) {
 
 //states List
 $surveystateslist = class_surveyZonesList($ZonesId);
-$array_states     = array();
+$surveystateslist = $surveystateslist['response'];
+$surveystateslist = class_arrayFilter($surveystateslist, 'Status', '1', '=');
+
 if ($surveystateslist['rows']) {
+    $array_states     = array();
     foreach ($surveystateslist['response'] as $row_surveystateslist) {
         $array_states[] = array('label' => $row_surveystateslist['Name'], 'value' => $row_surveystateslist['Id'], 'selected' => $StateId);
     }
 }
 //cities List
 $surveycitieslist = class_surveyZonesList($StateId);
-$array_cities     = array();
+$surveycitieslist = $surveycitieslist['response'];
+$surveycitieslist = class_arrayFilter($surveycitieslist, 'Status', '1', '=');
+
 if ($surveycitieslist['rows']) {
+    $array_cities     = array();
     foreach ($surveycitieslist['response'] as $row_surveycitieslist) {
         $array_cities[] = array('label' => $row_surveycitieslist['Name'], 'value' => $row_surveycitieslist['Name'], 'selected' => $City);
     }

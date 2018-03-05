@@ -6,7 +6,8 @@ if ($form_add) {
 }
 //zones List
 $surveyzoneslist = class_surveyZonesList(null);
-$array_surveyzones = array();
+$surveyzoneslist = $surveyzoneslist['response'];
+$surveyzoneslist = class_arrayFilter($surveyzoneslist, 'Status', '1', '=');
 if ($surveyzoneslist['rows']) {
     foreach ($surveyzoneslist['response'] as $row_surveyzoneslist) {
         $array_surveyzones[] = array('label' => $row_surveyzoneslist['Name'], 'value' => $row_surveyzoneslist['Id'], 'image' => $row_surveyzoneslist['Image'], 'selected' => $ZonesId);

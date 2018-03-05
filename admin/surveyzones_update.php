@@ -12,19 +12,29 @@ $section_homedir     = '../';
 require_once 'header.php';
 
 if ($form_update) {
-    $surveyservicesupdate = class_surveyZonesUpdate($Id, $ZonesId, $Name, $Image, $Status);
-    header('Location: surveyzones.php');
+    $surveyservicesupdate = class_surveyZonesUpdate($Id, $ZonesId, $Name, $Details, $Image, $Status);
+    header('Location: surveyzones.php?Id='.$ZonesId);
     die();
 }
 
+//determine info zone
 if ($Id) {
     $surveyzonesinfo     = class_surveyZonesInfo($Id);
     $row_surveyzonesinfo = $surveyzonesinfo['response'][0];
+
+//determine paterns zone
+
+    $surveycountryinfo     = class_surveyZonesInfo($row_surveyzonesinfo['ZonesId']);
+    $row_surveycountryinfo = $surveycountryinfo['response'][0];
 }
 //zones List
-$surveyzoneslist   = class_surveyzonesList($ZonesId);
-$array_surveyzones = array();
+$surveyzoneslist   = class_surveyzonesList($row_surveycountryinfo['ZonesId']);
+//class_debug($surveyzoneslist);
+$surveyzoneslist = $surveyzoneslist['response'];
+$surveyzoneslist = class_arrayFilter($surveyzoneslist, 'Status', '1', '=');
+
 if ($surveyzoneslist['rows']) {
+    $array_surveyzones = array();
     foreach ($surveyzoneslist['response'] as $row_surveyzoneslist) {
         $array_surveyzones[] = array('label' => $row_surveyzoneslist['Name'], 'value' => $row_surveyzoneslist['Id'], 'selected' => $row_surveyzonesinfo['ZonesId']);
     }
@@ -39,6 +49,7 @@ $formFields = array(
     'form_update' => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'form_update', 'value' => 1),
     'ZonesId'     => array('inputType' => 'select', 'required' => false, 'position' => 1, 'name' => 'ZonesId', 'value' => $array_surveyzones),
     'Name'        => array('inputType' => 'text', 'required' => true, 'position' => 1, 'name' => 'Name', 'value' => $row_surveyzonesinfo['Name']),
+    'Details'     => array('inputType' => 'textarea', 'required' => false, 'position' => 1, 'name' => 'Details', 'value' => $row_surveyzonesinfo['Details']),
     'Image'       => array('inputType' => 'text', 'required' => false, 'position' => 1, 'name' => 'Image', 'value' => $row_surveyzonesinfo['Image']),
     'Status'      => array('inputType' => 'select', 'required' => true, 'position' => 3, 'name' => 'Status', 'value' => $array_status),
 );

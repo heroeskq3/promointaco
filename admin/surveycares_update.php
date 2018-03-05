@@ -24,6 +24,8 @@ if ($Id) {
 
 //zones List
 $surveyzoneslist = class_surveyZonesList(null);
+$surveyzoneslist = $surveyzoneslist['response'];
+$surveyzoneslist = class_arrayFilter($surveyzoneslist, 'Status', '1', '=');
 $array_surveyzones = array();
 if ($surveyzoneslist['rows']) {
     foreach ($surveyzoneslist['response'] as $row_surveyzoneslist) {

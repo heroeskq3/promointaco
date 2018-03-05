@@ -23,20 +23,28 @@ function class_tableMainList($array)
     if ($array['rows']) {
         foreach ($array['response'] as $row_array) {
 
+            if ($row_array['ZonesId']) {
+                $surveyzonesinfo     = class_surveyZonesInfo($row_array['ZonesId']);
+                $row_surveyzonesinfo = $surveyzonesinfo['response'][0];
+                $zones_name          = $row_surveyzonesinfo['Name'];
+            } else {
+                $zones_name = 'All';
+            }
             //childs
-            $surveylist = class_surveyList($row_array['Id']);
-            $array_childs        = $surveylist['response'];
+            $surveylist   = class_surveyList($row_array['Id']);
+            $array_childs = $surveylist['response'];
 
             $results[] = array(
                 //Define custom Patern Table Alias Keys => Values
-                'Name'      => $row_array['Name'],
+                'Name'    => $row_array['Name'],
                 'Surveys' => $surveylist['rows'],
-                'Status'    => class_statusInfo($row_array['Status']),
+                'Zone'    => $zones_name,
+                'Status'  => class_statusInfo($row_array['Status']),
 
                 //Define Index, Status, Childs
-                'index'     => $row_array['Id'],
-                'status'    => $row_array['Status'], //use = 1 or 0
-                'childs'    => $array_childs, //define array
+                'index'   => $row_array['Id'],
+                'status'  => $row_array['Status'], //use = 1 or 0
+                'childs'  => $array_childs, //define array
             );
         }
     }
@@ -67,4 +75,3 @@ $formButtons = null;
 
 //generate table list
 class_tableGenerator($table_array, $table_params, $formParams, $formButtons);
-?>

@@ -6,7 +6,10 @@ function class_formInput($inputType, $name, $label, $value, $required)
     if ($required) {
         $required = "required";
     }
-
+    //HTML BODY
+    if ($inputType == 'html') {
+        $results .= '<label>' . $value . '</label>';
+    }
     //HIDDEN INPUT
     if ($inputType == 'hidden') {
         $results .= '<input type="hidden" class="form-control" name="' . $name . '" value="' . $value . '">';
@@ -15,6 +18,7 @@ function class_formInput($inputType, $name, $label, $value, $required)
     if ($inputType == 'text') {
         $results .= '<input type="text" class="form-control" name="' . $name . '" value="' . $value . '" ' . $required . '>';
     }
+
     //TEXT AREA INPUT
     if ($inputType == 'textarea') {
         $results .= '<textarea class="form-control" name="' . $name . '" ' . $required . '>' . $value . '</textarea>';
@@ -122,7 +126,7 @@ function class_formInput($inputType, $name, $label, $value, $required)
             }
         }
         $results .= '</select>';
-?>
+        ?>
 <script type="text/javascript">
 function fetch_select(val)
 {
@@ -138,9 +142,9 @@ function fetch_select(val)
  });
 }
 </script>
-<?php     
-    }
- 
+<?php
+}
+
     //CHECKBX INPUT
     if ($inputType == 'checkbox') {
         if ($value) {
@@ -212,5 +216,12 @@ function fetch_select(val)
         $results .= '<input type="time" class="form-control" name="' . $name . '" value="' . $value . '" ' . $required . '>';
     }
 
+    //Image
+    if ($inputType == 'image') {
+        $results .= '<img class="col-xs-12" src="' . PATH_RESOURCES . $name .'/'. $value . '" alt="">';
+        $results .= '<input type="hidden" class="form-control" name="' . $name . '" value="' . $value . '">';
+    }
+
     return $results;
 }
+?>

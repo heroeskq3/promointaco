@@ -21,6 +21,7 @@ require_once PATH_MODELS . 'class_modals.php';
 require_once PATH_MODELS . 'class_api.php';
 require_once PATH_MODELS . 'class_mysql.php';
 require_once PATH_MODELS . 'class_array.php';
+require_once PATH_MODELS . 'class_arrayfilter.php';
 
 //CONFIG
 require_once PATH_MODELS . 'class_lang.php';

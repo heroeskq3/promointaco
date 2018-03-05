@@ -18,7 +18,7 @@ if ($Id) {
     session_regenerate_id(); //regenerate new session id
 
     $_SESSION['ZonesId'] = $Id;
-    header('Location: survey_home.php');
+    header('Location: survey_services.php');
     die();
 }
 if ($button == "next") {
@@ -39,7 +39,10 @@ if ($button == "next") {
 
 <?php
 //zones List
-$surveyzoneslist   = class_surveyzonesList(null);
+$surveyzoneslist = class_surveyzonesList(null);
+$surveyzoneslist = $surveyzoneslist['response'];
+$surveyzoneslist = class_arrayFilter($surveyzoneslist, 'Status', '1', '=');
+
 $array_surveyzones = array();
 if ($surveyzoneslist['rows']) {
     foreach ($surveyzoneslist['response'] as $row_surveyzoneslist) {

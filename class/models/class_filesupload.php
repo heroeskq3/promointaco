@@ -48,5 +48,5 @@ function class_filesUpload($File, $resource, $debug)
         class_debug($results);
     }
 
-    return $results;
+    return array('code'=>$uploadOk,'msg'=>$results);
 }

@@ -24,7 +24,7 @@ function class_formGenerator($formParams, $formFields, $formButtons)
                 <?php }?>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-xs-6 col-md-4">
+                        <div class="col-xs-12 col-md-6 col-xs-12 col-sm-12">
                             <?php if ($formParams['method']) {?>
                             <form id="validationForm" role="form" action="<?php echo $formParams['action']; ?>" method="<?php echo $formParams['method']; ?>" enctype="<?php echo $formParams['enctype']; ?>">
                                 <?php }?>

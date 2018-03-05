@@ -8,9 +8,9 @@ $section_sidebar     = 1;
 $section_searchbar   = 0;
 $section_style       = 1;
 $section_homedir     = '../';
-?>
-<?php require_once 'header.php';?>
-<?php
+
+require_once 'header.php';
+
 if ($form_update) {
     $surveyupdate = class_surveyUpdate($Id, $ServicesId, $Name, $Details, $InputType, $InputImage, $Rows, $Order, $Status);
     header('Location: survey.php?Id=' . $ServicesId);
@@ -35,9 +35,11 @@ if ($surveyserviceslist['rows']) {
 $menu_order  = class_surveyList($row_surveyinfo['ServicesId']);
 $array_order = array();
 if ($menu_order['rows']) {
+    $i = 1;
     foreach ($menu_order['response'] as $row_order) {
-        $array_order[] = array('label' => '[Up] - ' . $row_order['Name'], 'value' => $row_order['Order'] - 1, 'selected' => $row_surveyinfo['Order']);
-        $array_order[] = array('label' => '[Down] - ' . $row_order['Name'], 'value' => $row_order['Order'] + 1, 'selected' => $row_surveyinfo['Order']);
+        $pos = $i++;
+        
+        $array_order[] = array('label' => '[Pos] - ' . $pos, 'value' => $pos, 'selected' => $row_surveyinfo['Order']);
     }
 }
 
@@ -90,5 +92,5 @@ $formParams = array(
 );
 
 class_formGenerator($formParams, $formFields, $formButtons);
-?>
-<?php require_once 'footer.php';
+
+require_once 'footer.php';

@@ -416,4 +416,8 @@ $StateId = null;
 if (isset($_POST['StateId'])) {
     $StateId = $_POST['StateId'];
 }
+$Terms = null;
+if (isset($_POST['Terms'])) {
+    $Terms = $_POST['Terms'];
+}
 ?>

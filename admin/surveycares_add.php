@@ -6,10 +6,12 @@ if ($form_add) {
 }
 //zones List
 $surveyzoneslist = class_surveyZonesList(null);
+$surveyzoneslist = $surveyzoneslist['response'];
+$surveyzoneslist = class_arrayFilter($surveyzoneslist, 'Status', '1', '=');
 $array_surveyzones = array();
 if ($surveyzoneslist['rows']) {
     foreach ($surveyzoneslist['response'] as $row_surveyzoneslist) {
-        $array_surveyzones[] = array('label' => $row_surveyzoneslist['Name'], 'value' => $row_surveyzoneslist['Id'], 'image' => $row_surveyzoneslist['Image'], 'selected' => $ZonesId);
+        $array_surveyzones[] = array('label' => $row_surveyzoneslist['Name'], 'value' => $row_surveyzoneslist['Id'], 'image' => $row_surveyzoneslist['Image'], 'selected' => null);
     }
 }
 //Status list

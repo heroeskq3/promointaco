@@ -1,6 +1,6 @@
 <?php
 if ($form_add) {
-    $surveyadd = class_surveyAdd($ServicesId, $Name, $Details, $InputType, $InputImage, $Rows, $Order, $Status);
+    $surveyadd = class_surveyAdd($ServicesId, $Name, $Description, $Details, $InputType, $InputImage, $Rows, $Order, $Status);
     header('Location: survey.php?Id=' . $ServicesId);
     die();
 }
@@ -55,6 +55,7 @@ $formFields = array(
     'form_add'           => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'form_add', 'value' => 1),
     'Service'            => array('inputType' => 'select', 'required' => true, 'position' => 1, 'name' => 'ServicesId', 'value' => $array_services),
     'Name'               => array('inputType' => 'text', 'required' => true, 'position' => 1, 'name' => 'Name', 'value' => $Name),
+    'Description'        => array('inputType' => 'text', 'required' => true, 'position' => 1, 'Description' => 'Description', 'value' => $Description),
     'Details'            => array('inputType' => 'textarea', 'required' => false, 'position' => 1, 'name' => 'Details', 'value' => $Details),
     'Input Type'         => array('inputType' => 'select', 'required' => true, 'position' => 3, 'name' => 'InputType', 'value' => $array_inputtype),
     'Input Image'        => array('inputType' => 'select', 'required' => true, 'position' => 3, 'name' => 'InputImage', 'value' => $array_inputimage),
@@ -71,7 +72,7 @@ $formButtons = array(
 
 //set params for form
 $formParams = array(
-    'name'    => 'New Survey',
+    'name'    => 'Add New',
     'action'  => '',
     'method'  => 'post',
     'enctype' => '',

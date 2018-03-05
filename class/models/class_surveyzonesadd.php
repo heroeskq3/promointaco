@@ -1,7 +1,7 @@
 <?php
-function class_surveyZonesAdd($ZonesId, $Name, $Image, $Status)
+function class_surveyZonesAdd($ZonesId, $Name, $Details, $Image, $Status)
 {
-    $mysql_query    = "INSERT INTO survey_zones (ZonesId, Name, Image, `Status`) VALUES('$ZonesId', '$Name', '$Image', '$Status')";
+    $mysql_query    = "INSERT INTO survey_zones (ZonesId, Name, Details, Image, `Status`) VALUES('$ZonesId', '$Name', '$Details', '$Image', '$Status')";
     $mysql_database = CONFIG_MYSQLDB;
     $mysql_conn     = conn_mysql();
     $mysql_debug    = 0;

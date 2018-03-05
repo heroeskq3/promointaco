@@ -6,6 +6,7 @@ function class_wellGenerator($formWell, $formParams, $formFields, $formButtons)
     if ($formParams) {
         $results .= '<form action="' . $formParams['action'] . '" method="' . $formParams['method'] . '">';
     }
+    $results .= '<div class="col-md-12">';
     if (count($formWell)) {
         foreach ($formWell as $row) {
             if ($row['position'] == 3) {
@@ -52,13 +53,13 @@ function class_wellGenerator($formWell, $formParams, $formFields, $formButtons)
     } else {
         $results .= '<h4>No results</h4>';
     }
+    $results .= '</div>';
     //buttons
     if ($formButtons) {
         $results .= '<span class="btn pull-right">';
         $results .= class_formButtons($formButtons);
         $results .= '</span>';
     }
-    $results .= '</div>';
     $results .= '</form>';
     echo $results;
 }

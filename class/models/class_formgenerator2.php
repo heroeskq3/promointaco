@@ -86,7 +86,7 @@ function class_formGenerator2($formParams, $formFields, $formButtons)
             exit;
         }
 
-        if ($row['inputType'] == 'image') {
+        if ($row['inputType'] == 'image-bkp') {
             //form image action & col
             $results .= '<div data-provides="fileinput" class="fileinput fileinput-new col-lg-3">';
 

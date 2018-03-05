@@ -8,6 +8,11 @@
     </div>
     <?php } ?>
         <?php } ?>
+        <?php if($modalsParams['tittle']){ ?>
+    <h3>
+        <?php echo $modalsParams['tittle'] ?>
+    </h3>
+    <?php } ?>
     <!-- /.panel-heading -->
     <div class="panel-body">
         <!-- Button trigger modal -->

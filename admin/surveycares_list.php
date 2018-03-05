@@ -26,17 +26,18 @@ function class_tableMainList($array)
             //childs
             $array_childs = null;
 
-            //zones info
-            $surveyzonesinfo     = class_surveyZonesInfo($row_array['ZonesId']);
-            $row_surveyzonesinfo = $surveyzonesinfo['response'][0];
-            if(!$row_array['ZonesId']){
-                $row_surveyzonesinfo['Name'] = 'Todas';
+            if ($row_array['ZonesId']) {
+                $surveyzonesinfo     = class_surveyZonesInfo($row_array['ZonesId']);
+                $row_surveyzonesinfo = $surveyzonesinfo['response'][0];
+                $zones_name          = $row_surveyzonesinfo['Name'];
+            } else {
+                $zones_name = 'All';
             }
 
             $results[] = array(
                 //Define custom Patern Table Alias Keys => Values
                 'Name'   => $row_array['Name'],
-                'Zones'  => $row_surveyzonesinfo['Name'],
+                'Zones'  => $zones_name,
                 'Status' => class_statusInfo($row_array['Status']),
 
                 //Define Index, Status, Childs

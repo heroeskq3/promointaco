@@ -32,32 +32,61 @@ if ($button == 'previous') {
     die();
 }
 
+//Country Info
+$surveyzonesinfo     = class_surveyZonesInfo($ZonesId);
+$row_surveyzonesinfo = $surveyzonesinfo['response'][0];
+
+//content
+$formFields = array(
+    null => array('inputType' => 'html', 'required' => false, 'position' => 1, 'name' => null, 'value' => $row_surveyzonesinfo['Details'], 'action' => null),
+);
+
+if ($ServicesId) {
+    $buttondisabled = false;
+} else {
+    $buttondisabled = true;
+}
+// define buttons for form
+$formButtons = null;
+
+//set params for form
+$formParams = array(
+    'name'    => $row_surveyzonesinfo['Name'],
+    'action'  => '',
+    'method'  => '',
+    'enctype' => '',
+);
+
+class_formGenerator2($formParams, $formFields, $formButtons);
+
 //Country list
 function class_surveyservices($Country, $SurveyId)
 {
-    $array_surveyserviceslist = array();
+    $array_surveyserviceslist   = array();
     $array_surveyserviceslist[] = array('label' => $row_surveyserviceslist['Name'], 'value' => $row_surveyserviceslist['Id'], 'selected' => $SurveyId);
     return class_formInput('select', 'SurveyId', 'Select Survey', $array_surveyserviceslist, 'required');
 }
-?>
-<h3>Comparte tu experiencia con nosotros.</h3>
-<ul class="list-unstyled">
-<li>Aceptamos tus críticas constructivas.</li>
-<li>Agradecemos tu honestidad.</li>
-<li>Cualquier sugerencia que tengas nos ayuda a mejorar nuestro servicio. </li>
-</ul>
-<hr>
-<?php
+
 //Services List - // define buttons for form
 $surveyserviceslist = class_surveyServicesList();
-$formWell           = array();
+
+//filter by status
+$surveyserviceslist = $surveyserviceslist['response'];
+$surveyserviceslist = class_arrayFilter($surveyserviceslist, 'Status', '1', '=');
+
+//filter by zones
+$surveyserviceslist = $surveyserviceslist['response'];
+$surveyserviceslist = class_arrayFilter($surveyserviceslist, 'ZonesId', $ZonesId, 'all');
+
 if ($surveyserviceslist['rows']) {
+    $formWell = array();
     foreach ($surveyserviceslist['response'] as $row_surveyserviceslist) {
-        if ($row_surveyserviceslist['Status']) {
-            $formWell[] = array('type' => 'submit', 'active' => $ServicesId, 'class' => null, 'label' => $row_surveyserviceslist['Name'], 'name' => 'ServicesId', 'details' => $row_surveyserviceslist['Details'], 'value' => $row_surveyserviceslist['Id'], 'position' => 3, 'action' => null);
-        }
+        $formWell[] = array('type' => 'submit', 'active' => $ServicesId, 'class' => null, 'label' => $row_surveyserviceslist['Name'], 'name' => 'ServicesId', 'details' => $row_surveyserviceslist['Description'], 'value' => $row_surveyserviceslist['Id'], 'position' => 3, 'action' => null);
     }
+} else {
+    $formWell = null;
 }
+
 if ($ServicesId) {
     $buttondisabled = false;
 } else {
@@ -68,8 +97,6 @@ $formButtons = array(
     'Previous' => array('buttonType' => 'link', 'disabled' => null, 'class' => null, 'name' => 'null', 'value' => null, 'action' => 'survey_home.php'),
     'Next'     => array('buttonType' => 'submit', 'disabled' => $buttondisabled, 'class' => null, 'name' => 'button', 'value' => 'next', 'action' => null),
 );
-
-$formFields = null;
 
 //set params for form
 $formParams = array(
@@ -82,4 +109,3 @@ $formParams = array(
 class_wellGenerator($formWell, $formParams, $formFields, $formButtons);
 
 require_once 'footer.php';
-?>
