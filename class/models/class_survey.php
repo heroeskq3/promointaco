@@ -4,6 +4,7 @@ function class_survey($Id)
     $results         = null;
     $array_questions = array();
     $array_answers   = array();
+    $step_next = null;
 
     if ($Id) {
         $i = 1;
@@ -11,14 +12,20 @@ function class_survey($Id)
         //survey info
         $surveyinfo     = class_surveyInfo($Id);
         $row_surveyinfo = $surveyinfo['response'][0];
+        
         //steps
+        /*
         $step_num  = $i++;
         $step_next = $step_num + 1;
         if ($row_surveyinfo['Rows'] == $step_next) {
             $step_next = $step_num;
         }
+        */
+
         //questions list - start
         $surveyquestionslist = class_surveyQuestionsList($Id);
+    
+
         if ($surveyquestionslist['rows']) {
             foreach ($surveyquestionslist['response'] as $row_surveyquestionslist) {
 
@@ -27,10 +34,13 @@ function class_survey($Id)
 
                 //steps
                 $step_num  = $i++;
-                $step_next = $step_num + 1;
-                if ($row_surveyinfo['Rows'] == $step_next) {
+
+                if($step_num <= $row_surveyinfo['Rows']){
+                    $step_next = $step_num+1;
+                }else{
                     $step_next = $step_num;
                 }
+
                 //form questions and answers array
                 $array_questions[] = array('inputtype' => $row_surveyinfo['InputType'], 'nextstep' => $step_next, 'question' => $row_surveyquestionslist, 'answer' => $surveyanswerslist['response']);
 
@@ -54,7 +64,11 @@ function class_survey($Id)
 
     $array_answers = array_unique($array_answers);
 
+
     $results = array('questions' => $array_questions, 'answers' => $array_answers);
+
+    //echo "<pre>";
+    //print_r($results);
 
     return $results;
 

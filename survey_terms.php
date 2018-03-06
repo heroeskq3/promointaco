@@ -31,6 +31,21 @@ if ($button == "next") {
 $surveyservicesinfo     = class_surveyServicesInfo($ServicesId);
 $row_surveyservicesinfo = $surveyservicesinfo['response'][0];
 
+
+$formFields = array(
+    'Image' => array('inputType' => 'image', 'required' => false, 'position' => 1, 'name' => 'Image', 'value' => $row_surveyservicesinfo['Image']),
+);
+// define buttons for form
+$formButtons = null;
+//set params for form
+$formParams = array(
+    'name'    => '',
+    'action'  => '',
+    'method'  => 'post',
+    'enctype' => null,
+);
+class_formGenerator2($formParams, $formFields, $formButtons);
+
 $formFields = array(
     null => array('inputType' => 'html', 'required' => false, 'position' => 1, 'name' => 'Details', 'value' => $row_surveyservicesinfo['Details']),    'TermsId' => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'TermsId', 'value' => 1),
 );
@@ -60,8 +75,8 @@ $modalsButtons = array(
 );
 class_modals($modalsParams, $modalsButtons);
 
+
 $formFields = array(
-    'Image' => array('inputType' => 'image', 'required' => false, 'position' => 1, 'name' => 'Image', 'value' => $row_surveyservicesinfo['Image']),
     'TermsId' => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'TermsId', 'value' => 1),
 );
 // define buttons for form
@@ -77,4 +92,5 @@ $formParams = array(
     'enctype' => null,
 );
 class_formGenerator2($formParams, $formFields, $formButtons);
+
 require_once 'footer.php';?>

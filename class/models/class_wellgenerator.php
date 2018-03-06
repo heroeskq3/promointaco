@@ -12,10 +12,19 @@ function class_wellGenerator($formWell, $formParams, $formFields, $formButtons)
             if ($row['position'] == 3) {
                 $results .= '<div class="col-xs-12 col-sm-4">';
             }
+
+            if ($row['active']==$row['value']) {
+                $input_checked  = 'checked';
+                $button_checked = 'btn-active';
+            } else {
+                $input_checked  = 'checked';
+                $button_checked = null;
+            }
+
             if ($row['class']) {
                 $class = $row['class'];
             } else {
-                $class = 'btn-custom well well-lg well-custom';
+                $class = 'btn-custom '.$button_checked.' well well-lg well-custom';
             }
 
             //submit
@@ -25,13 +34,6 @@ function class_wellGenerator($formWell, $formParams, $formFields, $formButtons)
                 $results .= '</button>';
             }
 
-            if ($row['name']) {
-                $input_checked  = 'checked';
-                $button_checked = 'active';
-            } else {
-                $input_checked  = 'checked';
-                $button_checked = 'active';
-            }
             if ($row['type'] == 'radio') {
                 $results .= '<div class="' . $class . ' ' . $button_checked . ' ">';
                 $results .= '<input class="" type="radio" name="' . $row['name'] . '" value="' . $row['value'] . '"id="' . $row['name'] . '" autocomplete="off" ' . $input_checked . '>';

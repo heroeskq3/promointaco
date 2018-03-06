@@ -20,8 +20,12 @@ if (!$_SESSION['CustomersId']) {
 
 $surveylist = class_surveyList($_SESSION['ServicesId']);
 
+    //echo "<pre>";
+    //print_r($results);
+//survey list
 $i = 0;
 foreach ($surveylist['response'] as $row_surveylist) {
+
     $num = $i++;
 
     $step = 0;
@@ -71,6 +75,8 @@ foreach ($surveylist['response'] as $row_surveylist) {
         $FormSteps = null;
 
         $formArray = class_survey($SurveyId);
+
+
 
         class_formSurvey($FormSteps, $formParams, $formButtons, $formArray);
     }

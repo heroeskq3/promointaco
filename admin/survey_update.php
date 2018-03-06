@@ -11,8 +11,14 @@ $section_homedir     = '../';
 
 require_once 'header.php';
 
+//uppload files
+if ($File['name']) {
+    $upload     = class_filesUpload($File, 'InputImage', 0);
+    $InputImage = $File['name'];
+}
+
 if ($form_update) {
-    $surveyupdate = class_surveyUpdate($Id, $ServicesId, $Name, $Details, $InputType, $InputImage, $Rows, $Order, $Status);
+    $surveyupdate = class_surveyUpdate($Id, $ServicesId, $Name, $Description, $Details, $InputType, $InputImage, $Rows, $Order, $Status);
     header('Location: survey.php?Id=' . $ServicesId);
     die();
 }
@@ -20,6 +26,10 @@ if ($form_update) {
 if ($Id) {
     $surveyinfo     = class_surveyInfo($Id);
     $row_surveyinfo = $surveyinfo['response'][0];
+
+    // echo "<pre>";
+    //print_r($surveyinfo);
+
 }
 
 //services list
@@ -38,7 +48,7 @@ if ($menu_order['rows']) {
     $i = 1;
     foreach ($menu_order['response'] as $row_order) {
         $pos = $i++;
-        
+
         $array_order[] = array('label' => '[Pos] - ' . $pos, 'value' => $pos, 'selected' => $row_surveyinfo['Order']);
     }
 }
@@ -53,11 +63,6 @@ $array_inputtype   = array();
 $array_inputtype[] = array('label' => 'Radio', 'value' => 'radio', 'selected' => $row_surveyinfo['InputType']);
 $array_inputtype[] = array('label' => 'Text Area', 'value' => 'textarea', 'selected' => $row_surveyinfo['InputType']);
 
-//Input Image
-$array_inputimage   = array();
-$array_inputimage[] = array('label' => 'None', 'value' => null, 'selected' => $row_surveyinfo['InputImage']);
-$array_inputimage[] = array('label' => 'Gold-Star.J10.2k-300x300.png', 'value' => 'Gold-Star.J10.2k-300x300.png', 'selected' => $row_surveyinfo['InputImage']);
-
 //Rows per Page list
 $array_rowsperpage = array();
 for ($i = 1; $i < 51; ++$i) {
@@ -69,9 +74,13 @@ $formFields = array(
     'form_update'        => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'form_update', 'value' => 1),
     'Service'            => array('inputType' => 'select', 'required' => true, 'position' => 1, 'name' => 'ServicesId', 'value' => $array_services),
     'Name'               => array('inputType' => 'text', 'required' => true, 'position' => 1, 'name' => 'Name', 'value' => $row_surveyinfo['Name']),
+    'Description'        => array('inputType' => 'text', 'required' => false, 'position' => 1, 'name' => 'Description', 'value' => $row_surveyinfo['Description']),
     'Details'            => array('inputType' => 'textarea', 'required' => false, 'position' => 1, 'name' => 'Details', 'value' => $row_surveyinfo['Details']),
     'Input Type'         => array('inputType' => 'select', 'required' => true, 'position' => 3, 'name' => 'InputType', 'value' => $array_inputtype),
-    'Input Image'        => array('inputType' => 'select', 'required' => true, 'position' => 3, 'name' => 'InputImage', 'value' => $array_inputimage),
+
+    'Upload'             => array('inputType' => 'file', 'required' => false, 'position' => 1, 'name' => 'File', 'value' => null),
+    'Input Image'        => array('inputType' => 'image', 'required' => false, 'position' => 1, 'name' => 'InputImage', 'value' => $row_surveyinfo['InputImage']),
+
     'Questions per Page' => array('inputType' => 'select', 'required' => true, 'position' => 3, 'name' => 'Rows', 'value' => $array_rowsperpage),
     'Order'              => array('inputType' => 'select', 'required' => false, 'position' => 1, 'name' => 'Order', 'value' => $array_order),
     'Status'             => array('inputType' => 'select', 'required' => true, 'position' => 3, 'name' => 'Status', 'value' => $array_status),
@@ -88,7 +97,7 @@ $formParams = array(
     'name'    => 'Edit Survey',
     'action'  => '',
     'method'  => 'post',
-    'enctype' => '',
+    'enctype' => 'multipart/form-data',
 );
 
 class_formGenerator($formParams, $formFields, $formButtons);

@@ -93,6 +93,15 @@ if ($surveypositionslist['rows']) {
 
 //cares List
 $surveycareslist = class_surveyCaresList($ZonesId);
+
+//FILTER BY STATUS
+$surveycareslist = $surveycareslist['response'];
+$surveycareslist = class_arrayFilter($surveycareslist, 'Status', '1', '=');
+
+//FILTER BY ZONES
+$surveycareslist = $surveycareslist['response'];
+$surveycareslist = class_arrayFilter($surveycareslist, 'ZonesId', $ZonesId, 'all');
+
 $array_cares     = array();
 if ($surveycareslist['rows']) {
     foreach ($surveycareslist['response'] as $row_surveycareslist) {
@@ -102,6 +111,15 @@ if ($surveycareslist['rows']) {
 
 //locals List
 $surveylocalslist = class_surveyLocalsList($ZonesId);
+
+//FILTER BY STATUS
+$surveylocalslist = $surveylocalslist['response'];
+$surveylocalslist = class_arrayFilter($surveylocalslist, 'Status', '1', '=');
+
+//FILTER BY ZONES
+$surveylocalslist = $surveylocalslist['response'];
+$surveylocalslist = class_arrayFilter($surveylocalslist, 'ZonesId', $ZonesId, 'all');
+
 $array_locals     = array();
 if ($surveylocalslist['rows']) {
     foreach ($surveylocalslist['response'] as $row_surveylocalslist) {
@@ -134,16 +152,23 @@ if ($surveystateslist['rows']) {
         $array_states[] = array('label' => $row_surveystateslist['Name'], 'value' => $row_surveystateslist['Id'], 'selected' => $StateId);
     }
 }
-//cities List
-$surveycitieslist = class_surveyZonesList($StateId);
-$surveycitieslist = $surveycitieslist['response'];
-$surveycitieslist = class_arrayFilter($surveycitieslist, 'Status', '1', '=');
 
-if ($surveycitieslist['rows']) {
-    $array_cities     = array();
-    foreach ($surveycitieslist['response'] as $row_surveycitieslist) {
-        $array_cities[] = array('label' => $row_surveycitieslist['Name'], 'value' => $row_surveycitieslist['Name'], 'selected' => $City);
+//cities List
+if($StateId){
+    $surveycitieslist = class_surveyZonesList($StateId);
+
+    //filter by status
+    $surveycitieslist = $surveycitieslist['response'];
+    $surveycitieslist = class_arrayFilter($surveycitieslist, 'Status', '1', '=');
+    
+    if ($surveycitieslist['rows']) {
+        $array_cities     = array();
+        foreach ($surveycitieslist['response'] as $row_surveycitieslist) {
+            $array_cities[] = array('label' => $row_surveycitieslist['Name'], 'value' => $row_surveycitieslist['Name'], 'selected' => $City);
+        }
     }
+}else{
+    $array_cities = null;
 }
 
 //¿Cuánto tiempo tiene de comprar INTACO?

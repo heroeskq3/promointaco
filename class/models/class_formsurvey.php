@@ -6,7 +6,7 @@ function class_formSurvey($FormSteps, $formParams, $formButtons, $formArray)
         $results .= '<br>'; //section-title
         $results .= '<center>'; //section-title
         $results .= '<h3>' . $formParams['name'] . '</h3>'; //section-title
-        $results .= '<h4><strong>' . $formParams['description'] . '</strong></h4>'; //section-title
+        $results .= '<h4>' . $formParams['description'] . '</h4>'; //section-title
         $results .= '</center>'; //section-title
         $results .= '</br>'; //section-title
     }
@@ -30,10 +30,12 @@ function class_formSurvey($FormSteps, $formParams, $formButtons, $formArray)
     $results .= '<tbody>';
     $row_questions = null;
 
+
     foreach ($formArray['questions'] as $row_array) {
 
         //step cut
         $row_questions = $row_array['question'];
+
         if ($formArray['answers']) {
             $results .= '<tr>';
             $results .= '<td scope="row" width="35%">';
@@ -47,9 +49,13 @@ function class_formSurvey($FormSteps, $formParams, $formButtons, $formArray)
             foreach ($formArray['answers'] as $row_answers) {
                 $results .= '<td align="center">';
                 if ($row_array['answer']) {
+                    
                     foreach ($row_array['answer'] as $row_answerslist) {
+                        
                         if ($row_answers == $row_answerslist['Answer']) {
+                            
                             if ($row_array['inputtype'] == 'radio') {
+                                
                                 $row_array['inputtype'] = 'radio_img';
                             }
                             $results .= class_formInput($row_array['inputtype'], 'Answer_' . $row_answerslist['QuestionId'], null, $row_answerslist['Points'], 'required');

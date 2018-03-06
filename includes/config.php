@@ -21,9 +21,9 @@ define('CONFIG_METAKEYWORDS', 'Si,Definir');
 
 //MYSQL DEFINE ACCESS INFORMATION
 define('CONFIG_MYSQLHOST', 'localhost'); //al tratar de romper la conexion hay un mensaje en javascript que seri abueno replicar para otros fines
-define('CONFIG_MYSQLDB', 'promointaco');
-define('CONFIG_MYSQLUSER', 'root');
-define('CONFIG_MYSQLPASS', '');
+define('CONFIG_MYSQLDB', 'promointaco'); //promointaco_ovaladmin
+define('CONFIG_MYSQLUSER', 'root'); //promointaco
+define('CONFIG_MYSQLPASS', ''); //Intaco2015
 define('CONFIG_MYSQLPORT', ''); //Default 3306
 
 //FTP DEFINE ACCESS INFORMATION

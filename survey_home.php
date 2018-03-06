@@ -41,6 +41,9 @@ if ($button == "next") {
 //zones List
 $surveyzoneslist = class_surveyzonesList(null);
 $surveyzoneslist = $surveyzoneslist['response'];
+
+//echo "<pre>";
+//print_r($surveyzoneslist);
 $surveyzoneslist = class_arrayFilter($surveyzoneslist, 'Status', '1', '=');
 
 $array_surveyzones = array();
@@ -74,6 +77,8 @@ $formParams = array(
 );
 
 class_formGenerator2($formParams, $formFields, $formButtons);
+?>
 
+<?php
 require_once 'footer.php';
 ?>

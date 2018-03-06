@@ -28,6 +28,76 @@ function class_formInput($inputType, $name, $label, $value, $required)
         $results .= '<textarea class="form-control" style="min-height: 150px" name="' . $name . '" ' . $required . '>' . $value . '</textarea>';
     }
 
+
+    if ($inputType == 'country4') {
+    $results .= '<div class="dropdown">';
+    $results .= '<a href="#pablo" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink1">';
+    $results .= 'Regular';
+    $results .= '</a>';
+    $results .= '<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">';
+    $results .= '<a class="dropdown-item" href="#">Action</a>';
+    $results .= '<a class="dropdown-item" href="#">Another action</a>';
+    $results .= '<a class="dropdown-item" href="#">Something else here</a>';
+    $results .= '<div class="dropdown-divider"></div>';
+    $results .= '<a class="dropdown-item" href="#">Separated link</a>';
+    $results .= '<div class="dropdown-divider"></div>';
+    $results .= '<a class="dropdown-item" href="#">One more separated link</a>';
+    $results .= '</ul>';
+    $results .= '</div>';
+    }
+
+    //SELECT LINKED - DROPMENU
+    if ($inputType == 'country3') {
+        $results .= '<ul class="nav navbar-top-links>';
+
+
+        $results .= '<li class="dropdown">';
+
+        
+
+        $results .= '<a class="btn-custom dropdown-toggle" data-toggle="dropdown" href="#">';
+
+        $results .= '<button class="btn-custom">';
+
+        if (ZONES_NAME) {
+            $results .= ' ' . ZONES_NAME . ' ';
+        } else {
+            $results .= 'Select';
+        }
+        
+        $results .= '<i class="fa fa-globe fa-fw" style="font-size:25px;>';
+        $results .= '</i>';
+        
+        $results .= '<i class="fa fa-caret-down">';
+        $results .= '</i>';
+
+        $results .= '</button>';
+
+        $results .= '</a>';
+
+        
+
+        $results .= '<ul class="dropdown-menu dropdown-alerts">';
+        if ($value) {
+            foreach ($value as $row_option) {
+                $results .= '<li>';
+
+                $results .= '<li>';
+                $results .= '<a href="?Id=' . $row_option['value'] . '">';
+                $results .= '<img src="' . PATH_RESOURCES . 'flags/' . $row_option['image'] . '" width="32px"> ' . $row_option['label'];
+                $results .= '</a>';
+                $results .= '</li>';
+
+
+                $results .= '</li>';
+                $results .= '<li class="divider"></li>';
+            }
+        }
+
+        $results .= '</ul>';
+        
+
+    }
     //SELECT INPUT
     if ($inputType == 'country') {
 
@@ -218,7 +288,7 @@ function fetch_select(val)
 
     //Image
     if ($inputType == 'image') {
-        $results .= '<img class="col-xs-12" src="' . PATH_RESOURCES . $name .'/'. $value . '" alt="">';
+        $results .= '<img class="col-xs-12" src="' . PATH_RESOURCES . $name . '/' . $value . '" alt="">';
         $results .= '<input type="hidden" class="form-control" name="' . $name . '" value="' . $value . '">';
     }
 

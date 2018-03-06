@@ -1,10 +1,8 @@
 <?php
 //uppload files
 if ($File['name']) {
-    $upload = class_filesUpload($File, 'Image', 0);
-    $Image  = $File['name'];
-    //echo "<pre>";
-    //print_r($File);
+    $upload = class_filesUpload($File, 'InputImage', 0);
+    $InputImage  = $File['name'];
 }
 
 if ($form_add) {
@@ -58,7 +56,7 @@ $formParams = array(
     'name'    => 'New Services',
     'action'  => '',
     'method'  => 'post',
-    'enctype' => '',
+    'enctype' => 'multipart/form-data',
 );
 
 class_formGenerator($formParams, $formFields, $formButtons);

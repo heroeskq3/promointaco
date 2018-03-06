@@ -420,4 +420,8 @@ $Terms = null;
 if (isset($_POST['Terms'])) {
     $Terms = $_POST['Terms'];
 }
+$InputImage = null;
+if (isset($_POST['InputImage'])) {
+    $InputImage = $_POST['InputImage'];
+}
 ?>

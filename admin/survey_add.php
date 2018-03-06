@@ -1,4 +1,10 @@
 <?php
+//uppload files
+if ($File['name']) {
+    $upload     = class_filesUpload($File, 'InputImage', 0);
+    $InputImage = $File['name'];
+}
+
 if ($form_add) {
     $surveyadd = class_surveyAdd($ServicesId, $Name, $Description, $Details, $InputType, $InputImage, $Rows, $Order, $Status);
     header('Location: survey.php?Id=' . $ServicesId);
@@ -55,10 +61,13 @@ $formFields = array(
     'form_add'           => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'form_add', 'value' => 1),
     'Service'            => array('inputType' => 'select', 'required' => true, 'position' => 1, 'name' => 'ServicesId', 'value' => $array_services),
     'Name'               => array('inputType' => 'text', 'required' => true, 'position' => 1, 'name' => 'Name', 'value' => $Name),
-    'Description'        => array('inputType' => 'text', 'required' => true, 'position' => 1, 'Description' => 'Description', 'value' => $Description),
+    'Description'        => array('inputType' => 'text', 'required' => false, 'position' => 1, 'name' => 'Description', 'value' => $Description),
     'Details'            => array('inputType' => 'textarea', 'required' => false, 'position' => 1, 'name' => 'Details', 'value' => $Details),
     'Input Type'         => array('inputType' => 'select', 'required' => true, 'position' => 3, 'name' => 'InputType', 'value' => $array_inputtype),
-    'Input Image'        => array('inputType' => 'select', 'required' => true, 'position' => 3, 'name' => 'InputImage', 'value' => $array_inputimage),
+
+    'Upload'             => array('inputType' => 'file', 'required' => false, 'position' => 1, 'name' => 'File', 'value' => null),
+    'Input Image'        => array('inputType' => 'image', 'required' => false, 'position' => 1, 'name' => 'InputImage', 'value' => null),
+
     'Questions per Page' => array('inputType' => 'select', 'required' => true, 'position' => 3, 'name' => 'Rows', 'value' => $array_rowsperpage),
     'Order'              => array('inputType' => 'select', 'required' => false, 'position' => 1, 'name' => 'Order', 'value' => $array_order),
     'Status'             => array('inputType' => 'select', 'required' => true, 'position' => 3, 'name' => 'Status', 'value' => $array_status),
@@ -75,7 +84,7 @@ $formParams = array(
     'name'    => 'Add New',
     'action'  => '',
     'method'  => 'post',
-    'enctype' => '',
+    'enctype' => 'multipart/form-data',
 );
 
 class_formGenerator($formParams, $formFields, $formButtons);

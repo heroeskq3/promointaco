@@ -33,3 +33,4 @@ if (isset($_GET['get_option'])) {
         echo '<option value="">No Results</option>';
     }
 }
+
