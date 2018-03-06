@@ -67,7 +67,7 @@ $modalsParams = array(
     'label'  => 'Ver reglamento',
     'tittle' => 'Términos y Condiciones',
     'style'  => null,
-    'body'   => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo error ratione adipisci, maiores excepturi aut voluptatibus veniam nemo ipsam? Blanditiis atque soluta qui consequatur hic incidunt autem iste voluptas? Ipsum.',
+    'body'   => $row_surveyservicesinfo['Terms'],
 );
 
 $modalsButtons = array(
