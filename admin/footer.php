@@ -1,16 +1,20 @@
-<?php if($section_style==1){ ?>
+
+    <?php if($sectionParams['style']==1){ ?>
+
         </div>
+
         <!-- /#page-wrapper -->
 
     </div>
+    
     <!-- /#wrapper -->
 <?php } ?>
-<?php require_once 'debug.php';?>
-</body>
-</html>
-<!-- esta parte se debe mejorar para hacer que bootstrap sea actualizable y unificado con el frontend -->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
-  <script src="../resources/js/tinymce/tinymce.min.js"></script>
+<?php require_once PATH_VIEWS.'/debug/debug.php';?>
+<?php if($sectionParams['style']){ ?>
+<script src="<?php echo PATH_ASSETS;?>bootstrap/js/bootstrap-select.min.js"></script>
+
+<?php if(true){ ?>
+<script src="<?php echo PATH_ASSETS;?>js/tinymce/tinymce.min.js"></script>
 <script>
 tinymce.init({
   selector: "textarea",
@@ -38,3 +42,7 @@ tinymce.init({
 });
 
 </script>
+<?php } //style ?>
+<?php } ?>
+</body>
+</html>

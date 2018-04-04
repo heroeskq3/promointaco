@@ -1,0 +1,70 @@
+body {
+    color: #555;
+}
+.btn {
+    margin-right: 6px;
+}
+/*button.btn {
+    margin: 6px;
+}*/
+
+/* upload image*/
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+.dataTables_filter {
+    text-align: right;
+}
+.dataTables_filter input {
+    margin: 5px;
+}
+#img-upload {
+    width: 100%;
+}
+label {
+    height: 10px;
+}
+.pull-filter {
+    padding-top: 18px;
+}
+.progress {
+    height: 30px;
+    margin-bottom: 0;
+    background-color: #A9A9A9;
+}
+.progress-bar.active, .progress.active .progress-bar {
+    text-align: left;
+    padding: 5px;
+}
+#wrapper {
+    padding-top: 40px;
+}
+@media screen and (max-width: 767px) {
+    div.dataTables_wrapper div.dataTables_length, div.dataTables_wrapper div.dataTables_filter, div.dataTables_wrapper div.dataTables_info, div.dataTables_wrapper div.dataTables_paginate {
+        padding: 5px;
+    }
+    .table-responsive {
+        border: 0px solid #ddd;
+    }
+    #wrapper {
+        padding-top: 90px;
+    }
+}
+/* upload image end*/

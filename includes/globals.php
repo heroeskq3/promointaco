@@ -9,24 +9,56 @@ if (isset($_SESSION['phperror'])) {
     $phperror = $_SESSION['phperror'];
 }
 
+//FILES UPLOAD
+$File = null;
+if (isset($_FILES['File'])) {
+    $File = $_FILES['File'];
+}
+
+$upload_file = null;
+if (isset($_FILES['upload_file'])) {
+    $upload_file = $_FILES['upload_file'];
+}
+
+$upload_dir = null;
+if (isset($_POST['upload_dir'])) {
+    $upload_dir = $_POST['upload_dir'];
+}
+
+$upload_value = null;
+if (isset($_POST['upload_value'])) {
+    $upload_value = $_POST['upload_value'];
+}
+
+$upload_name = null;
+if (isset($_POST['upload_name'])) {
+    $upload_name = $_POST['upload_name'];
+}
+
+if ($upload_file['name']) {
+    $_POST[$upload_name] = $upload_file['name'];
+} elseif ($upload_value) {
+    $_POST[$upload_name] = $upload_value;
+}
+
 //PRIVIL
 $Add = null;
 if (isset($_POST['Add'])) {
-    $Add = (int)$_POST['Add'];
+    $Add = (int) $_POST['Add'];
 }
 $Update = null;
 if (isset($_POST['Update'])) {
-    $Update = (int)$_POST['Update'];
+    $Update = (int) $_POST['Update'];
 }
 $Delete = null;
 if (isset($_POST['Delete'])) {
-    $Delete = (int)$_POST['Delete'];
+    $Delete = (int) $_POST['Delete'];
 }
 
 //USERS DETAILS
 $UsersId = null;
 if (isset($_POST['UsersId'])) {
-    $UsersId = (int)$_POST['UsersId'];
+    $UsersId = (int) $_POST['UsersId'];
 }
 $FirstName = null;
 if (isset($_POST['FirstName'])) {
@@ -47,6 +79,10 @@ if (isset($_POST['Company'])) {
 $Phone = null;
 if (isset($_POST['Phone'])) {
     $Phone = $_POST['Phone'];
+}
+$Phone2 = null;
+if (isset($_POST['Phone2'])) {
+    $Phone2 = $_POST['Phone2'];
 }
 $Mobile = null;
 if (isset($_POST['Mobile'])) {
@@ -112,7 +148,7 @@ if (isset($_POST['Status'])) {
 //USERS
 $UsersIndex = null;
 if (isset($_POST['UsersIndex'])) {
-    $UsersIndex = (int)$_POST['UsersIndex'];
+    $UsersIndex = (int) $_POST['UsersIndex'];
 }
 $UserName = null;
 if (isset($_POST['UserName'])) {
@@ -153,7 +189,6 @@ if (isset($_POST['Admin'])) {
     $Admin = ($_POST['Admin']);
 }
 
-
 //FORM ACTIONS
 $form_add = null;
 if (isset($_POST['form_add'])) {
@@ -164,12 +199,6 @@ if (isset($_POST['form_update'])) {
     $form_update = $_POST['form_update'];
 }
 
-
-//FILES UPLOAD
-$File = null;
-if (isset($_FILES['File'])) {
-    $File = $_FILES['File'];
-}
 //ADMIN
 $Id = null;
 if (isset($_GET['Id'])) {
@@ -184,23 +213,23 @@ if (isset($_GET['action'])) {
 $Name = null;
 if (isset($_POST['Name'])) {
     $Name = $_POST['Name'];
-} 
+}
 $Description = null;
 if (isset($_POST['Description'])) {
     $Description = $_POST['Description'];
-} 
+}
 $Url = null;
 if (isset($_POST['Url'])) {
     $Url = $_POST['Url'];
-} 
+}
 $MenuId = null;
 if (isset($_POST['MenuId'])) {
     $MenuId = $_POST['MenuId'];
-} 
+}
 $Icon = null;
 if (isset($_POST['Icon'])) {
     $Icon = $_POST['Icon'];
-} 
+}
 $Order = null;
 if (isset($_POST['Order'])) {
     $Order = $_POST['Order'];
@@ -424,4 +453,60 @@ $InputImage = null;
 if (isset($_POST['InputImage'])) {
     $InputImage = $_POST['InputImage'];
 }
-?>
+$FullName = null;
+if (isset($_POST['FullName'])) {
+    $FullName = $_POST['FullName'];
+}
+$Contact = null;
+if (isset($_POST['Contact'])) {
+    $Contact = $_POST['Contact'];
+}
+$Period = null;
+if (isset($_POST['Period'])) {
+    $Period = $_POST['Period'];
+}
+$ClassesId = null;
+if (isset($_POST['ClassesId'])) {
+    $ClassesId = $_POST['ClassesId'];
+}
+$DateSet = date("Y-m-d");
+if (isset($_POST['DateSet'])) {
+    $DateSet = $_POST['DateSet'];
+}
+$TimeSet = date("H:i");
+if (isset($_POST['TimeSet'])) {
+    $TimeSet = $_POST['TimeSet'];
+}
+$Level = null;
+if (isset($_POST['Level'])) {
+    $Level = $_POST['Level'];
+}
+$CategoryId = null;
+if (isset($_POST['CategoryId'])) {
+    $CategoryId = $_POST['CategoryId'];
+}
+$Zone = null;
+if (isset($_POST['Zone'])) {
+    $Zone = $_POST['Zone'];
+}
+$ReportType = null;
+if (isset($_GET['ReportType'])) {
+    $ReportType = $_GET['ReportType'];
+}
+
+//survey
+$placeholder = null;
+if (isset($_GET['placeholder'])) {
+    $placeholder = $_GET['placeholder'];
+}
+
+//banners
+$Target = null;
+if (isset($_POST['Target'])) {
+    $Target = $_POST['Target'];
+}
+
+$Position = null;
+if (isset($_POST['Position'])) {
+    $Position = $_POST['Position'];
+}

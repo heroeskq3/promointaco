@@ -6,8 +6,9 @@ if (!session_id()) {
 } else {
     $SessionId = session_id();
 }
-require_once 'includes/config.php';
-require_once 'includes/globals.php';
+require_once $sectionParams['homedir'] . 'includes/config.php';
+require_once PATH_INCLUDES . 'globals.php';
+require_once PATH_INCLUDES . 'languages.php';
 
 $ZonesId = $ZonesId;
 if (isset($_SESSION['ZonesId'])) {
@@ -34,16 +35,16 @@ define('ZONES_NAME', $row_surveyzonesinfo['Name']);
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>
-            <?php echo CONFIG_METATITTLE . ' ' . ZONES_NAME . ' | ' . $section_tittle; ?>
+            <?php echo CONFIG_METATITTLE . ' ' . ZONES_NAME . ' | ' . $sectionParams['section_tittle']; ?>
         </title>
         <!-- CSS -->
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
-        <link rel="stylesheet" href="assets/css/form-elements.css">
-        <link rel="stylesheet" href="assets/css/style.css">
-        <link href="assets/css/flags.css" rel="stylesheet">
-        <link rel="stylesheet" href="assets/css/custom.css">
+        <link rel="stylesheet" href="assets/site/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/site/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="assets/site/css/form-elements.css">
+        <link rel="stylesheet" href="assets/site/css/style.css">
+        <link href="assets/site/css/flags.css" rel="stylesheet">
+        <link rel="stylesheet" href="assets/site/css/custom.css">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -51,14 +52,15 @@ define('ZONES_NAME', $row_surveyzonesinfo['Name']);
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
         <!-- Favicon and touch icons -->
-        <link rel="shortcut icon" href="<?php echo CONFIG_FAVICON; ?>" type="image/vnd.microsoft.icon" />
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+        <link rel="shortcut icon" href="<?php echo PATH_RESOURCES.'favicon/'.CONFIG_FAVICON; ?>" type="image/vnd.microsoft.icon" />
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/site/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/site/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/site/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="assets/site/ico/apple-touch-icon-57-precomposed.png">
     </head>
 
     <body>
+<?php if($sectionParams['section_style']){ ?>
         <!-- Top content -->
         <div class="top-content">
             <div class="container">
@@ -71,8 +73,21 @@ define('ZONES_NAME', $row_surveyzonesinfo['Name']);
                         </div>
                         <div class="f1">
 <?php
-if ($section_step) {
-    class_headerSteps($section_step);
+if ($sectionParams['section_step']) {
+
+    $stepsParams = array(
+        'step_active' => $sectionParams['section_step'],
+        'labels'      => array(
+            array('name' => LANG_STEPWELCOME, 'icon' => 'fa-key'),
+            array('name' => LANG_STEPSURVEYS, 'icon' => 'fa-send'),
+            array('name' => LANG_STEPTERMS, 'icon' => 'fa-legal'),
+            array('name' => LANG_STEPREGISTER, 'icon' => 'fa-user'),
+            array('name' => LANG_STEPQUESTIONS, 'icon' => 'fa-question'),
+            array('name' => LANG_STEPTHANKS, 'icon' => 'fa-twitter'),
+        ),
+    );
+
+    class_headerSteps($stepsParams);
 }
 ?>
 <?php if (0) {?>
@@ -81,3 +96,4 @@ if ($section_step) {
 <?php }?>
 
 <fieldset>
+    <?php } ?>
