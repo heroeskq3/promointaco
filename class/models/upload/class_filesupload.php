@@ -2,6 +2,8 @@
 function class_filesUpload($File, $resource, $debug)
 {
     $target_dir    = PATH_RESOURCES . $resource . "/";
+
+    
     $target_file   = $target_dir . basename($File["name"]);
     $uploadOk      = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));

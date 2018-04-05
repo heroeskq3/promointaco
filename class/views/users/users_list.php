@@ -2,7 +2,7 @@
 //users list
 if ($row_userstypeinfo['Admin']) {
     $userslist = class_usersList(null);
-    $userslist = class_arrayFilter($userslist['response'], LANG_LEVEL, $row_userstypeinfo['Level'], '>=');
+    $userslist = class_arrayFilter($userslist['response'], 'Level', $row_userstypeinfo['Level'], '>=');
 } else {
     $userslist = class_usersList($_SESSION['UserId']);
 }

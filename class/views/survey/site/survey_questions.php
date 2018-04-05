@@ -33,12 +33,18 @@ if ($surveylist['rows']) {
             $SurveyId       = $row_surveylist['Id'];
             $surveyinfo     = class_surveyInfo($SurveyId);
             $row_surveyinfo = $surveyinfo['response'][0];
-
+                        
             //define input image
             if ($row_surveyinfo['InputImage']) {
-                define('IMG_SURVEYINPUT', $row_surveyinfo['InputImage']);
+                define('IMG_INPUTIMAGE', $row_surveyinfo['InputImage']);
             } else {
-                define('IMG_SURVEYINPUT', null);
+                define('IMG_INPUTIMAGE', null);
+            }
+            //iut hover
+            if ($row_surveyinfo['InputHover']) {
+                define('IMG_INPUTHOVER', $row_surveyinfo['InputHover']);
+            } else {
+                define('IMG_INPUTHOVER', null);
             }
 
             $step_prev = $step - 1;
@@ -83,5 +89,3 @@ if ($surveylist['rows']) {
     class_formSurvey($FormSteps, $formParams, $formButtons, $formArray);
 
 }
-
-require_once 'footer.php';

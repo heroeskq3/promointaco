@@ -37,10 +37,10 @@ if (isset($_POST['password']) && isset($_POST['username'])) {
                         <form role="form" action="" method="post">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="<?php echo LANG_USERNAME; ?>" name="username" type="text" autofocus value="<?php echo $UserName; ?>">
+                                    <input class="form-control" placeholder="<?php echo LANG_USERNAME; ?>" name="username" type="text" autofocus required="true" value="<?php echo $UserName; ?>">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="<?php echo LANG_PASSWORD; ?>" name="password" type="password" value="<?php echo $Password; ?>">
+                                    <input class="form-control" placeholder="<?php echo LANG_PASSWORD; ?>" name="password" type="password" required="true" value="<?php echo $Password; ?>">
                                 </div>
                                 <div class="checkbox">
                                     <label>

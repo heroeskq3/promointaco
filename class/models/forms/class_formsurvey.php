@@ -1,8 +1,30 @@
 <?php
 function class_formSurvey($FormSteps, $formParams, $formButtons, $formArray)
 {
+
+
     $results = null;
     if ($formArray) {
+
+$results .= "
+<style>
+.radio_img>input+.btn_survey {
+    background:  url('resources/surveys/".IMG_INPUTIMAGE."');
+    background-repeat: no-repeat;
+}
+
+.radio_img>input:checked+.btn_survey {
+    background:  url('resources/surveys/".IMG_INPUTHOVER."');
+    background-repeat: no-repeat;
+}
+
+.radio_img>input:hover+.btn_survey {
+    background:  url('resources/surveys/".IMG_INPUTHOVER."');
+    background-repeat: no-repeat;
+}
+</style>";
+
+
         if ($formParams['name']) {
             $results .= '<br>'; //section-title
             $results .= '<center>'; //section-title
@@ -46,9 +68,6 @@ function class_formSurvey($FormSteps, $formParams, $formButtons, $formArray)
                     $results .= $row_questions['Question'];
                     $results .= '<h5>' . $row_questions['Description'] . '</h5>';
                     $results .= '</td>';
-
-                    //echo "<pre>";
-                    //print_r($row_array);
 
                     foreach ($formArray['answers'] as $row_answers) {
                         $results .= '<td align="center">';

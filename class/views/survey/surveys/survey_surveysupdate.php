@@ -1,6 +1,6 @@
 <?php
 if ($form_update) {
-    $surveyupdate = class_surveyUpdate($Id, $ServicesId, $Name, $Description, $Details, $InputType, $InputImage, $Rows, $Order, $Status);
+    $surveyupdate = class_surveyUpdate($Id, $ServicesId, $Name, $Description, $Details, $InputType, $InputImage, $InputHover, $Rows, $Order, $Status);
     header('Location: ' . $_SERVER['PHP_SELF'] . '?Id=' . $ServicesId);
     die();
 }
@@ -60,6 +60,7 @@ $formFields = array(
     LANG_INPUTTYPE       => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select', 'required' => true, 'position' => 3, 'name' => 'InputType', 'value' => $array_inputtype),
 
     LANG_INPUTIMAGE      => array('addbutton' => null, 'placeholder' => 'surveys', 'inputType' => 'upload', 'required' => false, 'position' => 1, 'name' => 'InputImage', 'value' => $row_surveyinfo['InputImage']),
+    LANG_INPUTHOVER      => array('addbutton' => null, 'placeholder' => 'surveys', 'inputType' => 'upload', 'required' => false, 'position' => 1, 'name' => 'InputHover', 'value' => $row_surveyinfo['InputHover']),
 
     LANG_QUESTIONPERPAGE => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select', 'required' => true, 'position' => 3, 'name' => 'Rows', 'value' => $array_rowsperpage),
     LANG_ORDER           => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select', 'required' => false, 'position' => 1, 'name' => 'Order', 'value' => $array_order),

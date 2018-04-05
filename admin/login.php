@@ -16,7 +16,7 @@ require_once 'header.php';
 
 switch ($action) {
     default:
-        require_once PATH_VIEWS . '/login/login.php';
+        require_once '../class/views/login/login.php';
         break;
 }
 

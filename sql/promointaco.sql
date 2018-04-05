@@ -5,13 +5,13 @@
  Source Server Type    : MySQL
  Source Server Version : 100128
  Source Host           : localhost:3306
- Source Schema         : promointaco4
+ Source Schema         : promointaco5
 
  Target Server Type    : MySQL
  Target Server Version : 100128
  File Encoding         : 65001
 
- Date: 03/04/2018 22:20:15
+ Date: 05/04/2018 17:44:33
 */
 
 SET NAMES utf8mb4;
@@ -77,13 +77,23 @@ CREATE TABLE `admin_privileges` (
   `Grant` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`Id`) USING BTREE,
   UNIQUE KEY `priv` (`TypeId`,`MenuId`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of admin_privileges
 -- ----------------------------
 BEGIN;
 INSERT INTO `admin_privileges` VALUES (79, 1, 0, 1, 1, 1, 0);
+INSERT INTO `admin_privileges` VALUES (80, 2, 134, 0, 0, 0, 0);
+INSERT INTO `admin_privileges` VALUES (81, 2, 137, 0, 0, 0, 0);
+INSERT INTO `admin_privileges` VALUES (82, 2, 141, 0, 0, 0, 0);
+INSERT INTO `admin_privileges` VALUES (83, 2, 144, 0, 0, 0, 0);
+INSERT INTO `admin_privileges` VALUES (84, 2, 142, 0, 0, 0, 0);
+INSERT INTO `admin_privileges` VALUES (85, 2, 140, 0, 0, 0, 0);
+INSERT INTO `admin_privileges` VALUES (86, 2, 138, 0, 0, 0, 0);
+INSERT INTO `admin_privileges` VALUES (88, 2, 139, 0, 0, 0, 0);
+INSERT INTO `admin_privileges` VALUES (89, 2, 46, 0, 0, 0, 0);
+INSERT INTO `admin_privileges` VALUES (90, 2, 110, 0, 0, 0, 0);
 COMMIT;
 
 -- ----------------------------
@@ -151,13 +161,14 @@ CREATE TABLE `admin_users` (
   `Status` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`Id`,`UserName`) USING BTREE,
   UNIQUE KEY `UserName` (`UserName`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of admin_users
 -- ----------------------------
 BEGIN;
 INSERT INTO `admin_users` VALUES (26, 1, 'admin', 'sk101080', 1, '2018-02-06 13:46:48', NULL, 0, '2018-02-06 17:22:23', NULL, 1);
+INSERT INTO `admin_users` VALUES (43, 0, 'zero', 'Zero123', 2, '2018-04-05 15:07:31', NULL, 26, '2018-04-05 15:07:31', NULL, 1);
 COMMIT;
 
 -- ----------------------------
@@ -205,15 +216,14 @@ CREATE TABLE `admin_userstype` (
   `Level` int(5) NOT NULL DEFAULT '0',
   `Status` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of admin_userstype
 -- ----------------------------
 BEGIN;
 INSERT INTO `admin_userstype` VALUES (1, 'Admin', 1, 1, 1);
-INSERT INTO `admin_userstype` VALUES (2, 'Supervisor', 1, 2, 1);
-INSERT INTO `admin_userstype` VALUES (3, 'Agente', 0, 3, 1);
+INSERT INTO `admin_userstype` VALUES (2, 'Mantenimiento', 0, 2, 1);
 COMMIT;
 
 -- ----------------------------
@@ -379,30 +389,31 @@ CREATE TABLE `survey` (
   `LastUpdate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `InputType` varchar(50) NOT NULL,
   `InputImage` varchar(255) DEFAULT NULL,
+  `InputHover` varchar(255) DEFAULT NULL,
   `Rows` int(5) NOT NULL DEFAULT '1',
   `Country` varchar(100) DEFAULT NULL,
   `Order` int(5) NOT NULL DEFAULT '0',
   `Status` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of survey
 -- ----------------------------
 BEGIN;
-INSERT INTO `survey` VALUES (14, 3, 'Satisfacción con la atención de su asesor de ventas', '', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>&iquest;C&oacute;mo calificar&iacute;a los siguientes indicadores de servicio que le ofrece el</p>\r\n<p><strong>Asesor </strong><strong>de Ventas </strong>asignado a su cuenta?</p>\r\n</body>\r\n</html>', NULL, '2018-02-08 09:52:36', '2018-04-02 19:00:49', 'radio_img', 'Gold-Star.J10.2k-300x300.png', 10, NULL, 7, 1);
-INSERT INTO `survey` VALUES (15, 3, 'SATISFACCIón global', '', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>&iquest;Cu&aacute;les son los <strong>3 principales motivos </strong>por los que trabaja con INTACO?</p>\r\n</body>\r\n</html>', NULL, '2018-02-20 05:49:02', '2018-04-02 19:00:03', 'radio_img', 'Gold-Star.J10.2k-300x300.png', 1, NULL, 1, 1);
-INSERT INTO `survey` VALUES (16, 3, 'Evolución del servicio', '', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>En el &uacute;ltimo a&ntilde;o, <strong>&iquest;c&oacute;mo ha evolucionado el nivel de servicio que le ofrecemos?</strong></p>\r\n</body>\r\n</html>', NULL, '2018-02-20 05:52:36', '2018-04-02 19:00:50', 'radio_img', 'Gold-Star.J10.2k-300x300.png', 10, NULL, 3, 1);
-INSERT INTO `survey` VALUES (17, 3, 'SATISFACCIón con nuestro servicio', '', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>&iquest;C&oacute;mo calificar&iacute;a los siguientes indicadores de <strong>disponibilidad y entrega</strong> de INTACO?</p>\r\n</body>\r\n</html>', NULL, '2018-02-20 05:54:41', '2018-04-02 19:00:52', 'radio_img', 'Gold-Star.J10.2k-300x300.png', 10, NULL, 4, 1);
-INSERT INTO `survey` VALUES (18, 3, 'Atención de reclamos', '', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>&iquest;Ha tenido incidencias con INTACO?</p>\r\n<p>De ser as&iacute;, &iquest;qu&eacute; tan frecuentes son estas incidencias?</p>\r\n<p><strong>(reclamos de productos o </strong><strong>errores de </strong><strong>despacho) </strong></p>\r\n</body>\r\n</html>', NULL, '2018-02-20 06:15:54', '2018-04-02 19:00:53', 'radio_img', 'Gold-Star.J10.2k-300x300.png', 10, NULL, 5, 1);
-INSERT INTO `survey` VALUES (20, 3, 'Atención de reclamos', '', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>&iquest;Ante una <strong>incidencia por reclamo de producto o de error de despacho</strong>, c&oacute;mo calificar&iacute;a los siguientes indicadores de atenci&oacute;n de INTACO?</p>\r\n</body>\r\n</html>', NULL, '2018-02-20 06:31:11', '2018-04-02 19:00:54', 'radio_img', 'Gold-Star.J10.2k-300x300.png', 10, NULL, 6, 1);
-INSERT INTO `survey` VALUES (22, 3, 'Satisfacción con sus condiciones comerciales', '', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>&iquest;C&oacute;mo calificar&iacute;a sus <strong>condiciones comerciales</strong>?</p>\r\n</body>\r\n</html>', NULL, '2018-02-20 06:37:40', '2018-04-02 19:00:56', 'radio_img', 'Gold-Star.J10.2k-300x300.png', 10, NULL, 8, 1);
-INSERT INTO `survey` VALUES (23, 3, 'Satisfacción con nuestros productos', '', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>&iquest;C&oacute;mo calificar&iacute;a los siguientes indicadores de <strong>nuestros productos</strong>?</p>\r\n</body>\r\n</html>', NULL, '2018-02-20 06:40:08', '2018-04-02 19:00:57', 'radio_img', 'Gold-Star.J10.2k-300x300.png', 10, NULL, 9, 1);
-INSERT INTO `survey` VALUES (24, 3, 'Satisfacción con nuestro apoyo comercial', '', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>&iquest;C&oacute;mo calificar&iacute;a los siguientes indicadores de <strong>apoyo a su negocio</strong>?</p>\r\n</body>\r\n</html>', NULL, '2018-02-20 06:43:09', '2018-04-02 19:00:59', 'radio_img', 'Gold-Star.J10.2k-300x300.png', 10, NULL, 10, 1);
-INSERT INTO `survey` VALUES (25, 3, 'Percepción de INTACO', '', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>Nos gustar&iacute;a conocer su percepci&oacute;n en cuanto a nuestra promesa de valor:</p>\r\n<p>INTACO es cercano, se preocupa y hace crecer a sus clientes</p>\r\n</body>\r\n</html>', NULL, '2018-02-20 06:45:37', '2018-04-02 19:01:00', 'radio_img', 'Gold-Star.J10.2k-300x300.png', 10, NULL, 11, 1);
-INSERT INTO `survey` VALUES (26, 3, 'Percepción de INTACO', '', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>En comparaci&oacute;n con otras empresas del sector de la construcci&oacute;n,</p>\r\n<p><strong>&iquest;C&oacute;mo calificar&iacute;a INTACO como empresa?</strong></p>\r\n</body>\r\n</html>', NULL, '2018-02-20 06:48:18', '2018-04-02 19:01:02', 'radio_img', '10', 14, NULL, 12, 1);
-INSERT INTO `survey` VALUES (47, 3, 'Sugerencias finales	', '', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>Nos encantar&iacute;a conocer m&aacute;s sobre su valoraci&oacute;n de INTACO.</p>\r\n<p>Abajo encontrar&aacute; un espacio en donde puede escribir <strong>comentarios y sugerencias</strong>:</p>\r\n</body>\r\n</html>', NULL, '2018-03-03 04:36:06', '2018-03-30 23:56:10', 'textarea', '', 1, NULL, 13, 1);
-INSERT INTO `survey` VALUES (56, 3, 'SATISFACCIón global', '', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>&iquest;C&oacute;mo calificar&iacute;a su<strong> grado de satisfacci&oacute;n </strong>con INTACO?</p>\r\n</body>\r\n</html>', NULL, '2018-03-05 23:56:05', '2018-04-02 19:01:42', 'check_img', 'Gold-Star.J10.2k-300x300.png', 1, NULL, 2, 1);
+INSERT INTO `survey` VALUES (14, 3, 'Satisfacción con la atención de su asesor de ventas', '', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>&iquest;C&oacute;mo calificar&iacute;a los siguientes indicadores de servicio que le ofrece el</p>\r\n<p><strong>Asesor </strong><strong>de Ventas </strong>asignado a su cuenta?</p>\r\n</body>\r\n</html>', NULL, '2018-02-08 09:52:36', '2018-04-05 14:35:09', 'radio_img', 'circulo-blanco.png', 'circulo-turqueda.png', 10, NULL, 7, 1);
+INSERT INTO `survey` VALUES (15, 3, 'SATISFACCIón global', '', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>&iquest;Cu&aacute;les son los <strong>3 principales motivos </strong>por los que trabaja con INTACO?</p>\r\n</body>\r\n</html>', NULL, '2018-02-20 05:49:02', '2018-04-05 14:35:01', 'radio_img', 'circulo-blanco.png', 'circulo-turqueda.png', 1, NULL, 1, 1);
+INSERT INTO `survey` VALUES (16, 3, 'Evolución del servicio', '', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>En el &uacute;ltimo a&ntilde;o, <strong>&iquest;c&oacute;mo ha evolucionado el nivel de servicio que le ofrecemos?</strong></p>\r\n</body>\r\n</html>', NULL, '2018-02-20 05:52:36', '2018-04-05 14:35:04', 'radio_img', 'circulo-blanco.png', 'circulo-turqueda.png', 10, NULL, 3, 1);
+INSERT INTO `survey` VALUES (17, 3, 'SATISFACCIón con nuestro servicio', '', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>&iquest;C&oacute;mo calificar&iacute;a los siguientes indicadores de <strong>disponibilidad y entrega</strong> de INTACO?</p>\r\n</body>\r\n</html>', NULL, '2018-02-20 05:54:41', '2018-04-05 14:35:07', 'radio_img', 'circulo-blanco.png', 'circulo-turqueda.png', 10, NULL, 4, 1);
+INSERT INTO `survey` VALUES (18, 3, 'Atención de reclamos', '', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>&iquest;Ha tenido incidencias con INTACO?</p>\r\n<p>De ser as&iacute;, &iquest;qu&eacute; tan frecuentes son estas incidencias?</p>\r\n<p><strong>(reclamos de productos o </strong><strong>errores de </strong><strong>despacho) </strong></p>\r\n</body>\r\n</html>', NULL, '2018-02-20 06:15:54', '2018-04-05 14:35:05', 'radio_img', 'circulo-blanco.png', 'circulo-turqueda.png', 10, NULL, 5, 1);
+INSERT INTO `survey` VALUES (20, 3, 'Atención de reclamos', '', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>&iquest;Ante una <strong>incidencia por reclamo de producto o de error de despacho</strong>, c&oacute;mo calificar&iacute;a los siguientes indicadores de atenci&oacute;n de INTACO?</p>\r\n</body>\r\n</html>', NULL, '2018-02-20 06:31:11', '2018-04-05 14:35:08', 'radio_img', 'circulo-blanco.png', 'circulo-turqueda.png', 10, NULL, 6, 1);
+INSERT INTO `survey` VALUES (22, 3, 'Satisfacción con sus condiciones comerciales', '', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>&iquest;C&oacute;mo calificar&iacute;a sus <strong>condiciones comerciales</strong>?</p>\r\n</body>\r\n</html>', NULL, '2018-02-20 06:37:40', '2018-04-05 14:35:10', 'radio_img', 'circulo-blanco.png', 'circulo-turqueda.png', 10, NULL, 8, 1);
+INSERT INTO `survey` VALUES (23, 3, 'Satisfacción con nuestros productos', '', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>&iquest;C&oacute;mo calificar&iacute;a los siguientes indicadores de <strong>nuestros productos</strong>?</p>\r\n</body>\r\n</html>', NULL, '2018-02-20 06:40:08', '2018-04-05 14:35:11', 'radio_img', 'circulo-blanco.png', 'circulo-turqueda.png', 10, NULL, 9, 1);
+INSERT INTO `survey` VALUES (24, 3, 'Satisfacción con nuestro apoyo comercial', '', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>&iquest;C&oacute;mo calificar&iacute;a los siguientes indicadores de <strong>apoyo a su negocio</strong>?</p>\r\n</body>\r\n</html>', NULL, '2018-02-20 06:43:09', '2018-04-05 14:35:12', 'radio_img', 'circulo-blanco.png', 'circulo-turqueda.png', 10, NULL, 10, 1);
+INSERT INTO `survey` VALUES (25, 3, 'Percepción de INTACO', '', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>Nos gustar&iacute;a conocer su percepci&oacute;n en cuanto a nuestra promesa de valor:</p>\r\n<p>INTACO es cercano, se preocupa y hace crecer a sus clientes</p>\r\n</body>\r\n</html>', NULL, '2018-02-20 06:45:37', '2018-04-05 14:35:14', 'radio_img', 'circulo-blanco.png', 'circulo-turqueda.png', 10, NULL, 11, 1);
+INSERT INTO `survey` VALUES (26, 3, 'Percepción de INTACO', '', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>En comparaci&oacute;n con otras empresas del sector de la construcci&oacute;n,</p>\r\n<p><strong>&iquest;C&oacute;mo calificar&iacute;a INTACO como empresa?</strong></p>\r\n</body>\r\n</html>', NULL, '2018-02-20 06:48:18', '2018-04-05 14:35:15', 'radio_img', 'circulo-blanco.png', 'circulo-turqueda.png', 14, NULL, 12, 1);
+INSERT INTO `survey` VALUES (47, 3, 'Sugerencias finales	', '', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>Nos encantar&iacute;a conocer m&aacute;s sobre su valoraci&oacute;n de INTACO.</p>\r\n<p>Abajo encontrar&aacute; un espacio en donde puede escribir <strong>comentarios y sugerencias</strong>:</p>\r\n</body>\r\n</html>', NULL, '2018-03-03 04:36:06', '2018-03-30 23:56:10', 'textarea', '', NULL, 1, NULL, 13, 1);
+INSERT INTO `survey` VALUES (56, 3, 'SATISFACCIón global', '', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>&iquest;C&oacute;mo calificar&iacute;a su<strong> grado de satisfacci&oacute;n </strong>con INTACO?</p>\r\n</body>\r\n</html>', NULL, '2018-03-05 23:56:05', '2018-04-05 14:46:00', 'check_img', 'circulo-blanco.png', 'circulo-turqueda.png', 1, NULL, 2, 1);
 COMMIT;
 
 -- ----------------------------
@@ -666,15 +677,14 @@ CREATE TABLE `survey_banners` (
   `Position` varchar(50) NOT NULL,
   `Status` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of survey_banners
 -- ----------------------------
 BEGIN;
-INSERT INTO `survey_banners` VALUES (6, 3, 'banner 01', 'banner 01 description', 'banner01.png', '_blank', 'http://www.google.co.cr', 'top', 1);
-INSERT INTO `survey_banners` VALUES (7, 3, 'banner002', '', 'banner02.png', '_blank', '', 'top', 1);
-INSERT INTO `survey_banners` VALUES (14, 21, 'banner03', '', 'banner03.png', '_blank', '#', 'bottom', 1);
+INSERT INTO `survey_banners` VALUES (11, 3, 'CRTV', '', 'banner-encuesta-cambio-3.jpg', '', '', 'top', 1);
+INSERT INTO `survey_banners` VALUES (12, 21, 'ECUTV', '', 'banner-encuesta-cambio-5.jpg', '', '', 'top', 1);
 COMMIT;
 
 -- ----------------------------
@@ -757,48 +767,7 @@ CREATE TABLE `survey_customers` (
   `LastUpdate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `Status` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=167 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of survey_customers
--- ----------------------------
-BEGIN;
-INSERT INTO `survey_customers` VALUES (132, 'test', 'test', 0, '', '', '', '', '', '', 'Costa Rica', '', '', '', NULL, NULL, NULL, NULL, 'q684vt1pbreb35qi8l7nfnf013', '2018-03-28 12:30:22', '2018-03-28 12:30:22', 1);
-INSERT INTO `survey_customers` VALUES (133, 'test', 'test', 0, '', '', '', '', '', '', 'Costa Rica', '', '', '', NULL, NULL, NULL, NULL, 'q684vt1pbreb35qi8l7nfnf013', '2018-03-28 12:30:30', '2018-03-28 12:30:30', 1);
-INSERT INTO `survey_customers` VALUES (134, 'test', 'test', 0, '', '', '', '', '', '', 'Costa Rica', '', '', '', NULL, NULL, NULL, NULL, 'q684vt1pbreb35qi8l7nfnf013', '2018-03-28 12:30:34', '2018-03-28 12:30:34', 1);
-INSERT INTO `survey_customers` VALUES (135, 'test', 'test', 0, '', '', '', '', '', '', 'Costa Rica', '', '', '', NULL, NULL, NULL, NULL, 'q684vt1pbreb35qi8l7nfnf013', '2018-03-28 12:31:11', '2018-03-28 12:31:11', 1);
-INSERT INTO `survey_customers` VALUES (136, 'TEST', '', 0, '', '', '', '', '', '', 'Costa Rica', '', '', '', NULL, NULL, NULL, NULL, 'u4h4hlge6rtjv5h0vb77n60sk2', '2018-03-28 16:59:03', '2018-03-28 16:59:03', 1);
-INSERT INTO `survey_customers` VALUES (137, 'test', '', 0, '', '', '', '', '', '', 'Costa Rica', '', '', '', NULL, NULL, NULL, NULL, '7sa2g7q2pai4hde8t3iikb1gb2', '2018-03-28 17:48:47', '2018-03-28 17:48:47', 1);
-INSERT INTO `survey_customers` VALUES (138, 'test', '', 0, '', '', '', '', '', '', 'Costa Rica', 'San José', 'Escazú', 'Entre 1 y 3', NULL, NULL, NULL, NULL, 'q9lbdq1f79g78l2k07k8qb1pu6', '2018-03-29 12:33:35', '2018-03-29 12:33:35', 1);
-INSERT INTO `survey_customers` VALUES (139, 'TEST', '', 0, '', '', '', '', 'Alvaro Sequeira', 'Fábrica Santa Ana', 'Costa Rica', 'Cartago', 'El Guarco', 'Entre 3 y 5', NULL, NULL, NULL, NULL, 'uonuosqtoe7cihm6evdbp81c70', '2018-03-29 14:50:28', '2018-03-29 14:50:28', 1);
-INSERT INTO `survey_customers` VALUES (140, 'test', '', 0, '', '', '', '', '', '', 'Ecuador', '', '', '', NULL, NULL, NULL, NULL, 'onc2cjenbn2loan3p3m87qkf02', '2018-03-29 16:49:40', '2018-03-29 16:49:40', 1);
-INSERT INTO `survey_customers` VALUES (141, 'test', '', 0, '', '', '', '', '', '', 'Costa Rica', '', '', '', NULL, NULL, NULL, NULL, 'jbisd0266jqo9sp1iu1mqp4ct5', '2018-03-29 18:31:38', '2018-03-29 18:31:38', 1);
-INSERT INTO `survey_customers` VALUES (142, 'test', '', 0, '', '', '', '', '', '', 'Costa Rica', '14', '47', '', NULL, NULL, NULL, NULL, 'skdlp2ek287uhp5dhhpb6a6ca5', '2018-03-30 22:46:43', '2018-03-30 22:46:43', 1);
-INSERT INTO `survey_customers` VALUES (143, 'test', '', 0, '', '', '', '', '', '', 'Costa Rica', 'Alajuela', 'Grecia', '', NULL, NULL, NULL, NULL, 'g0f37igobter1rhqt7rpg7fu62', '2018-03-30 22:52:38', '2018-03-30 22:52:38', 1);
-INSERT INTO `survey_customers` VALUES (144, 'test', '', 0, '', '', '', '', '', '', 'Ecuador', 'Cotopaxi', 'Pujilí', '', NULL, NULL, NULL, NULL, '36p4krtamm88p1qlf308l2dsg0', '2018-03-30 23:03:43', '2018-03-30 23:03:43', 1);
-INSERT INTO `survey_customers` VALUES (145, 'test', '', 0, '', '', '', '', '', '', 'Costa Rica', '', '', '', NULL, NULL, NULL, NULL, 'vnfeerennv8jm166o0u6qjbo91', '2018-03-30 23:14:19', '2018-03-30 23:14:19', 1);
-INSERT INTO `survey_customers` VALUES (146, 'test', '', 0, '', '', '', '', '', '', 'Costa Rica', '', '', '', NULL, NULL, NULL, NULL, 's7i43nc1h0tiuj283d0eagi7j4', '2018-03-30 23:33:50', '2018-03-30 23:33:50', 1);
-INSERT INTO `survey_customers` VALUES (147, 'test', '', 0, '', '', '', '', '', '', 'Costa Rica', '', '', '', NULL, NULL, NULL, NULL, 'q8i7piv74ijqsd84l5t5oj8mu4', '2018-03-30 23:34:34', '2018-03-30 23:34:34', 1);
-INSERT INTO `survey_customers` VALUES (148, 'test', '', 0, '', '', '', '', '', '', 'Costa Rica', '', '', '', NULL, NULL, NULL, NULL, '8qbda4cgjr1i5dsdbv0t806q53', '2018-03-30 23:37:31', '2018-03-30 23:37:31', 1);
-INSERT INTO `survey_customers` VALUES (149, 'test', '', 0, '', '', '', '', '', '', 'Costa Rica', '', '', '', NULL, NULL, NULL, NULL, 'b6askfr8rmhg2bgh63u9egobc1', '2018-03-31 00:00:27', '2018-03-31 00:00:27', 1);
-INSERT INTO `survey_customers` VALUES (150, 'teest', '', 0, '', '', '', '', '', '', 'Ecuador', '', '', '', NULL, NULL, NULL, NULL, 'g0oingifl0ubm3kbkgsi6ga0n2', '2018-03-31 00:00:51', '2018-03-31 00:00:51', 1);
-INSERT INTO `survey_customers` VALUES (151, 'test', '', 0, '', '', '', '', '', '', 'Costa Rica', '', '', '', NULL, NULL, NULL, NULL, '9i8g3aad95jr39v59luudr8uf4', '2018-03-31 00:02:30', '2018-03-31 00:02:30', 1);
-INSERT INTO `survey_customers` VALUES (152, 'test', '', 0, '', '', '', '', '', '', 'Ecuador', '', '', '', NULL, NULL, NULL, NULL, '0d3b4808b6790398d2271c9dfee0b364', '2018-03-31 02:23:15', '2018-03-31 02:23:15', 1);
-INSERT INTO `survey_customers` VALUES (153, 'test', '', 0, '', '', '', '', '', '', 'Ecuador', '', '', '', NULL, NULL, NULL, NULL, 'c6a0070d132118402f7b7bca57b6e8f2', '2018-03-31 02:23:30', '2018-03-31 02:23:30', 1);
-INSERT INTO `survey_customers` VALUES (154, 'test', '', 0, '', '', '', '', '', '', 'Costa Rica', '', '', '', NULL, NULL, NULL, NULL, '083082c0ea2502512253693740257b14', '2018-03-31 02:23:45', '2018-03-31 02:23:45', 1);
-INSERT INTO `survey_customers` VALUES (155, 'test', '', 0, '', '', '', '', '', '', 'Costa Rica', 'Cartago', 'El Guarco', '', NULL, NULL, NULL, NULL, '8ba71634981938337daca41ed103f4c7', '2018-03-31 02:30:39', '2018-03-31 02:30:39', 1);
-INSERT INTO `survey_customers` VALUES (156, 'sdasda', '', 0, '', '', '', '', '', '', 'Costa Rica', '', '', '', NULL, NULL, NULL, NULL, '8410bd7fb9a6cd1969f54d42f44333a1', '2018-04-02 12:20:40', '2018-04-02 12:20:40', 1);
-INSERT INTO `survey_customers` VALUES (157, 'tghfh', '', 0, '', '', '', '', '', '', 'Costa Rica', '', '', '', NULL, NULL, NULL, NULL, 'd2ed1006a7d8476f0a5e9ab8989521db', '2018-04-02 12:42:14', '2018-04-02 12:42:14', 1);
-INSERT INTO `survey_customers` VALUES (158, 'TEST', '', 0, '', '', '', '', '', '', 'Costa Rica', '', '', '', NULL, NULL, NULL, NULL, 'f14ea3459aa61a0264c0886a25efeca5', '2018-04-02 12:56:32', '2018-04-02 12:56:32', 1);
-INSERT INTO `survey_customers` VALUES (159, 'dshfshfx', '', 0, '', '', '', '', '', '', 'Costa Rica', '', '', '', NULL, NULL, NULL, NULL, '98fc52cbc93ed8055a336621285c3e0e', '2018-04-02 12:59:35', '2018-04-02 12:59:35', 1);
-INSERT INTO `survey_customers` VALUES (160, 'zsadasd', '', 0, '', '', '', '', '', '', 'Ecuador', '', '', '', NULL, NULL, NULL, NULL, '6ab9237d384cc7cefc9a1f6f06ba5d1c', '2018-04-02 13:13:33', '2018-04-02 13:13:33', 1);
-INSERT INTO `survey_customers` VALUES (161, 'as', '', 0, '', '', '', '', '', '', 'Ecuador', '', '', '', NULL, NULL, NULL, NULL, '5aab2cea885ef82f482fdd057cae7d2e', '2018-04-02 13:14:26', '2018-04-02 13:14:26', 1);
-INSERT INTO `survey_customers` VALUES (162, 'jkkh', '', 0, '', '', '', '', '', '', 'Costa Rica', '', '', '', NULL, NULL, NULL, NULL, 'b65f9658b04877d79adb6294d07154ab', '2018-04-02 13:31:08', '2018-04-02 13:31:08', 1);
-INSERT INTO `survey_customers` VALUES (163, 'klpñ', '', 0, '', '', '', '', '', '', 'Costa Rica', '', '', '', NULL, NULL, NULL, NULL, '4d811b9d769fa3021cee8b9fff4efce5', '2018-04-02 13:34:21', '2018-04-02 13:34:21', 1);
-INSERT INTO `survey_customers` VALUES (164, 'test', '', 0, '', '', '', '', '', '', 'Costa Rica', '', '', '', NULL, NULL, NULL, NULL, '794db5ab40e25c5137937b9fafb95f09', '2018-04-02 13:37:29', '2018-04-02 13:37:29', 1);
-INSERT INTO `survey_customers` VALUES (165, 'ko', '', 0, '', '', '', '', '', '', 'Ecuador', '', '', '', NULL, NULL, NULL, NULL, '684d51aab5ddb0c9eb184888a003aa84', '2018-04-02 13:55:05', '2018-04-02 13:55:05', 1);
-INSERT INTO `survey_customers` VALUES (166, 'TEST', '', 0, '', '', '', '', '', '', 'Costa Rica', '', '', '', NULL, NULL, NULL, NULL, 'lkgho1tah1hsiel6qknjm6i880', '2018-04-02 17:16:51', '2018-04-02 17:16:51', 1);
-COMMIT;
+) ENGINE=InnoDB AUTO_INCREMENT=181 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for survey_locals
@@ -939,10 +908,10 @@ CREATE TABLE `survey_services` (
 -- Records of survey_services
 -- ----------------------------
 BEGIN;
-INSERT INTO `survey_services` VALUES (3, 4, 'Promesa de valor INTACO', 'Exclusiva para distribuidores INTACO', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>Comparte tu experiencia con nuestro servicio y queda participando en la rifa de:<br /><br />10 pantallas planas de 32\"</p>\r\n<hr />\r\n<p><strong>&iquest;C&oacute;mo participar?</strong></p>\r\n<p>1.Tienes que trabajar en un Distribuidor de INTACO.</p>\r\n<p>2.Ingresa tus datos personales y los del negocio adonde trabajas.</p>\r\n<p>3.Responde las 12 preguntas.</p>\r\n<p>4.Comparte tus comentarios finales.</p>\r\n<p>5.&iexcl;Listo! Quedas participando.</p>\r\n<p>Fecha del sorteo: 28 de mayo, 2018</p>\r\n</body>\r\n</html>', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<div>\r\n<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo error ratione adipisci, maiores excepturi aut voluptatibus veniam nemo ipsam? Blanditiis atque soluta qui consequatur hic incidunt autem iste voluptas? Ipsum.</div>\r\n</div>\r\n</body>\r\n</html>', 1);
+INSERT INTO `survey_services` VALUES (3, 4, 'Promesa de valor INTACO', 'Exclusiva para distribuidores INTACO', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p><strong>&iquest;C&oacute;mo participar?</strong></p>\r\n<p>1.Tienes que trabajar en un Distribuidor de INTACO.</p>\r\n<p>2.Ingresa tus datos personales y los del negocio adonde trabajas.</p>\r\n<p>3.Responde las 12 preguntas.</p>\r\n<p>4.Comparte tus comentarios finales.</p>\r\n<p>5.&iexcl;Listo! Quedas participando.</p>\r\n<p>Fecha del sorteo: 28 de mayo, 2018</p>\r\n</body>\r\n</html>', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<div>\r\n<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo error ratione adipisci, maiores excepturi aut voluptatibus veniam nemo ipsam? Blanditiis atque soluta qui consequatur hic incidunt autem iste voluptas? Ipsum.</div>\r\n</div>\r\n</body>\r\n</html>', 1);
 INSERT INTO `survey_services` VALUES (19, 0, 'Encuesta 2', 'Detalle', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n\r\n</body>\r\n</html>', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n\r\n</body>\r\n</html>', 1);
 INSERT INTO `survey_services` VALUES (20, 0, 'Encuesta 3', 'Detalle', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n\r\n</body>\r\n</html>', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n\r\n</body>\r\n</html>', 1);
-INSERT INTO `survey_services` VALUES (21, 11, 'Promesa de valor INTACO', 'Exclusiva para distribuidores INTACO', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>Encuesta de promesa de valor intaco</p>\r\n<p>Comparte tu experiencia con nuestro servicio y queda participando en la rifa de:</p>\r\n<p>10 Smart TV de 32&ldquo;</p>\r\n<p>10 kits prepago de direct tv (incluye mundial)</p>\r\n<hr />\r\n<p>&iquest;C&oacute;mo participar?</p>\r\n<p>1.Tienes que trabajar en un Distribuidor de INTACO.</p>\r\n<p>2.Ingresa tus datos personales y los del negocio adonde trabajas.</p>\r\n<p>3.Responde las 12 preguntas.</p>\r\n<p>4.Comparte tus comentarios finales.</p>\r\n<p>5.&iexcl;Listo! Quedas participando.</p>\r\n<p>Fecha del sorteo: 28 de mayo, 2018</p>\r\n</body>\r\n</html>', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n\r\n</body>\r\n</html>', 1);
+INSERT INTO `survey_services` VALUES (21, 11, 'Promesa de valor INTACO', 'Exclusiva para distribuidores INTACO', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>&iquest;C&oacute;mo participar?</p>\r\n<p>1.Tienes que trabajar en un Distribuidor de INTACO.</p>\r\n<p>2.Ingresa tus datos personales y los del negocio adonde trabajas.</p>\r\n<p>3.Responde las 12 preguntas.</p>\r\n<p>4.Comparte tus comentarios finales.</p>\r\n<p>5.&iexcl;Listo! Quedas participando.</p>\r\n<p>Fecha del sorteo: 28 de mayo, 2018</p>\r\n</body>\r\n</html>', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n\r\n</body>\r\n</html>', 1);
 COMMIT;
 
 -- ----------------------------
@@ -957,7 +926,7 @@ CREATE TABLE `survey_zones` (
   `ZonesId` int(11) NOT NULL DEFAULT '0',
   `Status` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=356 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=353 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of survey_zones

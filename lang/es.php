@@ -170,6 +170,7 @@ define('LANG_CLICKFORZOOM', 'Click para ampliar');
 define('LANG_SERVICES', 'Servicios');
 define('LANG_INPUTTYPE', 'Tipo de Input');
 define('LANG_INPUTIMAGE', 'Input Image');
+define('LANG_INPUTHOVER', 'Input Hover');
 define('LANG_QUESTIONPERPAGE', 'Preguntas por pág');
 define('LANG_QUESTIONS', 'Preguntas');
 define('LANG_POINTS', 'Puntos');

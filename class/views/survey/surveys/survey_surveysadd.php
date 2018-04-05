@@ -1,6 +1,6 @@
 <?php
 if ($form_add) {
-    $surveyadd = class_surveyAdd($ServicesId, $Name, $Description, $Details, $InputType, $InputImage, $Rows, $Order, $Status);
+    $surveyadd = class_surveyAdd($ServicesId, $Name, $Description, $Details, $InputType, $InputImage, $InputHover, $Rows, $Order, $Status);
     header('Location: ' . $_SERVER['HTTP_REFERER']);
     die();
 }
@@ -62,7 +62,8 @@ $formFields = array(
     LANG_DETAILS         => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'textarea', 'required' => false, 'position' => 1, 'name' => 'Details', 'value' => $Details),
     LANG_INPUTTYPE       => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select', 'required' => true, 'position' => 3, 'name' => 'InputType', 'value' => $array_inputtype),
 
-    LANG_INPUTIMAGE           => array('addbutton' => null, 'placeholder' => 'surveys', 'inputType' => 'upload', 'required' => false, 'position' => 1, 'name' => 'InputImage', 'value' => $InputImage),
+    LANG_INPUTIMAGE      => array('addbutton' => null, 'placeholder' => 'surveys', 'inputType' => 'upload', 'required' => false, 'position' => 1, 'name' => 'InputImage', 'value' => $InputImage),
+    LANG_INPUTHOVER      => array('addbutton' => null, 'placeholder' => 'surveys', 'inputType' => 'upload', 'required' => false, 'position' => 1, 'name' => 'InputHover', 'value' => $InputHover),
 
     LANG_QUESTIONPERPAGE => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select', 'required' => true, 'position' => 3, 'name' => 'Rows', 'value' => $array_rowsperpage),
     LANG_ORDER           => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select', 'required' => false, 'position' => 1, 'name' => 'Order', 'value' => $array_order),

@@ -3,9 +3,9 @@ ob_start();
 
 require_once $sectionParams['homedir'].'includes/config.php';
 
+require_once PATH_INCLUDES . 'upload.php';
 require_once PATH_INCLUDES . 'globals.php';
 require_once PATH_INCLUDES . 'languages.php';
-require_once PATH_INCLUDES . 'upload.php';
 
 if ($sectionParams['restrict']) {
     require_once PATH_INCLUDES . 'restrict.php';

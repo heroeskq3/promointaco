@@ -9,38 +9,6 @@ if (isset($_SESSION['phperror'])) {
     $phperror = $_SESSION['phperror'];
 }
 
-//FILES UPLOAD
-$File = null;
-if (isset($_FILES['File'])) {
-    $File = $_FILES['File'];
-}
-
-$upload_file = null;
-if (isset($_FILES['upload_file'])) {
-    $upload_file = $_FILES['upload_file'];
-}
-
-$upload_dir = null;
-if (isset($_POST['upload_dir'])) {
-    $upload_dir = $_POST['upload_dir'];
-}
-
-$upload_value = null;
-if (isset($_POST['upload_value'])) {
-    $upload_value = $_POST['upload_value'];
-}
-
-$upload_name = null;
-if (isset($_POST['upload_name'])) {
-    $upload_name = $_POST['upload_name'];
-}
-
-if ($upload_file['name']) {
-    $_POST[$upload_name] = $upload_file['name'];
-} elseif ($upload_value) {
-    $_POST[$upload_name] = $upload_value;
-}
-
 //PRIVIL
 $Add = null;
 if (isset($_POST['Add'])) {
@@ -431,6 +399,10 @@ if (isset($_POST['InputType'])) {
 $InputImage = null;
 if (isset($_POST['InputImage'])) {
     $InputImage = $_POST['InputImage'];
+}
+$InputHover = null;
+if (isset($_POST['InputHover'])) {
+    $InputHover = $_POST['InputHover'];
 }
 
 $Care = null;

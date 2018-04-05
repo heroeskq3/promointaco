@@ -284,19 +284,21 @@ function array_envia($array)
 
         $results .= '<label class="radio_img">';
         $results .= '<input type="radio" name="' . $name . '" value="' . $value . '">';
-        $results .= '<img src="resources/surveys/'.IMG_SURVEYINPUT.'">';
+        $results .= '<div class="btn_survey"><div>';
         $results .= '</label>';
     }
     //RADIO INPUT WITH IMAGE
     if ($inputType == 'check_img') {
-        if ($value) {
+
+        if (0) {
             $checked = 'checked';
         } else {
             $checked = null;
         }
+
         $results .= '<label class="radio_img">';
         $results .= '<input type="checkbox" name="' . $name . '" value="' . $value . '">';
-        $results .= '<img src="resources/surveys/'.IMG_SURVEYINPUT.'">';
+        $results .= '<div class="btn_survey"><div>';
         $results .= '</label>';
     }
 
@@ -315,13 +317,13 @@ function array_envia($array)
 
     //FILE INPUT
     if ($inputType == 'upload') {
-        $results .= '<input type="hidden" name="upload_dir" value="' . $placeholder . '">';
-        $results .= '<input type="hidden" name="upload_name" value="' . $name . '">';
-        $results .= '<input type="hidden" name="upload_value" value="' . $value . '">';
-        $results .= '<input type="file" class="form-control" name="upload_file" value="" ' . $required . '>';
+        $results .= '<input type="hidden" name="upload_dir[]" value="' . $placeholder . '">';
+        $results .= '<input type="hidden" name="upload_name[]" value="' . $name . '">';
+        $results .= '<input type="hidden" name="upload_value[]" value="' . $value . '">';
+        $results .= '<input type="file" class="form-control" name="upload_file[]" value="" ' . $required . '>';
         if ($value) {
             $results .= '<a href="' . PATH_RESOURCES . $placeholder . '/' . $value . '" target="_blank">';
-            $results .= '<img src="' . PATH_RESOURCES . $placeholder . '/' . $value . '" height="200">';
+            $results .= '<img class="img-thumbnail" src="' . PATH_RESOURCES . $placeholder . '/' . $value . '">';
             $results .= '<p>' . $value . ' (' . LANG_CLICKFORZOOM . ')</p>'; //label
             $results .= '</a>';
         }
@@ -388,7 +390,7 @@ function array_envia($array)
             $results .= '<div class="item ' . $banner_active . '">';
             $results .= '<a href="' . $row['url'] . '" target="' . $row['target'] . '">';
             $results .= ''; //label
-            $results .= '<img src="' . PATH_RESOURCES . 'banners/' . $row['file'] . '" alt="' . $row['description'] . '">';
+            $results .= '<img class="img-responsive" src="' . PATH_RESOURCES . 'banners/' . $row['file'] . '" alt="' . $row['description'] . '">';
             $results .= '</a>';
             $results .= '</div>';
         }

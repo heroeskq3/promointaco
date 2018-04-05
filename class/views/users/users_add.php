@@ -12,7 +12,7 @@ $array_status[] = array('label' => LANG_INACTIVE, 'value' => '0', 'selected' => 
 
 //Users Type LANG_LIST
 $userstypelist       = class_usersTypeList();
-$userstypelist       = class_arrayFilter($userstypelist['response'], LANG_LEVEL, $row_userstypeinfo['Level'], '>=');
+$userstypelist       = class_arrayFilter($userstypelist['response'], 'Level', $row_userstypeinfo['Level'], '>=');
 $array_userstypelist = array();
 foreach ($userstypelist['response'] as $row_userstypelist) {
     $array_userstypelist[] = array('label' => $row_userstypelist['Name'], 'value' => $row_userstypelist['Id'], 'selected' => null);
@@ -21,7 +21,7 @@ foreach ($userstypelist['response'] as $row_userstypelist) {
 //users list
 if ($row_userstypeinfo['Admin']) {
     $userslist = class_usersList(null);
-    $userslist = class_arrayFilter($userslist['response'], LANG_LEVEL, $row_userstypeinfo['Level'], '>=');
+    $userslist = class_arrayFilter($userslist['response'], 'Level', $row_userstypeinfo['Level'], '>=');
 } else {
     $userslist = class_usersList($_SESSION['UserId']);
 }
