@@ -48,7 +48,7 @@ define('LANG_CLOSE', 'Cerrar');
 define('LANG_PERSONALINFORMATION', 'DATOS PERSONALES');
 define('LANG_NAME', 'Nombre');
 define('LANG_LASTNAME', 'Apellidos');
-define('LANG_IDENTIFICATION', 'Nombre de identificación');
+define('LANG_IDENTIFICATION', 'Número de identificación');
 define('LANG_PHONENUMBER', 'Número de teléfono');
 define('LANG_ELECTRONICMAIL', 'Correo electrónico');
 define('LANG_STATUS', 'Estado');

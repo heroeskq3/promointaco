@@ -17,7 +17,7 @@
     <div class="panel-body">
         <!-- Button trigger modal -->
         <div class="col-lg-3 col-md-12 col-sm-12">
-        <button class="btn-custom btn-lg" data-toggle="modal" data-target="#myModal">
+        <button class="btn-custom btn-lg form-control" data-toggle="modal" data-target="#myModal">
             <?php echo $modalsParams['label'] ?>
         </button>
         </div>
