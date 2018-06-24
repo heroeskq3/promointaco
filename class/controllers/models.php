@@ -13,6 +13,7 @@ require_once PATH_MODELS.$namespace. '/class_token.php';
 $namespace = 'functions';
 require_once PATH_MODELS.$namespace. '/class_sumavalor.php';
 require_once PATH_MODELS.$namespace. '/class_statusInfo.php';
+require_once PATH_MODELS.$namespace. '/class_statusfinish.php';
 require_once PATH_MODELS.$namespace. '/class_infosino.php';
 require_once PATH_MODELS.$namespace. '/class_statusIcon.php';
 //require_once PATH_MODELS.$namespace. '/class_statusperiod.php';
@@ -199,6 +200,22 @@ require_once PATH_MODELS.$namespace. 'class_surveypositionsadd.php';
 require_once PATH_MODELS.$namespace. 'class_surveypositionsupdate.php';
 require_once PATH_MODELS.$namespace. 'class_surveypositionsdelete.php';
 
+//surveypositions
+$namespace = 'survey/workareas/';
+require_once PATH_MODELS.$namespace. 'class_surveyworkareasinfo.php';
+require_once PATH_MODELS.$namespace. 'class_surveyworkareaslist.php';
+require_once PATH_MODELS.$namespace. 'class_surveyworkareasadd.php';
+require_once PATH_MODELS.$namespace. 'class_surveyworkareasupdate.php';
+require_once PATH_MODELS.$namespace. 'class_surveyworkareasdelete.php';
+
+//surveyprofessions
+$namespace = 'survey/professions/';
+require_once PATH_MODELS.$namespace. 'class_surveyprofessionsinfo.php';
+require_once PATH_MODELS.$namespace. 'class_surveyprofessionslist.php';
+require_once PATH_MODELS.$namespace. 'class_surveyprofessionsadd.php';
+require_once PATH_MODELS.$namespace. 'class_surveyprofessionsupdate.php';
+require_once PATH_MODELS.$namespace. 'class_surveyprofessionsdelete.php';
+
 //surveyquestions
 $namespace = 'survey/questions/';
 require_once PATH_MODELS.$namespace. 'class_surveyquestionsinfo.php';
@@ -214,6 +231,20 @@ require_once PATH_MODELS.$namespace. 'class_surveyanswerslist.php';
 require_once PATH_MODELS.$namespace. 'class_surveyanswersadd.php';
 require_once PATH_MODELS.$namespace. 'class_surveyanswersupdate.php';
 require_once PATH_MODELS.$namespace. 'class_surveyanswersdelete.php';
+
+//surveyresults
+$namespace = 'survey/results/';
+require_once PATH_MODELS.$namespace. 'class_surveyresultsinfo.php';
+require_once PATH_MODELS.$namespace. 'class_surveyresultslist.php';
+require_once PATH_MODELS.$namespace. 'class_surveyresultsadd.php';
+require_once PATH_MODELS.$namespace. 'class_surveyresultsupdate.php';
+require_once PATH_MODELS.$namespace. 'class_surveyresultsdelete.php';
+require_once PATH_MODELS.$namespace. 'class_surveyresultsanswers.php';
+
+//surveyanswersfinish
+$namespace = 'survey/cronjob/';
+require_once PATH_MODELS.$namespace. 'class_surveyanswersfinish.php';
+require_once PATH_MODELS.$namespace. 'class_surveyanswerscustomers.php';
 
 //surveycustomers
 $namespace = 'survey/customers/';

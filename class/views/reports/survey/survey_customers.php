@@ -5,6 +5,11 @@ function class_tableMainList($array)
     if ($array['rows']) {
         foreach ($array['response'] as $row_array) {
 
+            
+            $CreateDate = date_create($row_array['CreateDate']);
+            $CreateDate = date_format($CreateDate, 'Y-m-d');
+
+
             $results[] = array(
 
                 //Define custom Patern Table Alias Keys => Values
@@ -19,8 +24,8 @@ function class_tableMainList($array)
                 'País'      => $row_array['Country'],
                 'Provincia' => $row_array['State'],
                 'Ciudad'    => $row_array['City'],
-                'Fecha'     => $row_array['CreateDate'],
-                'Estado'    => class_statusInfo($row_array['Status']),
+                'Fecha'     => $CreateDate,
+                'Estado'    => class_statusFinish($row_array['SurveyFinish']),
 
                 //Define Index, Status, Childs
                 'index'     => $row_array['Id'],

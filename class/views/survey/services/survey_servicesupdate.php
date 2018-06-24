@@ -1,6 +1,6 @@
 <?php
 if ($form_update) {
-    $surveyservicesupdate = class_surveyServicesUpdate($Id, $ZonesId, $Name, $Description, $Details, $Terms, $Status);
+    $surveyservicesupdate = class_surveyServicesUpdate($Id, $ZonesId, $Name, $Description, $Details, $Terms, $FormId, $Status);
     header('Location: ' . $_SERVER['PHP_SELF']);
     die();
 }
@@ -20,6 +20,12 @@ if ($surveyzoneslist['rows']) {
         $array_surveyzones[] = array('label' => $row_surveyzoneslist['Name'], 'value' => $row_surveyzoneslist['Id'], 'selected' => $row_surveyservicesinfo['ZonesId']);
     }
 }
+
+//Forms list
+$array_forms   = array();
+$array_forms[] = array('label' => 'Formulario v1', 'value' => '1', 'selected' => $row_surveyservicesinfo['FormId']);
+$array_forms[] = array('label' => 'Formulario v2', 'value' => '2', 'selected' => $row_surveyservicesinfo['FormId']);
+
 //Status list
 $array_status   = array();
 $array_status[] = array('label' => LANG_ACTIVE, 'value' => '1', 'selected' => $row_surveyservicesinfo['Status']);
@@ -33,6 +39,7 @@ $formFields = array(
     LANG_DESCRIPTION => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'text', 'required' => false, 'position' => 1, 'name' => 'Description', 'value' => $row_surveyservicesinfo['Description']),
     LANG_DETAILS     => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'textarea', 'required' => false, 'position' => 1, 'name' => 'Details', 'value' => $row_surveyservicesinfo['Details']),
     LANG_TERMS       => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'textarea', 'required' => false, 'position' => 1, 'name' => 'Terms', 'value' => $row_surveyservicesinfo['Terms']),
+    'FORMID'      => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select', 'required' => true, 'position' => 1, 'name' => 'FormId', 'value' => $array_forms),
     LANG_STATUS      => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select', 'required' => true, 'position' => 1, 'name' => 'Status', 'value' => $array_status),
 );
 

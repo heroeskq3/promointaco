@@ -21,6 +21,7 @@ function class_tableMainList($array)
                 LANG_NAME    => $row_array['Name'],
                 LANG_SURVEYS => $surveylist['rows'],
                 LANG_ZONE    => $zones_name,
+                'FORMID'    => $row_array['FormId'],
                 LANG_STATUS  => class_statusInfo($row_array['Status']),
 
                 //Define Index, Status, Childs

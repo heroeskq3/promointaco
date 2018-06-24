@@ -49,6 +49,9 @@ function class_formGenerator2($formParams, $formFields, $formButtons)
         if ($row['position'] == 5) {
             $results .= '<div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">';
         }
+        if ($row['position'] == 6) {
+            $results .= '<div class="col-xs-12">';
+        }
 
         if ($row['position']) {
 
@@ -58,7 +61,7 @@ function class_formGenerator2($formParams, $formFields, $formButtons)
             } elseif ($row['inputType'] == 'image') {
                 //label styles for others inputs
                 $results .= '<div class="form-group pmd-textfield pmd-textfield-floating-label">';
-            } elseif ($row['inputType'] == 'banner') {
+            } elseif ($row['inputType'] == 'banner2') {
                 //label styles for others inputs
                 $results .= '<div class="form-group pmd-textfield pmd-textfield-floating-label">';
             } else {

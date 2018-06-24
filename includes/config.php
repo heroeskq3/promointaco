@@ -21,9 +21,9 @@ define('CONFIG_METAKEYWORDS', 'Si, Definir');
 
 //MYSQL DEFINE ACCESS INFORMATION
 define('CONFIG_MYSQLHOST', 'localhost');
-define('CONFIG_MYSQLDB', 'promointaco5');
+define('CONFIG_MYSQLDB', 'promointaco');
 define('CONFIG_MYSQLUSER', 'root');
-define('CONFIG_MYSQLPASS', '');
+define('CONFIG_MYSQLPASS', 'sk101080');
 define('CONFIG_MYSQLPORT', ''); //Default 3306s
 define('CONFIG_MYSQLCHARSET', 'utf8'); //Default 3306s
 

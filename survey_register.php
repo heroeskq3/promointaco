@@ -15,9 +15,12 @@ $sectionParams = array(
 require_once 'header.php';
 
 //methods
-switch ($action) {
-    default:
+switch ($_SESSION['FormId']) {
+    case 1:
         require_once 'class/views/survey/site/survey_register.php';
+        break;
+    case 2:
+        require_once 'class/views/survey/site/survey_register_v2.php';
         break;
 }
 

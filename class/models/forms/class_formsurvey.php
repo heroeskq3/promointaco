@@ -2,7 +2,6 @@
 function class_formSurvey($FormSteps, $formParams, $formButtons, $formArray)
 {
 
-
     $results = null;
     if ($formArray) {
 
@@ -25,6 +24,15 @@ $results .= "
 </style>";
 
 
+if($_POST['form_add']){
+    if($_POST['AnswerError']){
+        $results .= '<div class="alert alert-danger">Debe seleccionar una respuesta</div>';
+    }
+}
+if($formParams['id']){
+
+}
+
         if ($formParams['name']) {
             $results .= '<br>'; //section-title
             $results .= '<center>'; //section-title
@@ -37,68 +45,22 @@ $results .= "
             $results .= '<form action="' . $formParams['action'] . '" method="' . $formParams['method'] . '">';
             //$results .= '<form role="form" class="f1" action="' . $formParams['action'] . '" method="' . $formParams['method'] . '">';
             $results .= '<input type="hidden" value="' . $FormSteps['step'] . '" name="step">';
+            
+            $results .= '<input type="hidden" value="1" name="form_add">';
+            $results .= '<input type="hidden" value="'.count($formArray['questions']).'" name="form_qnty">';
         }
 
-        //$results .= '<fieldset>';
-        $results .= '<div class="table-responsive">';
-        $results .= '<table class="table table-hover table-sm " width="100%">';
-        $results .= '<thead class="thead-light">';
-        $results .= '<tr>';
-        $results .= '<td></td>';
-        if ($formArray) {
-            $answerslist = $formArray['answers'];
-            foreach ($answerslist as $row_answers) {
-                $results .= '<td scope="col" align="center">' . $row_answers . '</td>';
-            }
-        }
-
-        $results .= '</tr>';
-        $results .= '</thead>';
-        $results .= '<tbody>';
-        $row_questions = null;
-        if ($formArray) {
-            foreach ($formArray['questions'] as $row_array) {
-
-                //step cut
-                $row_questions = $row_array['question'];
-
-                if ($formArray['answers']) {
-                    $results .= '<tr>';
-                    $results .= '<td scope="row" width="35%">';
-                    $results .= $row_questions['Question'];
-                    $results .= '<h5>' . $row_questions['Description'] . '</h5>';
-                    $results .= '</td>';
-
-                    foreach ($formArray['answers'] as $row_answers) {
-                        $results .= '<td align="center">';
-                        if ($row_array['answer']) {
-                            foreach ($row_array['answer'] as $row_answerslist) {
-                                if ($row_answers == $row_answerslist['Answer']) {
-                                    $results .= class_formInput(null, $row_array['inputtype'], 'Answer_' . $row_answerslist['QuestionId'], null, $row_answerslist['Points'], 'required');
-                                }
-                            }
-                        }
-                        $results .= '</td>';
-                    }
-
-                    $results .= '</tr>';
-                } else {
-                    $results .= '<tr>';
-                    $results .= '<td align="center">';
-                    $results .= $row_questions['Question'];
-                    $results .= '<h5>' . $row_questions['Description'] . '</h5>';
-                    if ($row_array['inputtype'] == 'textarea') {
-                        $row_array['inputtype'] = 'textarea_big';
-                    }
-                    $results .= class_formInput(null, $row_array['inputtype'], 'Answer_' . $row_questions['Id'], null, null, null);
-                    $results .= '</td>';
-                    $results .= '</tr>';
-                }
-            }
-        }
-        $results .= '</tbody>';
-        $results .= '</table>';
+        //question options area responsive v1
+        $results .= '<div class="responsivev1">';
+        require_once('class_formsurveyoptions.php');
         $results .= '</div>';
+
+        //question options area responsive v2
+        $results .= '<div class="responsivev2">';
+        require_once('class_formsurveyoptions2.php');
+        $results .= '</div>';
+
+
     } else {
         $results .= LANG_NORESULTS;
     }

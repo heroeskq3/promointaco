@@ -22,6 +22,21 @@
         </button>
         </div>
 
+       <div class="col-lg-12 col-md-12 col-sm-12">
+        
+        <p>
+        <?php
+        if($TermsOk){
+            $terms_checkd = 'checked';
+        }else{
+            $terms_checkd = 'checked';
+        }
+        ?>
+        <input type="checkbox" name="TermsOk" value="1" <?php   echo $terms_checkd; ?>>
+            He leido y acepto las condiciones del reglamento </p>
+         
+         </div>
+
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">

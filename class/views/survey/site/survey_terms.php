@@ -43,9 +43,9 @@ if ($surveysbanners_bottom['rows']) {
 }
 
 $formFields = array(
-    'Banner_Top'    => array('placeholder' => null, 'inputType' => 'banner', 'required' => false, 'position' => 1, 'name' => 'BannerTop', 'value' => $array_bannerstop),
+    'Banner_Top'    => array('placeholder' => null, 'inputType' => 'banner2', 'required' => false, 'position' => 1, 'name' => 'BannerTop', 'value' => $array_bannerstop),
     null            => array('placeholder' => null, 'inputType' => 'html', 'required' => false, 'position' => 1, 'name' => 'Details', 'value' => $row_surveyservicesinfo['Details']),
-    'Banner_Bottom' => array('placeholder' => null, 'inputType' => 'banner', 'required' => false, 'position' => 1, 'name' => 'BannerBottom', 'value' => $array_bannersbottom),
+    'Banner_Bottom' => array('placeholder' => null, 'inputType' => 'banner2', 'required' => false, 'position' => 1, 'name' => 'BannerBottom', 'value' => $array_bannersbottom),
 
 );
 

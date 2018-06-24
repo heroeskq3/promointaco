@@ -42,6 +42,7 @@ define('ZONES_NAME', $row_surveyzonesinfo['Name']);
         <link rel="stylesheet" href="assets/site/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/site/font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="assets/site/css/form-elements.css">
+        <!-- <link rel="stylesheet" href="assets/site/css/style.css">-->
         <link rel="stylesheet" href="assets/site/css/style.css">
         <link href="assets/site/css/flags.css" rel="stylesheet">
         <link rel="stylesheet" href="assets/site/css/custom.css">

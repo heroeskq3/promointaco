@@ -38,6 +38,18 @@ define('LANG_SERVICE03', 'Agradecemos tu honestidad.');
 define('LANG_SERVICE04', 'Cualquier sugerencia que tengas nos ayuda a mejorar nuestro servicio.');
 define('LANG_SERVICE05', 'Encuestas disponibles:');
 
+define('LANG_SERVICE06', 'SÉ parte de la comunidad INTACO');
+define('LANG_SERVICE07', 'Sé el primero en recibir información de productos nuevos.');
+define('LANG_SERVICE08', 'Recibe consejos de nuestros expertos y conoce las fechas de nuestras capacitaciones.');
+define('LANG_SERVICE09', 'Regístrate y queda participando en la rifa de 5 tablets.');
+
+define('LANG_SERVICE10', '¿Cómo ser parte de la comunidad INTACO?');
+define('LANG_SERVICE11', '1) Ingresa tus datos personales.');
+define('LANG_SERVICE12', '2) ¡Listo! Serás parte de nuestra comunidad de expertos INTACO.');
+define('LANG_SERVICE13', 'Fecha del sorteo: 1 de julio, 2018');
+
+
+
 //SURVEY SITE - TERMS
 define('LANG_TERMSANDCONDITIONS', 'TÉRMINOS Y CONDICIONES');
 define('LANG_SHOWTERMS', 'Ver reglamento');
@@ -63,6 +75,8 @@ define('LANG_COUNTRY', 'País');
 define('LANG_STATE', 'Provincia');
 define('LANG_CITY', 'Cantón');
 define('LANG_BUSINESSTIME', 'Tiempo de comprar en INTACO');
+define('LANG_BUSINESSAREA', 'Área de Trabajo');
+define('LANG_PROFESSION', 'Profesión');
 
 //SURVEY SITE - THANKS
 define('LANG_THANKS01', '¡MUCHAS GRACIAS POR SU OPINIÓN!');
@@ -188,6 +202,7 @@ define('LANG_ANSWER', 'Respuesta');
 //survey banners
 define('LANG_TARGET', 'Target');
 define('LANG_POSITION', 'Posición');
+define('LANG_WORKAREA', 'Área de trabajo');
 define('LANG_TOP', 'Top');
 define('LANG_BOTTOM', 'Bottom');
 

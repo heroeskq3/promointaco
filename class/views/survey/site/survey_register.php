@@ -13,7 +13,7 @@ if ($form_add) {
         $State = $row_surveyzonesinfo['Name'];
     }
 
-    $surveycustomersadd = class_surveyCustomersAdd($FirstName, $LastName, $Identification, $Phone, $Email, $Company, $Position, $Care, $Local, $CustomInfo1, $Country, $State, $City, $SessionId, $Status);
+    $surveycustomersadd = class_surveyCustomersAdd($FirstName, $LastName, $Identification, $Phone, $Email, $Company, $Position, null, null, $Care, $Local, $CustomInfo1, $Country, $State, $City, $SessionId, $Status);
 
     if ($surveycustomersadd['rows']) {
 
@@ -27,7 +27,7 @@ if ($form_add) {
     }
 }
 if ($form_update) {
-    $surveycustomersupdate = class_surveyCustomersUpdate($CustomersId, $FirstName, $LastName, $Identification, $Phone, $Email, $Company, $Position, $Care, $Local, $CustomInfo1, $Country, $State, $City, $SessionId, $Status);
+    $surveycustomersupdate = class_surveyCustomersUpdate($CustomersId, $FirstName, $LastName, $Identification, $Phone, $Email, $Company, $Position, null, null, $Care, $Local, $CustomInfo1, $Country, $State, $City, $SessionId, $Status);
 
     header('Location: survey_questions.php');
     die();
@@ -149,34 +149,34 @@ $array_CustomInfo1[] = array('label' => 'Más de 10 años', 'value' => 'Más de 
 
 $formFields = array(
     //HIDDEN
-    $form_action             => array('placeholder' => null, 'inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => $form_action, 'value' => 1),
-    'ServicesId'             => array('placeholder' => null, 'inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'ServicesId', 'value' => $ServicesId),
-    'CustomersId'            => array('placeholder' => null, 'inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'CustomersId', 'value' => $CustomersId),
+    $form_action             => array('placeholder' => null, 'inputType' => 'hidden', 'required' => true, 'position' => 0, 'name' => $form_action, 'value' => 1),
+    'ServicesId'             => array('placeholder' => null, 'inputType' => 'hidden', 'required' => true, 'position' => 0, 'name' => 'ServicesId', 'value' => $ServicesId),
+    'CustomersId'            => array('placeholder' => null, 'inputType' => 'hidden', 'required' => true, 'position' => 0, 'name' => 'CustomersId', 'value' => $CustomersId),
 
     //PERSONAL INFORMATION
-    LANG_PERSONALINFORMATION => array('placeholder' => null, 'inputType' => 'label', 'required' => false, 'position' => 1, 'name' => 'Company', 'value' => $Company),
+    LANG_PERSONALINFORMATION => array('placeholder' => null, 'inputType' => 'label', 'required' => true, 'position' => 1, 'name' => 'Company', 'value' => $Company),
     LANG_NAME                => array('placeholder' => null, 'inputType' => 'text', 'required' => true, 'position' => 3, 'name' => 'FirstName', 'value' => $FirstName),
-    LANG_LASTNAME            => array('placeholder' => null, 'inputType' => 'text', 'required' => false, 'position' => 3, 'name' => 'LastName', 'value' => $LastName),
-    LANG_IDENTIFICATION      => array('placeholder' => null, 'inputType' => 'text', 'required' => false, 'position' => 3, 'name' => 'Identification', 'value' => $Identification),
-    LANG_PHONENUMBER         => array('placeholder' => null, 'inputType' => 'tel', 'required' => false, 'position' => 2, 'name' => 'Phone', 'value' => $Phone),
-    LANG_ELECTRONICMAIL      => array('placeholder' => null, 'inputType' => 'email', 'required' => false, 'position' => 2, 'name' => 'Email', 'value' => $Email),
+    LANG_LASTNAME            => array('placeholder' => null, 'inputType' => 'text', 'required' => true, 'position' => 3, 'name' => 'LastName', 'value' => $LastName),
+    LANG_IDENTIFICATION      => array('placeholder' => null, 'inputType' => 'text', 'required' => true, 'position' => 3, 'name' => 'Identification', 'value' => $Identification),
+    LANG_PHONENUMBER         => array('placeholder' => null, 'inputType' => 'tel', 'required' => true, 'position' => 2, 'name' => 'Phone', 'value' => $Phone),
+    LANG_ELECTRONICMAIL      => array('placeholder' => null, 'inputType' => 'email', 'required' => true, 'position' => 2, 'name' => 'Email', 'value' => $Email),
 
     //BUSINESS INFORMATION
-    LANG_BUSINESSINFORMATION => array('placeholder' => null, 'inputType' => 'label', 'required' => false, 'position' => 1, 'name' => 'Company', 'value' => $Company),
-    LANG_BUSINESSNAME        => array('placeholder' => null, 'inputType' => 'text', 'required' => false, 'position' => 2, 'name' => 'Company', 'value' => $Company),
-    LANG_BUSINESSPOSITION    => array('placeholder' => null, 'inputType' => 'select', 'required' => false, 'position' => 2, 'name' => 'Position', 'value' => $array_positions),
-    LANG_BUSINESSCARE        => array('placeholder' => null, 'inputType' => 'select', 'required' => false, 'position' => 2, 'name' => 'Care', 'value' => $array_cares),
-    LANG_BUSINESSLOCAL       => array('placeholder' => null, 'inputType' => 'select', 'required' => false, 'position' => 2, 'name' => 'Local', 'value' => $array_locals),
+    LANG_BUSINESSINFORMATION => array('placeholder' => null, 'inputType' => 'label', 'required' => true, 'position' => 1, 'name' => 'Company', 'value' => $Company),
+    LANG_BUSINESSNAME        => array('placeholder' => null, 'inputType' => 'text', 'required' => true, 'position' => 2, 'name' => 'Company', 'value' => $Company),
+    LANG_BUSINESSPOSITION    => array('placeholder' => null, 'inputType' => 'select', 'required' => true, 'position' => 2, 'name' => 'Position', 'value' => $array_positions),
+    LANG_BUSINESSCARE        => array('placeholder' => null, 'inputType' => 'select', 'required' => true, 'position' => 2, 'name' => 'Care', 'value' => $array_cares),
+    LANG_BUSINESSLOCAL       => array('placeholder' => null, 'inputType' => 'select', 'required' => true, 'position' => 2, 'name' => 'Local', 'value' => $array_locals),
 
     //SELECT AJAX ONCHANGE
-    LANG_STATE     => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select_onchange1', 'required' => false, 'position' => 2, 'name' => 'State', 'value' => $array_states),
-    LANG_CITY     => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select_onchange2', 'required' => false, 'position' => 2, 'name' => 'City', 'value' => $array_cities),
+    LANG_STATE     => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select_onchange1', 'required' => true, 'position' => 2, 'name' => 'State', 'value' => $array_states),
+    LANG_CITY     => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select_onchange2', 'required' => true, 'position' => 2, 'name' => 'City', 'value' => $array_cities),
 
-    LANG_BUSINESSTIME        => array('placeholder' => null, 'inputType' => 'select', 'required' => false, 'position' => 1, 'name' => 'CustomInfo1', 'value' => $array_CustomInfo1),
+    LANG_BUSINESSTIME        => array('placeholder' => null, 'inputType' => 'select', 'required' => true, 'position' => 1, 'name' => 'CustomInfo1', 'value' => $array_CustomInfo1),
 
     //INACTIVE
-    LANG_COUNTRY             => array('placeholder' => null, 'inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'Country', 'value' => $Country),
-    LANG_STATUS              => array('placeholder' => null, 'inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'Status', 'value' => 1),
+    LANG_COUNTRY             => array('placeholder' => null, 'inputType' => 'hidden', 'required' => true, 'position' => 0, 'name' => 'Country', 'value' => $Country),
+    LANG_STATUS              => array('placeholder' => null, 'inputType' => 'hidden', 'required' => true, 'position' => 0, 'name' => 'Status', 'value' => 1),
 );
 
 // define buttons for form

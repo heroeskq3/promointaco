@@ -112,6 +112,10 @@ $Status = null;
 if (isset($_POST['Status'])) {
     $Status = htmlspecialchars($_POST['Status']);
 }
+$FormId = null;
+if (isset($_POST['FormId'])) {
+    $FormId = htmlspecialchars($_POST['FormId']);
+}
 
 //USERS
 $UsersIndex = null;
@@ -165,6 +169,10 @@ if (isset($_POST['form_add'])) {
 $form_update = null;
 if (isset($_POST['form_update'])) {
     $form_update = $_POST['form_update'];
+}
+$form_qnty = null;
+if (isset($_POST['form_qnty'])) {
+    $form_qnty = $_POST['form_qnty'];
 }
 
 //ADMIN
@@ -224,6 +232,59 @@ $Answer = null;
 if (isset($_POST['Answer'])) {
     $Answer = $_POST['Answer'];
 }
+$AnswerId = null;
+if (isset($_POST['AnswerId'])) {
+    $AnswerId = $_POST['AnswerId'];
+}
+
+//answers by rows
+$AnswerId_0 = null;
+if (isset($_POST['AnswerId_0'])) {
+    $AnswerId_0 = $_POST['AnswerId_0'];
+}
+$AnswerId_1 = null;
+if (isset($_POST['AnswerId_1'])) {
+    $AnswerId_1 = $_POST['AnswerId_1'];
+}
+$AnswerId_2 = null;
+if (isset($_POST['AnswerId_2'])) {
+    $AnswerId_2 = $_POST['AnswerId_2'];
+}
+$AnswerId_3 = null;
+if (isset($_POST['AnswerId_3'])) {
+    $AnswerId_3 = $_POST['AnswerId_3'];
+}
+$AnswerId_4 = null;
+if (isset($_POST['AnswerId_4'])) {
+    $AnswerId_4 = $_POST['AnswerId_4'];
+}
+$AnswerId_5 = null;
+if (isset($_POST['AnswerId_5'])) {
+    $AnswerId_5 = $_POST['AnswerId_5'];
+}
+$AnswerId_6 = null;
+if (isset($_POST['AnswerId_6'])) {
+    $AnswerId_6 = $_POST['AnswerId_6'];
+}
+$AnswerId_7 = null;
+if (isset($_POST['AnswerId_7'])) {
+    $AnswerId_7 = $_POST['AnswerId_7'];
+}
+$AnswerId_8 = null;
+if (isset($_POST['AnswerId_8'])) {
+    $AnswerId_8 = $_POST['AnswerId_8'];
+}
+$AnswerId_9 = null;
+if (isset($_POST['AnswerId_9'])) {
+    $AnswerId_9 = $_POST['AnswerId_9'];
+}
+$AnswerId_10 = null;
+if (isset($_POST['AnswerId_10'])) {
+    $AnswerId_10 = $_POST['AnswerId_10'];
+}
+
+
+
 $SurveyId = null;
 if (isset($_POST['SurveyId'])) {
     $SurveyId = $_POST['SurveyId'];
@@ -249,6 +310,26 @@ if (isset($_POST['Identification'])) {
 $Position = null;
 if (isset($_POST['Position'])) {
     $Position = $_POST['Position'];
+}
+$PositionId = null;
+if (isset($_POST['PositionId'])) {
+    $PositionId = $_POST['PositionId'];
+}
+$WorkareaId = null;
+if (isset($_POST['WorkareaId'])) {
+    $WorkareaId = $_POST['WorkareaId'];
+}
+$Workarea = null;
+if (isset($_POST['Workarea'])) {
+    $Workarea = $_POST['Workarea'];
+}
+$Profession = null;
+if (isset($_POST['Profession'])) {
+    $Profession = $_POST['Profession'];
+}
+$ProfessionId = null;
+if (isset($_POST['ProfessionId'])) {
+    $ProfessionId = $_POST['ProfessionId'];
 }
 //survey front
 $step_1 = 1;
@@ -391,6 +472,10 @@ if (isset($_POST['ZonesId'])) {
 $TermsId = null;
 if (isset($_POST['TermsId'])) {
     $TermsId = $_POST['TermsId'];
+}
+$TermsOk = null;
+if (isset($_POST['TermsOk'])) {
+    $TermsOk = $_POST['TermsOk'];
 }
 $InputType = null;
 if (isset($_POST['InputType'])) {

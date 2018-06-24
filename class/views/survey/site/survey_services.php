@@ -10,7 +10,14 @@ if ($button == "next") {
 }
 
 if (isset($_POST['ServicesId'])) {
+
+    //Services Info
+    $surveyservicesinfo     = class_surveyServicesInfo($_POST['ServicesId']);
+    $row_surveyservicesinfo = $surveyservicesinfo['response'][0];
+
     $_SESSION['ServicesId'] = $_POST['ServicesId'];
+    $_SESSION['FormId'] = $row_surveyservicesinfo['FormId'];
+
     header('Location: survey_terms.php');
     die();
 }

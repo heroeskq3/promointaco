@@ -38,7 +38,7 @@ if ($surveyzoneslist['rows']) {
 }
 
 $formFields = array(
-    null => array('placeholder' => null, 'inputType' => 'country_well', 'required' => true, 'position' => 4, 'name' => 'ZonesId', 'value' => $array_surveyzones, 'action' => 'survey_home.php'),
+    null => array('placeholder' => null, 'inputType' => 'country_well', 'required' => true, 'position' => 6, 'name' => 'ZonesId', 'value' => $array_surveyzones, 'action' => 'survey_home.php'),
 );
 
 if ($ZonesId) {

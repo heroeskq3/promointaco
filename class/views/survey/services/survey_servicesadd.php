@@ -1,6 +1,6 @@
 <?php
 if ($form_add) {
-    class_surveyServicesAdd($ZonesId, $Name, $Description, $Details, $Terms, $Status);
+    class_surveyServicesAdd($ZonesId, $Name, $Description, $Details, $Terms, $FormId, $Status);
     header('Location: ' . $_SERVER['PHP_SELF']);
     die();
 }
@@ -15,6 +15,11 @@ if ($surveyzoneslist['rows']) {
         $array_surveyzones[] = array('label' => $row_surveyzoneslist['Name'], 'value' => $row_surveyzoneslist['Id'], 'selected' => null);
     }
 }
+//Forms list
+$array_forms   = array();
+$array_forms[] = array('label' => 'Formulario v1', 'value' => '1', 'selected' => $FormsId);
+$array_forms[] = array('label' => 'Formulario v2', 'value' => '2', 'selected' => $FormsId);
+
 //Status list
 $array_status   = array();
 $array_status[] = array('label' => LANG_ACTIVE, 'value' => '1', 'selected' => $Status);
@@ -34,7 +39,8 @@ $formFields = array(
     LANG_DESCRIPTION => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'text', 'required' => false, 'position' => 1, 'name' => 'Description', 'value' => $Description),
     LANG_DETAILS     => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'textarea', 'required' => false, 'position' => 1, 'name' => 'Details', 'value' => $Details),
     LANG_TERMS       => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'textarea', 'required' => false, 'position' => 1, 'name' => 'Terms', 'value' => $Terms),
-    LANG_STATUS      => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select', 'required' => true, 'position' => 3, 'name' => 'Status', 'value' => $array_status),
+    LANG_FORMID      => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select', 'required' => true, 'position' => 1, 'name' => 'FormId', 'value' => $array_forms),
+    LANG_STATUS      => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select', 'required' => true, 'position' => 1, 'name' => 'Status', 'value' => $array_status),
 );
 
 // define buttons for form

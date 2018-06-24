@@ -70,7 +70,7 @@ function class_formInput($placeholder, $inputType, $name, $label, $value, $requi
     if ($inputType == 'country_well') {
         if ($value) {
             foreach ($value as $row_option) {
-                $results .= '<div class="col-xs-6">';
+                $results .= '<div class="col-md-2">';
                 $results .= '<h4>' . $row_option['label'] . '</h4>';
                 $results .= '<a href="?Id=' . $row_option['value'] . '"><img src="' . PATH_RESOURCES . 'flags/' . $row_option['image'] . '"></a>';
                 $results .= '</div>';
@@ -80,6 +80,95 @@ function class_formInput($placeholder, $inputType, $name, $label, $value, $requi
 
     //SELECT INPUT
     if ($inputType == 'select') {
+        // TODO:
+        // se debe optimizar el uso de scripts dentro de los input
+        // se considera que deben ir en el formgenerator dentro de una libreria scripts
+        // la liebreria deberia tener la inteligencia de detectar que componentes inputs están habilitados.
+
+        $results .= '<select class="select-with-search form-control pmd-select2 selectpicker" data-show-subtext="true" data-live-search="true" name="' . $name . '" ' . $required . '>';
+
+        if ($placeholder) {
+            $placeholder = $placeholder;
+        } else {
+            $placeholder = LANG_FORMSELECT;
+        }
+
+        $results .= '<option value="">' . $placeholder . '</option>';
+        if ($value) {
+            foreach ($value as $row_option) {
+                $results .= '<option value="';
+                if ($row_option['label']) {
+                    $results .= $row_option['value'];
+                } else {
+                    $results .= '';
+                }
+                $results .= '" ';
+                if ($row_option['value'] == $row_option['selected']) {
+                    if ($row_option['label']) {
+                        $results .= 'selected';
+                    } else {
+                        $results .= null;
+                    }
+
+                }
+                $results .= '>';
+                if ($row_option['label']) {
+                    $results .= $row_option['label'];
+                } else {
+                    $results .= 'Undefined';
+                }
+                $results .= '</option>';
+            }
+        }
+        $results .= '</select>';
+    }
+
+    //SELECT MULTIPLE
+    if ($inputType == 'select_multiple') {
+        // TODO:
+        // se debe optimizar el uso de scripts dentro de los input
+        // se considera que deben ir en el formgenerator dentro de una libreria scripts
+        // la liebreria deberia tener la inteligencia de detectar que componentes inputs están habilitados.
+
+        $results .= '<select multiple class="select-with-search form-control pmd-select2 selectpicker" data-show-subtext="true" data-live-search="true" name="' . $name . '" ' . $required . '>';
+
+        if ($placeholder) {
+            $placeholder = $placeholder;
+        } else {
+            $placeholder = LANG_FORMSELECT;
+        }
+
+        //$results .= '<option value="">' . $placeholder . '</option>';
+        if ($value) {
+            foreach ($value as $row_option) {
+                $results .= '<option value="';
+                if ($row_option['label']) {
+                    $results .= $row_option['value'];
+                } else {
+                    $results .= '';
+                }
+                $results .= '" ';
+                if ($row_option['value'] == $row_option['selected']) {
+                    if ($row_option['label']) {
+                        $results .= 'selected';
+                    } else {
+                        $results .= null;
+                    }
+
+                }
+                $results .= '>';
+                if ($row_option['label']) {
+                    $results .= $row_option['label'];
+                } else {
+                    $results .= 'Undefined';
+                }
+                $results .= '</option>';
+            }
+        }
+        $results .= '</select>';
+    }
+    //SELECT INPUT
+    if ($inputType == 'select_survey') {
         // TODO:
         // se debe optimizar el uso de scripts dentro de los input
         // se considera que deben ir en el formgenerator dentro de una libreria scripts
@@ -215,12 +304,10 @@ function class_formInput($placeholder, $inputType, $name, $label, $value, $requi
         $results .= '</select>';
         ?>
         <?php
-function array_envia($array)
+        function array_envia($array)
         {
-
             $tmp = serialize($array);
             $tmp = urlencode($tmp);
-
             return $tmp;
         }
 
@@ -244,6 +331,85 @@ function array_envia($array)
     <?php
 }
 
+//start
+
+    //SELECT INPUT ONCHANGE PATERN
+    if ($inputType == 'select_onchange3') {
+        $results .= '<select onchange="fetch_select4(this.value);"class="select-with-search form-control pmd-select2 selectpicker" data-show-subtext="true" data-live-search="true" name="' . $name . '" ' . $required . '>';
+
+        if ($placeholder) {
+            $placeholder = $placeholder;
+        } else {
+            $placeholder = LANG_FORMSELECT;
+        }
+
+        $results .= '<option value="">' . $placeholder . '</option>';
+
+        if ($value) {
+
+            foreach ($value as $row_option) {
+                $results .= '<option value="' . $row_option['value'] . '" ';
+                if ($row_option['value'] == $row_option['selected']) {
+                    $results .= 'selected';
+                }
+                $results .= '>' . $row_option['label'] . '</option>';
+            }
+        }
+        $results .= '</select>';
+    }
+
+    //SELECT INPUT ONCHANGE CHILDS
+    if ($inputType == 'select_onchange4') {
+        $results .= '<select id="new_select4" class="select-with-search form-control pmd-select2" data-show-subtext="true" data-live-search="false" name="' . $name . '" ' . $required . '>';
+        if ($placeholder) {
+            $placeholder = $placeholder;
+        } else {
+            $placeholder = LANG_FORMSELECT;
+        }
+        $results .= '<option value="">' . $placeholder . '</option>';
+        if ($value) {
+            foreach ($value as $row_option) {
+                $results .= '<option value="' . $row_option['value'] . '" ';
+                if ($row_option['value'] == $row_option['selected']) {
+                    $results .= 'selected';
+                }
+                $results .= '>' . $row_option['label'] . '</option>';
+            }
+        }
+        $results .= '</select>';
+        ?>
+        <?php
+        function array_envia4($array)
+        {
+            $tmp = serialize($array);
+            $tmp = urlencode($tmp);
+            return $tmp;
+        }
+
+        $array = array_envia4($value);
+        ?>
+    <script type="text/javascript">
+    function fetch_select4(val) {
+        $.ajax({
+            type: 'post',
+            url: 'forms_onchange.php',
+            data: {
+                get_option: val,
+                get_array: '<?php echo $array; ?>'
+            },
+            success: function(response) {
+                document.getElementById("new_select4").innerHTML = response;
+            }
+        });
+    }
+    </script>
+    <?php
+}
+
+//end
+
+
+
     //CHECKBX INPUT
     if ($inputType == 'checkbox') {
         if ($value) {
@@ -257,6 +423,33 @@ function array_envia($array)
         $results .= '<span> ' . $label . '</span>';
         $results .= '</label>';
     }
+    //CHECKBX INPUT
+    if ($inputType == 'checkbox2') {
+        if (0) {
+            $checked = 'checked';
+        } else {
+            $checked = null;
+        }
+
+        $results .= '<label class="pmd-checkbox checkbox-pmd-ripple-effect">';
+        $results .= '<input name="' . $name . '" type="checkbox" value="1" ' . $checked . '>';
+        $results .= '<span> ' . $label . '</span>';
+        $results .= '</label>';
+    }
+    //RADIO INPUT v2
+    if ($inputType == 'radio2') {
+        if (null) {
+            $checked = 'checked';
+        } else {
+            $checked = null;
+        }
+
+        $results .= '<label class="pmd-checkbox checkbox-pmd-ripple-effect">';
+        $results .= '<input type="radio" name="' . $name . '" value="' . $value . '" ' . $checked . '>';
+        $results .= '<span> ' . $label . '</span>';
+        $results .= '</label>';
+    }
+
     //RADIO INPUT
     if ($inputType == 'radio') {
         if ($value) {
@@ -276,28 +469,29 @@ function array_envia($array)
 
     //RADIO INPUT WITH IMAGE
     if ($inputType == 'radio_img') {
-        if (0) {
+        if ($label) {
             $checked = 'checked';
         } else {
             $checked = null;
         }
+        $label = $label;
 
         $results .= '<label class="radio_img">';
-        $results .= '<input type="radio" name="' . $name . '" value="' . $value . '">';
+        $results .= '<input type="radio" name="' . $name . '" value="' . $value . '" ' . $checked . '>';
         $results .= '<div class="btn_survey"><div>';
         $results .= '</label>';
     }
     //RADIO INPUT WITH IMAGE
     if ($inputType == 'check_img') {
 
-        if (0) {
+        if ($label) {
             $checked = 'checked';
         } else {
             $checked = null;
         }
 
         $results .= '<label class="radio_img">';
-        $results .= '<input type="checkbox" name="' . $name . '" value="' . $value . '">';
+        $results .= '<input type="checkbox" name="' . $name . '" value="' . $value . '" ' . $checked . '>';
         $results .= '<div class="btn_survey"><div>';
         $results .= '</label>';
     }
@@ -408,6 +602,26 @@ function array_envia($array)
 
         $results .= '</div>';
         $results .= '</center>';
+    }
+    //banner 2 responsive
+    if ($inputType == 'banner2') {
+        $results .= '<center>';
+        $i = 0;
+        foreach ($value as $key => $row) {
+
+            $pos = $i++;
+            if ($pos == 0) {
+                $banner_active = 'active';
+            } else {
+                $banner_active = null;
+            }
+            $results .= '<a href="' . $row['url'] . '" target="' . $row['target'] . '">';
+            $results .= ''; //label
+            $results .= '<img class="img-responsive" src="' . PATH_RESOURCES . 'banners/' . $row['file'] . '" alt="' . $row['description'] . '">';
+            $results .= '</a>';
+        }
+        $results .= '</center>';
+
     }
 
     return $results;

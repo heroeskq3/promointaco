@@ -174,3 +174,25 @@ textarea.form-control {
 h5, h5 {
     text-align: justify;
 }
+
+    .responsivev1{
+        display: initial;
+    }
+    .responsivev2{
+        display: none;
+    }
+
+@media (max-width: 767px) {
+    .f1-step.active p {
+        display: none;
+    }
+    .f1-step p {
+    display: none;
+    }
+    .responsivev1{
+        display: none;
+    }
+    .responsivev2{
+        display: initial;
+    }
+}
